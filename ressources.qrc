@@ -7,6 +7,11 @@
         <file>images/pError.png</file>
         <file>images/desplegable.png</file>
         <file>images/blanca.png</file>
-        <file>qml/main.qml</file>
+        <file>main.qml</file>
+        <file>qml/ArtistMode.qml</file>
+        <file>qml/Practice.qml</file>
+        <file>qml/Information.qml</file>
+        <file>qml/Init.qml</file>
+        <file>qml/Musvi_Controller.qml</file>
     </qresource>
 </RCC>

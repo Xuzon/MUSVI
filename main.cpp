@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 
     /* SOUND PROCESS */
     //transcriptor->loadData();
-    engine.load(QUrl("qml/main.qml"));
+    engine.load(QUrl("qrc:/main.qml"));
     Musvi_Logic *logic = new Musvi_Logic();
     engine.rootContext()->setContextProperty("Logic", logic);
 
