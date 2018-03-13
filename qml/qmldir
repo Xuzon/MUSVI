@@ -1,0 +1,6 @@
+module Screens
+
+ArtistMode 1.0 Screens/ArtistMode.qml
+Information 1.0 Screens/Information.qml
+Musvi_Controller 1.0 Screens/Musvi_Controller.qml
+Practice 1.0 Screens/Practice.qml

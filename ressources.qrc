@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/line.png</file>
+        <file>images/corchea.png</file>
+        <file>images/negra.png</file>
+        <file>images/p1.png</file>
+        <file>images/pError.png</file>
+        <file>images/desplegable.png</file>
+        <file>images/blanca.png</file>
+        <file>qml/main.qml</file>
+    </qresource>
+</RCC>
