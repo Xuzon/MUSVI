@@ -35,6 +35,7 @@ Item {
             color: "#ffffff"
         }
     }
+
     Rectangle{
         id: logo2
         color: "#e2587b"
@@ -67,11 +68,16 @@ Item {
             anchors.fill: artistMode
             onPressed: {
                 artistMode.color = "#40e0d0"
+                artistMode.scale = 1.1
             }
             onReleased: {
                 artistMode.color = "#7FFFD4"
+                artistMode.scale = 1
                 selectMode("artist")
             }
+        }
+        transitions: Transition {
+            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
         }
     }
 
@@ -95,11 +101,16 @@ Item {
             anchors.fill: practice
             onPressed: {
                 practice.color = "#40e0d0"
+                practice.scale = 1.1
             }
             onReleased: {
                 practice.color = "#7FFFD4"
+                practice.scale = 1
                 selectMode("practice")
             }
+        }
+        transitions: Transition {
+            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
         }
     }
 
@@ -123,11 +134,16 @@ Item {
             anchors.fill: info
             onPressed: {
                 info.color = "#ba83c8"
+                info.scale = 1.1
             }
             onReleased: {
                 info.color = "#e9a4fb"
+                info.scale = 1
                 selectMode("info")
             }
+        }
+        transitions: Transition {
+            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
         }
 
     }

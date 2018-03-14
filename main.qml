@@ -2,39 +2,14 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Window 2.2
+
 import "qml/" as Screens
 
-//import ArtistMode 1.0
-//import "../ArtistMode" as artist
-//import "C:/Users/usuario/Desktop/musvi_interface-Eva/ArtistMode.qml"
 
 Item {
     property bool noteVisible: false
     property var inputDevices
     property var outputDevices
-
-
-
-    //    Connections{
-    //        target: Logic
-    //        onDetectPulse:{
-    //            noteVisible = pulse
-    //        }
-    //        onSendInputDevices:{
-    //            inputDevices = list
-    //        }
-    //        onSendOutputDevices:{
-    //            outputDevices = list
-    //        }
-    //    }
-
-//    Timer{
-    //        id: timerNote
-    //        interval: 100;
-//        onTriggered: noteVisible = false
-//    }
-
-
 
     //VENTANA PRINCIPAL - INICIO
     Window{
@@ -64,7 +39,16 @@ Item {
             onStopRecording: {
                 controller.sendStopRecording()
             }
+            Connections{
+                target: controller
+                onDetectPulse:{
+                    artistMode.printFigure(figure)
+                }
+            }
+
         }
+
+
         Screens.Practice{
             id: practice
             visible: false
@@ -100,7 +84,6 @@ Item {
                 }
             }
         }
-
 
     }
 

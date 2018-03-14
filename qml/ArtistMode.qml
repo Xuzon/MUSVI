@@ -8,8 +8,6 @@ Item {
     signal startRecording()
     signal stopRecording()
 
-
-
     Item{
         id: menu
 
@@ -18,8 +16,8 @@ Item {
             color: "#30d5c8"
             width: 200
             height: 800
-            x: -1
-            y: -1
+            x: -3
+            y: -3
             opacity: 1
             border.color: "#26aaa0"
             border.width: 2
@@ -31,8 +29,8 @@ Item {
                 radius: 5
                 width: 160
                 height: 100
-                x: 10
-                y: 10
+                anchors.horizontalCenter: backgoundMenu.horizontalCenter
+                y: 30
                 Text {
                     text: "INICIO"
                     font.family: "Chalkboard"
@@ -45,11 +43,16 @@ Item {
                     anchors.fill: initButton
                     onPressed: {
                         initButton.color = "#c04354"
+                        initButton.scale = 1.1
                     }
                     onReleased: {
                         initButton.color = "#f0546a"
+                        initButton.scale = 1
                         goInit()
                     }
+                }
+                transitions: Transition {
+                    NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
             }
 
@@ -60,8 +63,8 @@ Item {
                 radius: 5
                 width: 160
                 height: 100
-                x: 10
-                y: 140
+                anchors.horizontalCenter: backgoundMenu.horizontalCenter
+                y: 170
                 opacity: 0.8
                 Text {
                     text: "  MODO\nARTISTA"
@@ -77,14 +80,12 @@ Item {
 
             Rectangle{
                 id: startButton
-                property bool pressed: false
-
                 color: "#f0546a"
                 radius: 5
                 width: 160
                 height: 100
-                x: 10
-                y: 270
+                anchors.horizontalCenter: backgoundMenu.horizontalCenter
+                y: 300
                 opacity: 1
                 Text {
                     text: "START"
@@ -96,29 +97,30 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: startButton
-                    onClicked: {
-                        console.log("onclicked start")
-                        startButton.color = "#f0546a"
+                    onPressed: startButton.scale = 1.1
+                    onReleased: {
+                        startButton.opacity = 0.9
                         //Mostramos el gif de 3 2 1 y cuando acabe enviamos una señal de empezar
                         circle.visible = true
-
                         tempTimer.start()
+                        startButton.scale = 1
                     }
 
+                }
+                transitions: Transition {
+                    NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
 
             }
 
             Rectangle{
                 id: stopButton
-                property bool pressed: false
-
                 color: "#f0546a"
                 radius: 5
                 width: 160
                 height: 100
-                x: 10
-                y: 400
+                anchors.horizontalCenter: backgoundMenu.horizontalCenter
+                y: 430
                 opacity:1
                 Text {
                     text: "STOP"
@@ -130,26 +132,26 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: stopButton
-                    onClicked: {
-                        if(pressed){
-                            //Pasa a no pulsado
-                            stopButton.color = "#f0546a"
-                            stopRecording()
-                            //Y será cuando empezaremos a recibir datos
-                        }
+                    onPressed: {
+                        stopButton.scale = 1.1
+                        stopButton.opacity = 0.8
+                        startButton.opacity = 1
+                    }
+                    onReleased: {
+                        stopButton.scale = 1
+                        stopRecording()
+                        //Lanzaremos el popup preguntando la accion que quiere tomar sobre el: guardar, cancelar, guardar en practicar
                     }
 
+                }
+                transitions: Transition {
+                    NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
 
             }
 
-
-
         }
-
-
     }
-
 
     Rectangle {
         id: circle
@@ -173,7 +175,6 @@ Item {
         }
     }
 
-
     Timer{
         id: tempTimer
         interval: 1000
@@ -191,86 +192,68 @@ Item {
     }
 
 
+    ListModel {
+        id: figuresModel
+    }
+
+
+    Component {
+        id: figuresDelegate
+        Image{
+            source: path
+        }
+    }
+
+
     Item{
-        id:centralZonePlay
+        id: partitura
+        x: 240
+        y: 100
+        height: 500
+        width: 720
         Rectangle{
-            id: partitura
+            id: backgoundPartitura
             color: "#F8ECC2"
             clip: true
             radius: 3
-            x: 240
-            y: 100
-            height: 300
-            width: 720
+            anchors.fill: parent
             Image{
-                id:line
+                id:lineUp
                 source: "/images/line.png"
                 smooth: true
                 x: 10
                 y: 120
             }
-        }
-        Item{
-            id: dataBottomPlay
-            Text{
-                id:compasTextPlay
-                text: "COMPÁS"
-                font.family: "Chalkboard"
-                anchors.horizontalCenter: compasPlay.horizontalCenter
-                y: 470
-                font.pixelSize: 18
-                color: "#000000"
+            Image{
+                id:lineDown
+                source: "/images/line.png"
+                smooth: true
+                x: 10
+                y: 300
             }
-            Rectangle{
-                id: compasPlay
-                x: 240
-                y: 500
-                height: 40
-                width: 100
-                radius: 3
-                border.color: "#000000"
-                Text{
-                    id:compasValuePlay
-                    text: "2 / 4"
-                    font.family: "Chalkboard"
-                    anchors.horizontalCenter: compasPlay.horizontalCenter
-                    anchors.verticalCenter: compasPlay.verticalCenter
-                    font.pixelSize: 18
-                    color: "#000000"
-                }
-            }
-
-            Text{
-                id:velTextPlay
-                text: "VELOCIDAD"
-                font.family: "Chalkboard"
-                anchors.horizontalCenter: velPlay.horizontalCenter
-                y: 470
-                font.pixelSize:18
-                color: "#000000"
-            }
-            Rectangle{
-                id: velPlay
-                x: 380
-                y: 500
-                height: 40
-                width: 100
-                radius: 3
-                border.color: "#000000"
-                Text{
-                    id:velValuePlay
-                    text: "70"
-                    font.family: "Chalkboard"
-                    anchors.horizontalCenter: velPlay.horizontalCenter
-                    anchors.verticalCenter: velPlay.verticalCenter
-                    font.pixelSize: 18
-                    color: "#000000"
-                }
+            ListView{
+                id: listaNotas
+                width: 590
+                height: 50
+                x: 130
+                y: 200
+                onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
+                onContentWidthChanged: console.log("width changed: " + contentWidth)
+                model: figuresModel
+                delegate: figuresDelegate
+                orientation: ListView.Horizontal
+                interactive: false
+                layoutDirection: Qt.RightToLeft
             }
         }
     }
 
 
-
+    function printFigure(figure){
+        //console.log("print figure: " + figure)
+        figuresModel.append({
+                                "path" : "qrc:/images/" + figure + ".png"
+                            })
+    }
 
 }

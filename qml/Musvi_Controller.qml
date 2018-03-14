@@ -19,13 +19,9 @@ Item{
 
     Connections{
         target: Logic
-        /* El elemento Logic ha emitido la señal sendToLogic(QJsonObject Qvar_json) */
-        //        onSendToQml: {
-        //            //Qvar_json es lo que recibimos
-        //            message = Qvar_json
-        //            emitAllQmlFiles()
-        //        }
-
+        onSendPulse:{
+            detectPulse(pulse)
+        }
     }
 
     Keys.onPressed: {
