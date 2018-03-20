@@ -2,15 +2,23 @@ import QtQuick 2.0
 Item {
     id: artistMode
 
+    //Para el 3 2 1
     property int number : 3
 
+    //Numero de pulsos de un compas
     property int pulsesNumber: 2
+
+    //Contador para saber cuantos pulsos por compas llevamos y mostrar la linea divisoria
     property int pulseCount: 1
 
+    //Esta variable es para saber si ambas lineas estan mostrando informacion o todavia solo la primera
     property bool bothPartitures: false
 
+    //Señal para ir al inicio -> Se recoge desde el main
     signal goInit()
+    //Señal para empezar a grabar -> Se recoge en la logica
     signal startRecording()
+    //Señal para dejar de grabar -> Se recoge en la logica
     signal stopRecording()
 
 
@@ -29,6 +37,7 @@ Item {
             border.width: 2
             radius: 5
 
+            //Botón de ir a inicio
             Rectangle{
                 id: initButton
                 color: "#f0546a"
@@ -47,22 +56,29 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: initButton
+                    //Se lanza cuando se pulsa el boton
                     onPressed: {
                         initButton.color = "#c04354"
+                        //Se cambia la escala para hacer el efecto de pulsado
                         initButton.scale = 1.1
                     }
+
+                    //Se lanza cuando se suelta el botón
                     onReleased: {
                         initButton.color = "#f0546a"
+                        //Se cambia la escala para hacer el efecto de pulsado
                         initButton.scale = 1
                         goInit()
                     }
                 }
+                //Transición que hace que el cambio de escala no se vea brusco
                 transitions: Transition {
                     NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
             }
 
 
+            //Boton de configuracion
             Rectangle{
                 id: configButton
                 color: "#f0546a"
@@ -98,6 +114,7 @@ Item {
             }
 
 
+            //Boton de empezar a grabar
             Rectangle{
                 id: startButton
                 color: "#f0546a"
@@ -122,6 +139,7 @@ Item {
                         startButton.opacity = 0.9
                         //Mostramos el gif de 3 2 1 y cuando acabe enviamos una señal de empezar
                         circle.visible = true
+                        //Iniciamos la cuenta atras
                         tempTimer.start()
                         startButton.scale = 1
                     }
@@ -133,6 +151,7 @@ Item {
 
             }
 
+            //Boton de parar de grabar
             Rectangle{
                 id: stopButton
                 color: "#f0546a"
@@ -160,6 +179,7 @@ Item {
                     onReleased: {
                         stopButton.scale = 1
                         stopRecording()
+                        //Importante que al acabar de grabar borremos todas las listas y reseteemos todos los valores que usamos
                         figuresModelDown.clear()
                         figuresModelUp.clear()
                         bothPartitures = false
@@ -174,6 +194,7 @@ Item {
 
             }
 
+            //Boton informacion
             Rectangle{
                 id: infoButton
                 color: "#f0546a"
@@ -213,6 +234,7 @@ Item {
         }
     }
 
+    //Circulo con el 3 2 1
     Rectangle {
         id: circle
         visible: false
@@ -235,6 +257,7 @@ Item {
         }
     }
 
+    //Cuenta atras
     Timer{
         id: tempTimer
         interval: 1000
@@ -245,6 +268,7 @@ Item {
                 tempTimer.start()
             }else{
                 circle.visible = false
+                //Cuando ya llega al 0 reinicia valores y envia señal de empezar a grabar
                 number = 3
                 startRecording()
             }
@@ -252,14 +276,16 @@ Item {
     }
 
 
+    //Lista de abajo
     ListModel {
         id: figuresModelDown
     }
-
+    //Lista de arriba
     ListModel {
         id: figuresModelUp
     }
 
+    //Este es el formato que va a tener cada uno de los elementos que se van a mostrar en la lista, en este caso imagenes
     Component {
         id: figuresDelegate
         Image{
@@ -268,6 +294,7 @@ Item {
     }
 
 
+    //Partitura
     Item{
         id: partitura
         Image{
@@ -278,6 +305,7 @@ Item {
             y: 230
         }
 
+        //Lista de arriba
         ListView{
             id: listUp
             width: 800
@@ -286,10 +314,14 @@ Item {
             y: 260
 //            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
             onContentWidthChanged: console.log("width changed: " + contentWidth)
+            //En el modelo añadimos el listado de las figuras que se van a mostrar
             model: figuresModelUp
+            //El delegate lleva el formato arriba descrito
             delegate: figuresDelegate
+            //Especificamos que la lista es horizontal
             orientation: ListView.Horizontal
             interactive: false
+            //Especificamos que la lista va de derecha a izquierda
             layoutDirection: Qt.RightToLeft
         }
 
@@ -300,10 +332,14 @@ Item {
             x: 150
             y: 426
             onContentWidthChanged: {
+                //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
                 if(!bothPartitures && contentWidth>800){
+                    //Advertimos de que ya tenemos ambas partituras
                     bothPartitures = true
-                    console.log("no estaban las dos partituras, tamaño es " + listDown.count)
+                    //A la lista de arriba le añadimos el ultimo elemento de la de abajo
+                    //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
                     figuresModelUp.insert(0,figuresModelDown.get(1))
+                    //A la lista de abajo se le quita ese ultimo elemento
                     figuresModelDown.remove(listDown.count - 1)
                 }
             }
@@ -318,11 +354,13 @@ Item {
 
 
     function printFigure(figure){
-        //console.log("print figure: " + figure)
+        //A la lista de abajo se le añade la nueva figura
         figuresModelDown.insert(0, {
            "path" : "qrc:/images/" + figure + ".png"
         })
-        if(pulseCount === 2){
+        //Si ya ha cargado el ultimo pulso del compás
+        if(pulseCount === pulsesNumber){
+            //Se reinicia el valor y se añade la figura de la separación
             pulseCount = 1;
             figuresModelDown.insert(0, {
               "path" : "qrc:/images/bar.png"
@@ -330,8 +368,9 @@ Item {
         }else{
             pulseCount++;
         }
+        //En el caso en el que ya se esté pintando en ambas lineas
         if(bothPartitures){
-            console.log("insertamos: " + figuresModelDown.get(listDown.count - 1))
+            //Se inserta arriba y se elimina abajo
             figuresModelUp.insert(0, figuresModelDown.get(listDown.count - 1))
             figuresModelDown.remove(listDown.count - 1)
         }
