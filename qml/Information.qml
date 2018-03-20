@@ -74,26 +74,6 @@ Item {
         }
 
 
-        Item{
-            id: desplegables
-            Image{
-                id:desplegable21
-                source: "qrc:/images/desplegable.png"
-                rotation: 180
-                height: 30
-                width: 30
-                x: 600
-                y: 80
-            }
-            Image{
-                id:desplegable2
-                source: "qrc:/images/desplegable.png"
-                rotation: 180
-                height: 30
-                width: 30
-                x: 600
-                y: 350
-            }
-        }
+
     }
 }

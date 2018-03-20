@@ -3,10 +3,14 @@
         <file>images/line.png</file>
         <file>images/corchea.png</file>
         <file>images/negra.png</file>
-        <file>images/p1.png</file>
-        <file>images/pError.png</file>
-        <file>images/desplegable.png</file>
         <file>images/blanca.png</file>
+        <file>images/semicorchea-silencio.png</file>
+        <file>images/semicorcheas.png</file>
+        <file>images/negra-silencio.png</file>
+        <file>images/corcheas.png</file>
+        <file>images/corche-semi.png</file>
+        <file>images/bar.png</file>
+        <file>images/partitura-practice.png</file>
         <file>main.qml</file>
         <file>qml/ArtistMode.qml</file>
         <file>qml/Practice.qml</file>

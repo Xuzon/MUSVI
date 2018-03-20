@@ -6,6 +6,12 @@
 Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
+    figuras.append("negra");
+    figuras.append("blanca");
+    figuras.append("corcheas");
+    figuras.append("semicorcheas");
+    figuras.append("negra-silencio");
+    figuras.append("corche-semi");
     this->connect(timer, SIGNAL(timeout()), this, SLOT(detectPulse()));
 }
 
@@ -19,7 +25,7 @@ Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
  */
 void Musvi_Logic::startRecording(){
     qDebug() << "QML->LOGIC :: START RECORDING";
-    timer->start(1000);
+    timer->start(800);
 }
 
 void Musvi_Logic::stopRecording(){
@@ -34,7 +40,8 @@ void Musvi_Logic::stopRecording(){
  */
 void Musvi_Logic::detectPulse(){
     qDebug() << "LOGIC->QML :: SEND PULSE";
-    emit sendPulse("negra");
+    int num = rand() % 6;
+    emit sendPulse(figuras[num]);
 }
 
 

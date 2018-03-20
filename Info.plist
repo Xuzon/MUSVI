@@ -11,7 +11,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleExecutable</key>
-	<string>interface</string>
+	<string>Musvi</string>
 	<key>CFBundleIdentifier</key>
 	<string>Eva.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleDisplayName</key>

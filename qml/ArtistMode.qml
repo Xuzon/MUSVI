@@ -4,9 +4,15 @@ Item {
 
     property int number : 3
 
+    property int pulsesNumber: 2
+    property int pulseCount: 1
+
+    property bool bothPartitures: false
+
     signal goInit()
     signal startRecording()
     signal stopRecording()
+
 
     Item{
         id: menu
@@ -14,8 +20,8 @@ Item {
         Rectangle{
             id: backgoundMenu
             color: "#30d5c8"
-            width: 200
-            height: 800
+            width: 1029
+            height: 110
             x: -3
             y: -3
             opacity: 1
@@ -28,9 +34,9 @@ Item {
                 color: "#f0546a"
                 radius: 5
                 width: 160
-                height: 100
-                anchors.horizontalCenter: backgoundMenu.horizontalCenter
-                y: 30
+                height: 75
+                anchors.verticalCenter: backgoundMenu.verticalCenter
+                x: 30
                 Text {
                     text: "INICIO"
                     font.family: "Chalkboard"
@@ -58,21 +64,35 @@ Item {
 
 
             Rectangle{
-                id: modeButton
+                id: configButton
                 color: "#f0546a"
                 radius: 5
                 width: 160
-                height: 100
-                anchors.horizontalCenter: backgoundMenu.horizontalCenter
-                y: 170
-                opacity: 0.8
+                height: 75
+                anchors.verticalCenter: backgoundMenu.verticalCenter
+                x: 260
+                opacity: 1
                 Text {
-                    text: "  MODO\nARTISTA"
+                    text: "CONFIG"
                     font.family: "Chalkboard"
                     font.pixelSize: 28
-                    anchors.horizontalCenter: modeButton.horizontalCenter
-                    anchors.verticalCenter: modeButton.verticalCenter
+                    anchors.horizontalCenter: configButton.horizontalCenter
+                    anchors.verticalCenter: configButton.verticalCenter
                     color: "#ffffff"
+                }
+                MouseArea{
+                    anchors.fill: configButton
+                    onPressed: {
+                        configButton.color = "#c04354"
+                        configButton.scale = 1.1
+                    }
+                    onReleased: {
+                        configButton.color = "#f0546a"
+                        configButton.scale = 1
+                    }
+                }
+                transitions: Transition {
+                    NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
 
             }
@@ -83,9 +103,9 @@ Item {
                 color: "#f0546a"
                 radius: 5
                 width: 160
-                height: 100
-                anchors.horizontalCenter: backgoundMenu.horizontalCenter
-                y: 300
+                height: 75
+                anchors.verticalCenter: backgoundMenu.verticalCenter
+                x: 490
                 opacity: 1
                 Text {
                     text: "START"
@@ -118,9 +138,9 @@ Item {
                 color: "#f0546a"
                 radius: 5
                 width: 160
-                height: 100
-                anchors.horizontalCenter: backgoundMenu.horizontalCenter
-                y: 430
+                height: 75
+                anchors.verticalCenter: backgoundMenu.verticalCenter
+                x: 720
                 opacity:1
                 Text {
                     text: "STOP"
@@ -134,13 +154,53 @@ Item {
                     anchors.fill: stopButton
                     onPressed: {
                         stopButton.scale = 1.1
-                        stopButton.opacity = 0.8
+                        stopButton.opacity = 0.9
                         startButton.opacity = 1
                     }
                     onReleased: {
                         stopButton.scale = 1
                         stopRecording()
+                        figuresModelDown.clear()
+                        figuresModelUp.clear()
+                        bothPartitures = false
+                        pulseCount = 1
                         //Lanzaremos el popup preguntando la accion que quiere tomar sobre el: guardar, cancelar, guardar en practicar
+                    }
+
+                }
+                transitions: Transition {
+                    NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+                }
+
+            }
+
+            Rectangle{
+                id: infoButton
+                color: "#f0546a"
+                radius: 5
+                width: 60
+                height: 60
+                anchors.verticalCenter: backgoundMenu.verticalCenter
+                x: 950
+                opacity:1
+                Text {
+                    text: "INFO"
+                    font.family: "Chalkboard"
+                    font.pixelSize: 24
+                    anchors.horizontalCenter: infoButton.horizontalCenter
+                    anchors.verticalCenter: infoButton.verticalCenter
+                    color: "#ffffff"
+                }
+                MouseArea{
+                    anchors.fill: infoButton
+                    onPressed: {
+                        infoButton.scale = 1.1
+                        infoButton.opacity = 0.8
+                        infoButton.opacity = 1
+                    }
+                    onReleased: {
+                        infoButton.scale = 1
+                        //Lanzaremos el popup informacion
                     }
 
                 }
@@ -193,9 +253,12 @@ Item {
 
 
     ListModel {
-        id: figuresModel
+        id: figuresModelDown
     }
 
+    ListModel {
+        id: figuresModelUp
+    }
 
     Component {
         id: figuresDelegate
@@ -207,53 +270,71 @@ Item {
 
     Item{
         id: partitura
-        x: 240
-        y: 100
-        height: 500
-        width: 720
-        Rectangle{
-            id: backgoundPartitura
-            color: "#F8ECC2"
-            clip: true
-            radius: 3
-            anchors.fill: parent
-            Image{
-                id:lineUp
-                source: "/images/line.png"
-                smooth: true
-                x: 10
-                y: 120
-            }
-            Image{
-                id:lineDown
-                source: "/images/line.png"
-                smooth: true
-                x: 10
-                y: 300
-            }
-            ListView{
-                id: listaNotas
-                width: 590
-                height: 50
-                x: 130
-                y: 200
-                onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
-                onContentWidthChanged: console.log("width changed: " + contentWidth)
-                model: figuresModel
-                delegate: figuresDelegate
-                orientation: ListView.Horizontal
-                interactive: false
-                layoutDirection: Qt.RightToLeft
-            }
+        Image{
+            id:partituraBg
+            source: "qrc:/images/partitura-practice.png"
+            smooth: true
+            x: 20
+            y: 230
         }
+
+        ListView{
+            id: listUp
+            width: 800
+            height: 50
+            x: 150
+            y: 260
+//            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
+            onContentWidthChanged: console.log("width changed: " + contentWidth)
+            model: figuresModelUp
+            delegate: figuresDelegate
+            orientation: ListView.Horizontal
+            interactive: false
+            layoutDirection: Qt.RightToLeft
+        }
+
+        ListView{
+            id: listDown
+            width: 800
+            height: 50
+            x: 150
+            y: 426
+            onContentWidthChanged: {
+                if(!bothPartitures && contentWidth>800){
+                    bothPartitures = true
+                    console.log("no estaban las dos partituras, tamaño es " + listDown.count)
+                    figuresModelUp.insert(0,figuresModelDown.get(1))
+                    figuresModelDown.remove(listDown.count - 1)
+                }
+            }
+            model: figuresModelDown
+            delegate: figuresDelegate
+            orientation: ListView.Horizontal
+            interactive: false
+            layoutDirection: Qt.RightToLeft
+        }
+
     }
 
 
     function printFigure(figure){
         //console.log("print figure: " + figure)
-        figuresModel.append({
-                                "path" : "qrc:/images/" + figure + ".png"
-                            })
+        figuresModelDown.insert(0, {
+           "path" : "qrc:/images/" + figure + ".png"
+        })
+        if(pulseCount === 2){
+            pulseCount = 1;
+            figuresModelDown.insert(0, {
+              "path" : "qrc:/images/bar.png"
+            })
+        }else{
+            pulseCount++;
+        }
+        if(bothPartitures){
+            console.log("insertamos: " + figuresModelDown.get(listDown.count - 1))
+            figuresModelUp.insert(0, figuresModelDown.get(listDown.count - 1))
+            figuresModelDown.remove(listDown.count - 1)
+        }
     }
 
 }

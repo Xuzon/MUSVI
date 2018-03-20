@@ -11,6 +11,7 @@
 #include <QThread>
 #include <QTimer>
 #include <QList>
+#include <cstdlib>
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 
     /* Objects */
     QTimer *timer;
+    QVector<QString> figuras;
 
 signals:
 
