@@ -9,10 +9,26 @@ TARGET = Musvi
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    logic.cpp
+    logic.cpp \
+    bufferprocessor.cpp \
+    classifier.cpp \
+    filter.cpp \
+    highpassfilter.cpp \
+    impulse.cpp \
+    lowpassfilter.cpp \
+    transcriptor.cpp \
+    metronomethread.cpp
 
 HEADERS += \
-    logic.h
+    logic.h \
+    bufferprocessor.h \
+    classifier.h \
+    filter.h \
+    highpassfilter.h \
+    impulse.h \
+    lowpassfilter.h \
+    transcriptor.h \
+    metronomethread.h
 
 RESOURCES += ressources.qrc
 

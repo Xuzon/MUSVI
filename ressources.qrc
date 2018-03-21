@@ -17,5 +17,22 @@
         <file>qml/Information.qml</file>
         <file>qml/Init.qml</file>
         <file>qml/Musvi_Controller.qml</file>
+        <file>sounds/beat.wav</file>
+        <file>images/0000.png</file>
+        <file>images/0001.png</file>
+        <file>images/0010.png</file>
+        <file>images/0011.png</file>
+        <file>images/0100.png</file>
+        <file>images/0101.png</file>
+        <file>images/0110.png</file>
+        <file>images/0111.png</file>
+        <file>images/1000.png</file>
+        <file>images/1001.png</file>
+        <file>images/1010.png</file>
+        <file>images/1011.png</file>
+        <file>images/1100.png</file>
+        <file>images/1101.png</file>
+        <file>images/1110.png</file>
+        <file>images/1111.png</file>
     </qresource>
 </RCC>

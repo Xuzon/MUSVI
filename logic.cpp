@@ -12,7 +12,12 @@ Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
     figuras.append("semicorcheas");
     figuras.append("negra-silencio");
     figuras.append("corche-semi");
-    this->connect(timer, SIGNAL(timeout()), this, SLOT(detectPulse()));
+    //this->connect(timer, SIGNAL(timeout()), this, SLOT(detectPulse()));
+    this->transcriptor = new Transcriptor(this);
+}
+
+Musvi_Logic::~Musvi_Logic(){
+    delete this->transcriptor;
 }
 
 //#############################################################
@@ -25,12 +30,23 @@ Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
  */
 void Musvi_Logic::startRecording(){
     qDebug() << "QML->LOGIC :: START RECORDING";
-    timer->start(800);
+    if(!this->transcriptor->IsRecording()){
+        this->transcriptor->record();
+    }
 }
 
 void Musvi_Logic::stopRecording(){
     qDebug() << "QML->LOGIC :: STOP RECORDING";
-    timer->stop();
+    if(this->transcriptor->IsRecording()){
+        this->transcriptor->record();
+    }
+}
+
+void Musvi_Logic::ChangeTempoCompas(int bpm, int subdivisions){
+    if(this->transcriptor == nullptr){
+        return;
+    }
+    this->transcriptor->ChangeTempoCompas(bpm,subdivisions);
 }
 
 /* SEÑALES PARA EL QML */
@@ -38,10 +54,11 @@ void Musvi_Logic::stopRecording(){
 /*
  * Cada vez que se recibe un pulso, se envía la señal al QML
  */
-void Musvi_Logic::detectPulse(){
-    qDebug() << "LOGIC->QML :: SEND PULSE";
-    int num = rand() % 6;
-    emit sendPulse(figuras[num]);
+void Musvi_Logic::detectPulse(QString pulse){
+    qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
+    //int num = rand() % 6;
+    //emit sendPulse(figuras[num]);
+    emit sendPulse(pulse);
 }
 
 

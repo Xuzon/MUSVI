@@ -12,6 +12,7 @@
 #include <QTimer>
 #include <QList>
 #include <cstdlib>
+#include "transcriptor.h"
 
 using namespace std;
 
@@ -23,10 +24,12 @@ public:
 
     /* Constructor */
     explicit Musvi_Logic(QObject *parent = 0);
+    ~Musvi_Logic();
 
     /* Objects */
     QTimer *timer;
     QVector<QString> figuras;
+    Transcriptor* transcriptor;
 
 signals:
 
@@ -37,7 +40,8 @@ public slots:
     /* Slot para recoger datos del QML */
     void startRecording();
     void stopRecording();
-    void detectPulse();
+    void ChangeTempoCompas(int bpm, int subdivisions);
+    void detectPulse(QString pulse);
 };
 
 #endif // SMC_LOGIC_H
