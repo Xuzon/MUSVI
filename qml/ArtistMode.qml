@@ -2,45 +2,34 @@ import QtQuick 2.0
 Item {
     id: artistMode
 
-    //Para el 3 2 1
     property int number : 3
 
-    //Numero de pulsos de un compas
     property int pulsesNumber: 2
 
-    //Contador para saber cuantos pulsos por compas llevamos y mostrar la linea divisoria
     property int pulseCount: 1
 
-    //Esta variable es para saber si ambas lineas estan mostrando informacion o todavia solo la primera
-    property bool bothPartitures: false
-
-    //Señal para ir al inicio -> Se recoge desde el main
     signal goInit()
-    //Señal para empezar a grabar -> Se recoge en la logica
     signal startRecording()
-    //Señal para dejar de grabar -> Se recoge en la logica
     signal stopRecording()
 
 
     Item{
         id: menu
-
         Rectangle{
             id: backgoundMenu
-            color: "#30d5c8"
+            color: "#7FFFD4"
             width: 1029
             height: 110
             x: -3
             y: -3
             opacity: 1
-            border.color: "#26aaa0"
-            border.width: 2
-            radius: 5
+//            border.color: "#26aaa0"
+//            border.width: 2
 
             //Botón de ir a inicio
             Rectangle{
                 id: initButton
-                color: "#f0546a"
+                color: "#e2587b"
                 radius: 5
                 width: 160
                 height: 75
@@ -48,7 +37,7 @@ Item {
                 x: 30
                 Text {
                     text: "INICIO"
-                    font.family: "Chalkboard"
+                    font.family: gothamBook.name
                     font.pixelSize: 28
                     anchors.horizontalCenter: initButton.horizontalCenter
                     anchors.verticalCenter: initButton.verticalCenter
@@ -56,22 +45,17 @@ Item {
                 }
                 MouseArea{
                     anchors.fill: initButton
-                    //Se lanza cuando se pulsa el boton
                     onPressed: {
                         initButton.color = "#c04354"
-                        //Se cambia la escala para hacer el efecto de pulsado
                         initButton.scale = 1.1
                     }
 
-                    //Se lanza cuando se suelta el botón
                     onReleased: {
                         initButton.color = "#f0546a"
-                        //Se cambia la escala para hacer el efecto de pulsado
                         initButton.scale = 1
                         goInit()
                     }
                 }
-                //Transición que hace que el cambio de escala no se vea brusco
                 transitions: Transition {
                     NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
                 }
@@ -81,7 +65,7 @@ Item {
             //Boton de configuracion
             Rectangle{
                 id: configButton
-                color: "#f0546a"
+                color: "#e2587b"
                 radius: 5
                 width: 160
                 height: 75
@@ -90,7 +74,7 @@ Item {
                 opacity: 1
                 Text {
                     text: "CONFIG"
-                    font.family: "Chalkboard"
+                    font.family: gothamBook.name
                     font.pixelSize: 28
                     anchors.horizontalCenter: configButton.horizontalCenter
                     anchors.verticalCenter: configButton.verticalCenter
@@ -117,7 +101,7 @@ Item {
             //Boton de empezar a grabar
             Rectangle{
                 id: startButton
-                color: "#f0546a"
+                color: "#e2587b"
                 radius: 5
                 width: 160
                 height: 75
@@ -126,7 +110,7 @@ Item {
                 opacity: 1
                 Text {
                     text: "START"
-                    font.family: "Chalkboard"
+                    font.family: gothamBook.name
                     font.pixelSize: 28
                     anchors.horizontalCenter: startButton.horizontalCenter
                     anchors.verticalCenter: startButton.verticalCenter
@@ -154,7 +138,7 @@ Item {
             //Boton de parar de grabar
             Rectangle{
                 id: stopButton
-                color: "#f0546a"
+                color: "#e2587b"
                 radius: 5
                 width: 160
                 height: 75
@@ -163,7 +147,7 @@ Item {
                 opacity:1
                 Text {
                     text: "STOP"
-                    font.family: "Chalkboard"
+                    font.family: gothamBook.name
                     font.pixelSize: 28
                     anchors.horizontalCenter: stopButton.horizontalCenter
                     anchors.verticalCenter: stopButton.verticalCenter
@@ -180,7 +164,7 @@ Item {
                         stopButton.scale = 1
                         stopRecording()
                         //Importante que al acabar de grabar borremos todas las listas y reseteemos todos los valores que usamos
-                        figuresModelDown.clear()
+                        figuresModel.clear()
                         figuresModelUp.clear()
                         bothPartitures = false
                         pulseCount = 1
@@ -197,7 +181,7 @@ Item {
             //Boton informacion
             Rectangle{
                 id: infoButton
-                color: "#f0546a"
+                color: "#e2587b"
                 radius: 5
                 width: 60
                 height: 60
@@ -206,8 +190,9 @@ Item {
                 opacity:1
                 Text {
                     text: "INFO"
-                    font.family: "Chalkboard"
-                    font.pixelSize: 24
+                    font.family: gothamBook.name
+                    font.pixelSize: 18
+                    font.bold: true
                     anchors.horizontalCenter: infoButton.horizontalCenter
                     anchors.verticalCenter: infoButton.verticalCenter
                     color: "#ffffff"
@@ -238,13 +223,13 @@ Item {
     Rectangle {
         id: circle
         visible: false
-        x: 450
+        x: 350
         y: 250
         width: 300
         height: 300
         z: 10
-        color: "#f0546a"
-        border.color: "#f05460"
+        color: "#e2587b"
+        border.color: "#ef4570"
         border.width: 1
         radius: 300*0.5
         Text {
@@ -278,11 +263,7 @@ Item {
 
     //Lista de abajo
     ListModel {
-        id: figuresModelDown
-    }
-    //Lista de arriba
-    ListModel {
-        id: figuresModelUp
+        id: figuresModel
     }
 
     //Este es el formato que va a tener cada uno de los elementos que se van a mostrar en la lista, en este caso imagenes
@@ -305,45 +286,13 @@ Item {
             y: 230
         }
 
-        //Lista de arriba
         ListView{
-            id: listUp
-            width: 800
-            height: 50
-            x: 150
-            y: 260
-//            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
-            onContentWidthChanged: console.log("width changed: " + contentWidth)
-            //En el modelo añadimos el listado de las figuras que se van a mostrar
-            model: figuresModelUp
-            //El delegate lleva el formato arriba descrito
-            delegate: figuresDelegate
-            //Especificamos que la lista es horizontal
-            orientation: ListView.Horizontal
-            interactive: false
-            //Especificamos que la lista va de derecha a izquierda
-            layoutDirection: Qt.RightToLeft
-        }
-
-        ListView{
-            id: listDown
+            id: list
             width: 800
             height: 50
             x: 150
             y: 426
-            onContentWidthChanged: {
-                //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
-                if(!bothPartitures && contentWidth>800){
-                    //Advertimos de que ya tenemos ambas partituras
-                    bothPartitures = true
-                    //A la lista de arriba le añadimos el ultimo elemento de la de abajo
-                    //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
-                    figuresModelUp.insert(0,figuresModelDown.get(1))
-                    //A la lista de abajo se le quita ese ultimo elemento
-                    figuresModelDown.remove(listDown.count - 1)
-                }
-            }
-            model: figuresModelDown
+            model: figuresModel
             delegate: figuresDelegate
             orientation: ListView.Horizontal
             interactive: false
@@ -353,27 +302,34 @@ Item {
     }
 
 
+    Item{
+        id: popup
+        visible: false
+        Rectangle{
+            id: spacePopup
+            x: 100
+            y: -3
+            width: 924
+            height: 776
+            color:"#ffffff"
+            border.color: "#000000"
+            border.width: 2
+            radius: 5
+
+        }
+    }
+
     function printFigure(figure){
-        //A la lista de abajo se le añade la nueva figura
-        figuresModelDown.insert(0, {
+        figuresModel.insert(0, {
            "path" : "qrc:/images/" + figure + ".png"
         })
-        //Si ya ha cargado el ultimo pulso del compás
         if(pulseCount === pulsesNumber){
-            //Se reinicia el valor y se añade la figura de la separación
             pulseCount = 1;
-            figuresModelDown.insert(0, {
+            figuresModel.insert(0, {
               "path" : "qrc:/images/bar.png"
             })
         }else{
             pulseCount++;
         }
-        //En el caso en el que ya se esté pintando en ambas lineas
-        if(bothPartitures){
-            //Se inserta arriba y se elimina abajo
-            figuresModelUp.insert(0, figuresModelDown.get(listDown.count - 1))
-            figuresModelDown.remove(listDown.count - 1)
-        }
     }
-
 }

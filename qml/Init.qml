@@ -6,14 +6,23 @@ Item {
     signal selectMode(var type)
 
 
-    Text {
-        id: title
-        x: 400
-        y: 25
-        text: "MUSVI"
-        font.family: "Helvetica"
-        font.pixelSize: 72
-        color: "#e2587b"
+    Rectangle{
+        id: backgoundMenu
+        color: "#7FFFD4"
+        width: 1029
+        height: 110
+        x: -3
+        y: -3
+        opacity: 1
+        Text {
+            id: title
+            anchors.horizontalCenter: backgoundMenu.horizontalCenter
+            y: 25
+            text: "MUSVI"
+            font.family: gothamBook.name
+            font.pixelSize: 72
+            color: "#e2587b"
+        }
     }
 
 
@@ -22,13 +31,13 @@ Item {
         color: "#e2587b"
         radius: 5
         width: 250
-        height: 550
+        height: 500
         x: 25
-        y: 100
+        y: 150
 
         Text {
             text: "LOGO"
-            font.family: "Helvetica"
+            font.family: gothamBook.name
             font.pixelSize: 50
             anchors.horizontalCenter: logo.horizontalCenter
             anchors.verticalCenter: logo.verticalCenter
@@ -58,7 +67,7 @@ Item {
         y: 200
         Text {
             text: "MODO ARTISTA"
-            font.family: "Chalkboard"
+            font.family: gothamBook.name
             font.pixelSize: 28
             anchors.horizontalCenter: artistMode.horizontalCenter
             anchors.verticalCenter: artistMode.verticalCenter
@@ -91,7 +100,7 @@ Item {
         y: 200
         Text {
             text: "MODO PRACTICAR"
-            font.family: "Chalkboard"
+            font.family: gothamBook.name
             font.pixelSize: 28
             anchors.horizontalCenter: practice.horizontalCenter
             anchors.verticalCenter: practice.verticalCenter
@@ -124,7 +133,7 @@ Item {
         y: 500
         Text {
             text: "INFO"
-            font.family: "Chalkboard"
+            font.family: gothamBook.name
             font.pixelSize: 28
             anchors.horizontalCenter: info.horizontalCenter
             anchors.verticalCenter: info.verticalCenter

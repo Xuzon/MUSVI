@@ -11,6 +11,10 @@ Item {
     property var inputDevices
     property var outputDevices
 
+    FontLoader {id: gothamBook; source: "qrc:/fonts/gotham/GothamBook.ttf"}
+    FontLoader {id: gothamLight; source: "qrc:/fonts/gotham/GothamLight.ttf"}
+
+
     //VENTANA PRINCIPAL - INICIO
     Window{
         id: portada

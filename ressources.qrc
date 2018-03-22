@@ -34,5 +34,7 @@
         <file>images/1101.png</file>
         <file>images/1110.png</file>
         <file>images/1111.png</file>
+        <file>fonts/gotham/GothamBook.ttf</file>
+        <file>fonts/gotham/GothamLight.ttf</file>
     </qresource>
 </RCC>
