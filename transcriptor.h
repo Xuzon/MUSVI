@@ -8,6 +8,9 @@
 #include <QtMultimedia/QAudioOutput>
 #include <QDebug>
 #include "bufferprocessor.h"
+#include <QDir>
+#include <QStandardPaths>
+#include "scoresaver.h"
 
 class Musvi_Logic;
 

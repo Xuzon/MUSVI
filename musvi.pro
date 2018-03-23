@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     impulse.cpp \
     lowpassfilter.cpp \
     transcriptor.cpp \
-    metronomethread.cpp
+    metronomethread.cpp \
+    scoresaver.cpp
 
 HEADERS += \
     logic.h \
@@ -28,7 +29,8 @@ HEADERS += \
     impulse.h \
     lowpassfilter.h \
     transcriptor.h \
-    metronomethread.h
+    metronomethread.h \
+    scoresaver.h
 
 RESOURCES += ressources.qrc
 

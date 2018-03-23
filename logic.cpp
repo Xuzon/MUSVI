@@ -6,13 +6,6 @@
 Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
-    figuras.append("negra");
-    figuras.append("blanca");
-    figuras.append("corcheas");
-    figuras.append("semicorcheas");
-    figuras.append("negra-silencio");
-    figuras.append("corche-semi");
-    //this->connect(timer, SIGNAL(timeout()), this, SLOT(detectPulse()));
     this->transcriptor = new Transcriptor(this);
 }
 
@@ -56,8 +49,6 @@ void Musvi_Logic::ChangeTempoCompas(int bpm, int subdivisions){
  */
 void Musvi_Logic::detectPulse(QString pulse){
     qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
-    //int num = rand() % 6;
-    //emit sendPulse(figuras[num]);
     emit sendPulse(pulse);
 }
 

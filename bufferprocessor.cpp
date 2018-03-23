@@ -52,6 +52,7 @@ void BufferProcessor::SetInput(QAudioInput *input, bool *beatFlag){
 ///Open the QIODevice
 bool BufferProcessor::open(QIODevice::OpenMode mode){
     this->setOpenMode(mode);
+    this->currentScore.clear();
     return true;
 }
 
@@ -115,6 +116,7 @@ void BufferProcessor::processBeat(){
 void BufferProcessor::sendBuffer(){
     this->counter = 0;
     QString compas = this->classifier->Classify(&this->impulses);
+    this->currentScore.append(compas);
     //qDebug() << "LowFreqs: " << this->classifier->Classify(&this->lowFreqImpulses);
     //qDebug() << "HighFreqs: " << this->classifier->Classify(&this->highFreqImpulses);
     this->logic->detectPulse(compas);

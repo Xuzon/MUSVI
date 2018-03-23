@@ -53,6 +53,7 @@ void Transcriptor::stopRecording(){
             delete this->metronomeThread;
         }
     }
+    ScoreSaver::SaveScore("test.json",&this->processor->currentScore);;
 }
 
 
@@ -74,6 +75,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     }
     this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
 }
+
 
 
 ///Interface to start and stop recording from qml

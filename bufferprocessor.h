@@ -22,6 +22,8 @@ public:
     BufferProcessor(Musvi_Logic* logic,int bytesPerFrame,float fs,float window,int subdivisions,float length);
     ~BufferProcessor();
 
+    QVector<QString> currentScore;
+
     bool open(OpenMode mode);
     void SetInput(QAudioInput* input,bool* beatFlag);
     qint64 writeData(const char *data, qint64 maxSize);

@@ -28,7 +28,6 @@ public:
 
     /* Objects */
     QTimer *timer;
-    QVector<QString> figuras;
     Transcriptor* transcriptor;
 
 signals:
