@@ -302,22 +302,6 @@ Item {
     }
 
 
-    Item{
-        id: popup
-        visible: false
-        Rectangle{
-            id: spacePopup
-            x: 100
-            y: -3
-            width: 924
-            height: 776
-            color:"#ffffff"
-            border.color: "#000000"
-            border.width: 2
-            radius: 5
-
-        }
-    }
 
     function printFigure(figure){
         figuresModel.insert(0, {

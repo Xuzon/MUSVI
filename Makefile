@@ -74,6 +74,7 @@ OBJECTS       = main.o \
 		moc_logic.o \
 		moc_transcriptor.o
 DIST          = config/config.ini \
+		PopUp.qml \
 		../../../../Qt5.7.0-Qt3D-psa/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.7.0-Qt3D-psa/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt5.7.0-Qt3D-psa/5.7/gcc_64/mkspecs/common/linux.conf \

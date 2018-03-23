@@ -34,7 +34,8 @@ RESOURCES += ressources.qrc
 
 
 DISTFILES +=\
-        config/config.ini
+        config/config.ini \
+    PopUp.qml
 
 INSTALLS += target
 
