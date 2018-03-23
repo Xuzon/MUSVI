@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QStandardPaths>
 #include "scoresaver.h"
+#include "calibrator.h"
 
 class Musvi_Logic;
 
@@ -29,6 +30,7 @@ class Transcriptor : public QObject{
 
     Musvi_Logic* logic;
     BufferProcessor* processor;
+    Calibrator* calibrator;
     QAudioInput* input;
     QAudioOutput* speakers;
     QFile beatFile;
@@ -37,6 +39,7 @@ public:
     Q_INVOKABLE void record();
     Q_INVOKABLE const QStringList comboList();
     void ChangeTempoCompas(int bpm, int subdivisions);
+    void Calibrate(int time);
 
     explicit Transcriptor(Musvi_Logic* logic);
     explicit Transcriptor();
@@ -45,6 +48,8 @@ public:
 signals:
 
 public slots:
+    void StopCalibration();
+
 };
 
 #endif // TRANSCRIPTOR_H

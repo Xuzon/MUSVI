@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     lowpassfilter.cpp \
     transcriptor.cpp \
     metronomethread.cpp \
-    scoresaver.cpp
+    scoresaver.cpp \
+    calibrator.cpp
 
 HEADERS += \
     logic.h \
@@ -30,7 +31,8 @@ HEADERS += \
     lowpassfilter.h \
     transcriptor.h \
     metronomethread.h \
-    scoresaver.h
+    scoresaver.h \
+    calibrator.h
 
 RESOURCES += ressources.qrc
 

@@ -76,6 +76,33 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
 }
 
+void Transcriptor::Calibrate(int time){
+    if(this->calibrator != nullptr){
+        delete this->calibrator;
+    }
+    this->calibrator = new Calibrator(this->input);
+    this->calibrator->open(QIODevice::ReadWrite);
+    QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
+    QAudioFormat inputFormat;
+    inputFormat.setSampleRate(this->fs);
+    inputFormat.setChannelCount(1);
+    inputFormat.setSampleSize(16);
+    inputFormat.setCodec("audio/pcm");
+    inputFormat.setByteOrder(QAudioFormat::LittleEndian);
+    inputFormat.setSampleType(QAudioFormat::SignedInt);
+
+    //check format
+    if (!info.isFormatSupported(inputFormat)) {
+        inputFormat = info.nearestFormat(inputFormat);
+        qWarning() << "RECORDER::: Default format not supported, trying to use the nearest:: " + inputFormat.sampleRate();
+    }
+    //create audio input
+    this->input = new QAudioInput(info,inputFormat);
+    //start recording audio
+    this->input->start(this->calibrator);
+    QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
+}
+
 
 
 ///Interface to start and stop recording from qml
@@ -124,6 +151,7 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
        outputFormat = output.nearestFormat(outputFormat);
     }
     speakers = new QAudioOutput(output,outputFormat);
+    this->Calibrate(3);
 }
 
 ///Destructor
@@ -133,8 +161,17 @@ Transcriptor::~Transcriptor(){
     delete this->input;
     delete this->metronomeThread;
     delete this->speakers;
+    if(this->calibrator != nullptr){
+        delete this->calibrator;
+    }
 }
 
 bool Transcriptor::IsRecording(){
     return this->recording;
+}
+
+void Transcriptor::StopCalibration(){
+    this->calibrator->close();
+    this->input->stop();
+    qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
 }
