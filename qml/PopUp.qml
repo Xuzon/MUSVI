@@ -1,12 +1,13 @@
 import QtQuick 2.0
+import Qt.labs.platform 1.0
 
 
 Item{
     id: popUp
-    property string typePopup; //config, info, save, save_path, save_ex
+    property string typePopup; //config, info, save, save_PDF, save_App
     property string title;
 
-
+    z: 10
     Rectangle{
         id: spacePopup
         x: 100
@@ -29,6 +30,25 @@ Item{
         //  - Velocity : velocidades a elegir o escritas (int)
         //  - Compas : compases a elegir (string)
         id: config
+        visible: typePopup === "config"
+        Rectangle{
+            x: 100
+            y: 100
+            width: 100
+            height: 100
+            color:"#000000"
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    folderDialog.open()
+                }
+            }
+        }
+
+        FolderDialog {
+            id: folderDialog
+            folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
+        }
     }
 
     Item{

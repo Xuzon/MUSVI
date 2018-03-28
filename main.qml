@@ -26,6 +26,11 @@ Item {
             id:controller
         }
 
+        Screens.PopUp{
+            id: popUp
+            visible: false
+        }
+
         Screens.ArtistMode{
             id: artistMode
             visible: false
@@ -43,6 +48,11 @@ Item {
             onStopRecording: {
                 controller.sendStopRecording()
             }
+            onShowPopUp: {
+                popUp.typePopup = type
+                popUp.visible = true
+            }
+
             Connections{
                 target: controller
                 onDetectPulse:{
