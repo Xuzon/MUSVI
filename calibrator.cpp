@@ -25,7 +25,9 @@ qint64 Calibrator::writeData(const char *data, qint64 maxSize){
     int iSize = maxSize / 2;
     for(int i = 0; i < iSize; i++){
         if(iData[i] > threshold){
-            threshold = iData[i];
+            if(abs(iData[i]) > threshold){
+                threshold = iData[i];
+            }
         }
     }
 }

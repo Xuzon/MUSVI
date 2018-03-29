@@ -35,6 +35,12 @@
         <file>images/1101.png</file>
         <file>images/1110.png</file>
         <file>images/1111.png</file>
+        <file>images/menu/info.png</file>
+        <file>images/menu/init.png</file>
+        <file>images/menu/bgMenu.png</file>
+        <file>images/init/bgModeArtist.png</file>
+        <file>images/init/bgModePractice.png</file>
+        <file>images/init/selectMode.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
     </qresource>

@@ -19,7 +19,7 @@ class Musvi_Logic;
 class BufferProcessor : public QIODevice{
 
 public:
-    BufferProcessor(Musvi_Logic* logic,int bytesPerFrame,float fs,float window,int subdivisions,float length);
+    BufferProcessor(Musvi_Logic* logic,int bytesPerFrame,float fs,float window,int subdivisions,float length,int threshold);
     ~BufferProcessor();
 
     QVector<QString> currentScore;
@@ -44,7 +44,7 @@ protected:
     int counter;
     float fs;
     float window;
-    float waveThreshold;
+    int waveThreshold;
     int filterOrder;
     double lowFreq;
     double highFreq;

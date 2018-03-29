@@ -53,7 +53,7 @@ void Transcriptor::stopRecording(){
             delete this->metronomeThread;
         }
     }
-    ScoreSaver::SaveScore("test.json",&this->processor->currentScore);;
+    ScoreSaver::SaveScore("test.json",&this->processor->currentScore,"This is a comment","This is a folder",0);
 }
 
 
@@ -73,7 +73,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     if(this->processor != nullptr){
         delete this->processor;
     }
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
 }
 
 void Transcriptor::Calibrate(int time){
@@ -128,7 +128,6 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     this->bpm = 60;
     this->subdivisions = 4;
     this->window = 100;
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
     this->recording = false;
     this->beatFileName = ":/sounds/beat.wav";
     this->beatFile.setFileName(beatFileName);
@@ -174,4 +173,5 @@ void Transcriptor::StopCalibration(){
     this->calibrator->close();
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
 }
