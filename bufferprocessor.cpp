@@ -1,13 +1,14 @@
 #include "bufferprocessor.h"
 #include "logic.h"
 
-BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,float window,int subdivisions,float length){
+BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,float window,int subdivisions,float length, int threshold){
     this->logic = logic;
     this->bytesPerFrame = bytesPerFrame;
     this->fs = fs;
     this->window = window;
     this->filterOrder = 100;
-    this->waveThreshold = 4000;
+    //set the threshold 10% more than the received
+    this->waveThreshold = threshold + threshold * 10 / 100;
     this->lowFreq = 1000;
     this->highFreq = 5000;
     this->classifier = new Classifier(subdivisions,length);
