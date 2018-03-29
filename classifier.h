@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QVector>
 #include <stdlib.h>
+#include <cmath>
 #include "impulse.h"
 
 class Classifier{

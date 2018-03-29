@@ -78,7 +78,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
 
 void Transcriptor::Calibrate(int time){
     if(this->calibrator != nullptr){
-        delete this->calibrator;
+        //delete this->calibrator;
     }
     this->calibrator = new Calibrator(this->input);
     this->calibrator->open(QIODevice::ReadWrite);

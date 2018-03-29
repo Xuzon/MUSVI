@@ -11,6 +11,7 @@ Item {
     signal goInit()
     signal startRecording()
     signal stopRecording()
+    signal showPopUp(var type)
 
 
     Item{
@@ -89,6 +90,7 @@ Item {
                     onReleased: {
                         configButton.color = "#f0546a"
                         configButton.scale = 1
+                        showPopUp("config")
                     }
                 }
                 transitions: Transition {

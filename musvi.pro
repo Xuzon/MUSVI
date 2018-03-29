@@ -37,9 +37,16 @@ HEADERS += \
 RESOURCES += ressources.qrc
 
 
+#Todos los qml están añadidos aquí para que sea más sencillo acceder a ellos
 DISTFILES +=\
         config/config.ini \
-    PopUp.qml
+        qml/ArtistMode.qml \
+        qml/Information.qml \
+        qml/Init.qml \
+        qml/Musvi_Controller \
+        qml/Practice.qml \
+        qml/PopUp.qml \
+        main.qml
 
 INSTALLS += target
 
