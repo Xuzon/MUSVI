@@ -41,6 +41,7 @@ RESOURCES += ressources.qrc
 DISTFILES +=\
         config/config.ini \
         qml/ArtistMode.qml \
+        qml/Menu.qml \
         qml/Information.qml \
         qml/Init.qml \
         qml/Musvi_Controller \
