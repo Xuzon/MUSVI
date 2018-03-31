@@ -25,15 +25,15 @@ class Transcriptor : public QObject{
     QString beatFileName;
     MetronomeThread* metronomeThread;
 
-    void startRecording();
-    void stopRecording();
-
     Musvi_Logic* logic;
     BufferProcessor* processor;
     Calibrator* calibrator;
     QAudioInput* input;
     QAudioOutput* speakers;
     QFile beatFile;
+
+    void startRecording();
+    void stopRecording();
 
 public:
     Q_INVOKABLE void record();
@@ -45,6 +45,8 @@ public:
     explicit Transcriptor();
     ~Transcriptor();
     bool IsRecording();
+
+
 signals:
 
 public slots:

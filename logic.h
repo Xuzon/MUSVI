@@ -13,6 +13,7 @@
 #include <QList>
 #include <cstdlib>
 #include "transcriptor.h"
+#include "scorechecker.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
     /* Objects */
     QTimer *timer;
     Transcriptor* transcriptor;
+    ScoreChecker checker;
 
 signals:
 
@@ -39,8 +41,12 @@ public slots:
     /* Slot para recoger datos del QML */
     void startRecording();
     void stopRecording();
-    void ChangeTempoCompas(int bpm, int subdivisions);
+    void Config(int bpm, QString compas);
     void detectPulse(QString pulse);
+    //artist or practice
+    void SetMode(QString type);
+    void SetPractice(int id);
+    void Calibrate(int time);
 };
 
 #endif // SMC_LOGIC_H

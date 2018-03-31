@@ -30,4 +30,5 @@ qint64 Calibrator::writeData(const char *data, qint64 maxSize){
             }
         }
     }
+    return maxSize;
 }

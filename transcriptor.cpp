@@ -77,6 +77,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
 }
 
 void Transcriptor::Calibrate(int time){
+    //TODO what the hell this causes an exception
     if(this->calibrator != nullptr){
         //delete this->calibrator;
     }
@@ -121,6 +122,11 @@ Transcriptor::Transcriptor(){
 }
 
 Transcriptor::Transcriptor(Musvi_Logic* logic){
+    //HACK for testing
+    ScoreSaver::LoadScores();
+    ScoreSaver::LoadScore(1);
+
+
     //set variables
     this->logic = logic;
     this->fs = 44100;

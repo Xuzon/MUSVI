@@ -1,5 +1,6 @@
 #include "scoresaver.h"
 
+QVector<QJsonObject> ScoreSaver::scores;
 
 void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder, int lastErrors){
     QJsonObject json;
@@ -36,4 +37,47 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
     }else{
         qDebug() << "Error creating file:: " << fileName << "  error:: "<< file->errorString();
     }
+    delete file;
+}
+
+void ScoreSaver::LoadScores(){
+
+    scores.clear();
+
+
+    QJsonObject json;
+    QString fileName;
+    //*****SEARCH IN TO THE PATH SYSTEM*************
+    QString id = "/MUSVI/";
+    QString dir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)[0] + id;
+    QDirIterator it(dir, QStringList() << "*.json", QDir::Files, QDirIterator::Subdirectories);
+
+    //iterate over files to load them
+    while (it.hasNext()){
+        fileName = it.next();
+        QString fileVal;
+        QFile* file = new QFile(fileName);
+        file->open(QIODevice::ReadOnly | QIODevice::Text);
+        fileVal = file->readAll();
+        file->close();
+        delete file;
+        QJsonDocument doc = QJsonDocument::fromJson(fileVal.toUtf8());
+        json = doc.object();
+        scores.append(json);
+    }
+}
+
+QJsonObject ScoreSaver::LoadScore(int id){
+    QJsonObject toRet;
+    for(QJsonObject json : scores){
+        QString sID = json["id"].toString();
+        int jsonId = sID.toInt();
+
+        if(jsonId == id){
+            qDebug() << "Returning json of id:: " << json["id"];
+            toRet = json;
+            break;
+        }
+    }
+    return toRet;
 }

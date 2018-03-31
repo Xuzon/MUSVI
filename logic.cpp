@@ -35,11 +35,36 @@ void Musvi_Logic::stopRecording(){
     }
 }
 
-void Musvi_Logic::ChangeTempoCompas(int bpm, int subdivisions){
+///Change the tempo and compas
+void Musvi_Logic::Config(int bpm, QString compas){
     if(this->transcriptor == nullptr){
         return;
     }
+    // 2/4 3/4 6/8 12/8
+    // 4/4 3/8 9/8
+    int subdivisions = 4;
     this->transcriptor->ChangeTempoCompas(bpm,subdivisions);
+}
+
+///Set the artist mode
+void Musvi_Logic::SetMode(QString type){
+    if(type.compare("artist")){
+        this->checker.LoadPractice(-1);
+    }
+}
+
+///Load the practice into the checker
+///
+void Musvi_Logic::SetPractice(int id){
+    this->checker.LoadPractice(id);
+}
+
+///Calibrate the threshold
+void Musvi_Logic::Calibrate(int time){
+    if(this->transcriptor == nullptr){
+        return;
+    }
+    this->transcriptor->Calibrate(time);
 }
 
 /* SEÑALES PARA EL QML */
@@ -51,5 +76,7 @@ void Musvi_Logic::detectPulse(QString pulse){
     qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
     emit sendPulse(pulse);
 }
+
+
 
 
