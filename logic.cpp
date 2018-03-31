@@ -35,6 +35,11 @@ void Musvi_Logic::stopRecording(){
     }
 }
 
+void Musvi_Logic::config(int speed, QString compas){
+    qDebug() << "QML->LOGIC :: CHANGE CONFIG:: " << speed << " " << compas;
+
+}
+
 void Musvi_Logic::ChangeTempoCompas(int bpm, int subdivisions){
     if(this->transcriptor == nullptr){
         return;

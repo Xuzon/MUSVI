@@ -46,6 +46,18 @@
         <file>images/init/bgModeArtist.png</file>
         <file>images/init/bgModePractice.png</file>
         <file>images/init/selectMode.png</file>
+        <file>images/artist/count1.png</file>
+        <file>images/artist/count2.png</file>
+        <file>images/artist/count3.png</file>
+        <file>images/artist/score.png</file>
+        <file>images/artist/settings.png</file>
+        <file>images/popupConfig/bgConfig.png</file>
+        <file>images/popupConfig/botonCancel.png</file>
+        <file>images/popupConfig/botonChange.png</file>
+        <file>images/popupConfig/botonSlider.png</file>
+        <file>images/popupConfig/selectorCompas.png</file>
+        <file>images/popupConfig/slider.png</file>
+        <file>images/popupConfig/sliderColor.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
     </qresource>

@@ -797,6 +797,18 @@ qrc_ressources.cpp: ressources.qrc \
 		images/blanca.png \
 		images/corche-semi.png \
 		images/line.png \
+		images/popupConfig/slider.png \
+		images/popupConfig/botonCancel.png \
+		images/popupConfig/sliderColor.png \
+		images/popupConfig/botonSlider.png \
+		images/popupConfig/selectorCompas.png \
+		images/popupConfig/bgConfig.png \
+		images/popupConfig/botonChange.png \
+		images/artist/count1.png \
+		images/artist/count3.png \
+		images/artist/score.png \
+		images/artist/count2.png \
+		images/artist/settings.png \
 		images/menu/stop.png \
 		images/menu/botonInfo.png \
 		images/menu/botonConfig.png \

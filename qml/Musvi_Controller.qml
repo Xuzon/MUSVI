@@ -59,4 +59,8 @@ Item{
         Logic.stopRecording()
     }
 
+    function configChanged(speed, compas){
+        Logic.config(speed, compas)
+    }
+
 }

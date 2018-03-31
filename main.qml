@@ -29,6 +29,10 @@ Item {
         Screens.PopUp{
             id: popUp
             visible: false
+            onConfigChanged: {
+               controller.configChanged(speed, compas)
+            }
+            onClosePopup: popUp.visible = false
         }
 
         Screens.ArtistMode{
@@ -81,6 +85,7 @@ Item {
                         practice.visible = false
                         info.visible = false
                         init.visible = false
+                        artistMode.clear()
                         artistMode.visible = true
                         break
                     case "practice":
