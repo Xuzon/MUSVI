@@ -803,12 +803,16 @@ qrc_ressources.cpp: ressources.qrc \
 		images/popupConfig/botonSlider.png \
 		images/popupConfig/selectorCompas.png \
 		images/popupConfig/bgConfig.png \
+		images/popupConfig/closePopup.png \
 		images/popupConfig/botonChange.png \
 		images/artist/count1.png \
 		images/artist/count3.png \
 		images/artist/score.png \
 		images/artist/count2.png \
 		images/artist/settings.png \
+		images/calibrate/textCalibrate.png \
+		images/calibrate/calibrate.gif \
+		images/calibrate/bgCalibrate.png \
 		images/menu/stop.png \
 		images/menu/botonInfo.png \
 		images/menu/botonConfig.png \

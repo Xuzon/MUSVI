@@ -9,7 +9,7 @@ Item{
     id: popUp
     z: 10
 
-    property string typePopup //config, info, save, save_PDF, save_App
+    property string typePopup //config, info, save, save_PDF, save_App, calibrate
     property string title
 
     signal closePopup()
@@ -27,6 +27,23 @@ Item{
             id: bgConfig
             source: "qrc:/images/popupConfig/bgConfig.png"
         }
+        Image{
+            id: closePopupConfig
+            source: "qrc:/images/popupConfig/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupConfig.scale = 1.1
+                }
+                onReleased: {
+                    closePopupConfig.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
         Text{
             id: textConfig
             text: "¿Quieres cambiar los ajustes de tu creación?"
@@ -137,6 +154,47 @@ Item{
     //        id: folderDialog
     //        folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
     //    }
+
+    Item{
+        //Popup de información
+        //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
+        id: calibrate
+        visible: typePopup === "calibrate"
+        onVisibleChanged: {
+            if(visible){
+                timerCalibrate.start()
+            }
+        }
+
+        Image{
+            id: bgCalibrate
+            source: "qrc:/images/calibrate/bgCalibrate.png"
+        }
+
+        AnimatedImage{
+            id: calibrateGif
+            source: "qrc:/images/calibrate/calibrate.gif"
+            playing: true
+            x: 474
+            y: 225
+        }
+
+        Timer{
+            id: timerCalibrate
+            interval: 5000
+            onTriggered: {
+                console.log("finish calibrate")
+                closePopup()
+            }
+        }
+
+        Image{
+            id: textCalibrate
+            source: "qrc:/images/calibrate/textCalibrate.png"
+            anchors.horizontalCenter: calibrateGif.horizontalCenter
+            y: 339
+        }
+    }
 
     Item{
         //Popup de información

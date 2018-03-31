@@ -30,7 +30,9 @@ Item {
             id: popUp
             visible: false
             onConfigChanged: {
-               controller.configChanged(speed, compas)
+                artistMode.speedValue = speed
+                artistMode.compasValue = compas
+                controller.configChanged(speed, compas)
             }
             onClosePopup: popUp.visible = false
         }
@@ -38,6 +40,14 @@ Item {
         Screens.ArtistMode{
             id: artistMode
             visible: false
+            onVisibleChanged: {
+                if(visible){
+                    popUp.typePopup = "calibrate"
+                    popUp.visible = true
+                    controller.calibrate(5)
+                }
+            }
+
             onGoInit: {
                 //Llamar a la función que reinicie todo
                 practice.visible = false
@@ -56,7 +66,9 @@ Item {
                 popUp.typePopup = type
                 popUp.visible = true
             }
-
+            onMetronome: {
+                controller.metronome()
+            }
             Connections{
                 target: controller
                 onDetectPulse:{
@@ -86,6 +98,8 @@ Item {
                         info.visible = false
                         init.visible = false
                         artistMode.clear()
+                        controller.mode("artist")
+                        controller.configChanged(artistMode.speedValue, artistMode.compasValue)
                         artistMode.visible = true
                         break
                     case "practice":

@@ -3,15 +3,17 @@ Item {
     id: artistMode
 
     property int number : 3
-
     property int pulsesNumber: 2
-
     property int pulseCount: 1
+    property int speedValue: 120
+    property string compasValue: "2/4"
 
     signal goInit()
     signal startRecording()
     signal stopRecording()
     signal showPopUp(var type)
+    signal metronome()
+
 
     Menu{
         id: menu
@@ -29,6 +31,7 @@ Item {
                 case "start":
                     circle.visible = true
                     menu.playState = "stop"
+                    metronome()
                     tempTimer.start()
                     break
                 case "stop":
@@ -54,7 +57,8 @@ Item {
     //Cuenta atras
     Timer{
         id: tempTimer
-        interval: 1000
+        interval: (60/speedValue)*1000
+        onIntervalChanged: console.log(interval)
         onTriggered: {
             if(number>1){
                 number--;
@@ -119,7 +123,7 @@ Item {
 
     Text{
         id: speed
-        text: "120"
+        text: speedValue
         font.family: gothamBook.name
         font.pixelSize: 22
         color: "#666666"
@@ -130,7 +134,7 @@ Item {
 
     Text{
         id: compas
-        text: "2/4"
+        text: compasValue
         font.family: gothamBook.name
         font.pixelSize: 22
         color: "#666666"

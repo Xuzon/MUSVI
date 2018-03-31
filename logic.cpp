@@ -35,6 +35,21 @@ void Musvi_Logic::stopRecording(){
     }
 }
 
+void Musvi_Logic::mode(QString type){
+    qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
+
+}
+
+void Musvi_Logic::calibrate(int time){
+    qDebug() << "QML->LOGIC :: CALIBRATE:: " << time;
+
+}
+
+void Musvi_Logic::metronome(){
+    qDebug() << "QML->LOGIC :: METRONOME";
+
+}
+
 void Musvi_Logic::config(int speed, QString compas){
     qDebug() << "QML->LOGIC :: CHANGE CONFIG:: " << speed << " " << compas;
 

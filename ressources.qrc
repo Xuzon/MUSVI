@@ -58,6 +58,10 @@
         <file>images/popupConfig/selectorCompas.png</file>
         <file>images/popupConfig/slider.png</file>
         <file>images/popupConfig/sliderColor.png</file>
+        <file>images/popupConfig/closePopup.png</file>
+        <file>images/calibrate/calibrate.gif</file>
+        <file>images/calibrate/bgCalibrate.png</file>
+        <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
     </qresource>

@@ -39,7 +39,10 @@ public slots:
     /* Slot para recoger datos del QML */
     void startRecording();
     void stopRecording();
+    void mode(QString type);
     void config(int speed, QString compas);
+    void calibrate(int time);
+    void metronome();
     void ChangeTempoCompas(int bpm, int subdivisions);
     void detectPulse(QString pulse);
 };
