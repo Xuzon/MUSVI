@@ -40,6 +40,7 @@ public:
     Q_INVOKABLE const QStringList comboList();
     void ChangeTempoCompas(int bpm, int subdivisions);
     void Calibrate(int time);
+    void SaveScore(QString fileName,int errors,QString folder,QString comments);
 
     explicit Transcriptor(Musvi_Logic* logic);
     explicit Transcriptor();

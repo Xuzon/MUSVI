@@ -20,9 +20,10 @@ private:
 
 public:
 
-    static void SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder, int lastErrors);
+    static void SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder, int lastErrors,int speed, int subdivisions);
     static void LoadScores();
     static QJsonObject LoadScore(int id);
+    static int GetNewId();
 };
 
 #endif // SCORESAVER_H

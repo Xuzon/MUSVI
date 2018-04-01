@@ -21,6 +21,11 @@ class Musvi_Logic : public QObject{
 
     Q_OBJECT
 
+protected:
+
+    int errors;
+    int currentCompas;
+
 public:
 
     /* Constructor */

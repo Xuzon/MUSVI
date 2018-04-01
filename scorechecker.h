@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QVector>
+#include "scoresaver.h"
 
 class ScoreChecker{
 
@@ -13,8 +14,8 @@ public:
     ScoreChecker();
 
     //if id -1 is artist mode
-    void LoadPractice(int id);
-    bool CheckError(QString pulse, int nCompas);
+    int LoadPractice(int id, int* sub = nullptr);
+    bool HasError(QString pulse, int nCompas);
 };
 
 #endif // SCORECHECKER_H

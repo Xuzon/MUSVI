@@ -7,6 +7,7 @@ Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
     this->transcriptor = new Transcriptor(this);
+    this->checker.LoadPractice(1);
 }
 
 Musvi_Logic::~Musvi_Logic(){
@@ -23,6 +24,8 @@ Musvi_Logic::~Musvi_Logic(){
  */
 void Musvi_Logic::startRecording(){
     qDebug() << "QML->LOGIC :: START RECORDING";
+    errors = 0;
+    currentCompas = 0;
     if(!this->transcriptor->IsRecording()){
         this->transcriptor->record();
     }
@@ -32,6 +35,7 @@ void Musvi_Logic::stopRecording(){
     qDebug() << "QML->LOGIC :: STOP RECORDING";
     if(this->transcriptor->IsRecording()){
         this->transcriptor->record();
+        this->transcriptor->SaveScore("test.json",this->errors,"This is a folder","This is a comment");
     }
 }
 
@@ -50,7 +54,9 @@ void Musvi_Logic::config(int speed, QString compas){
 
 void Musvi_Logic::mode(QString type){
     qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
-    if(type.compare("artist")){
+    //dont know why but there was an invisible character
+    type.chop(1);
+    if(QString::compare(type,"artist")){
         this->SetPractice(-1);
     }
 }
@@ -81,6 +87,10 @@ void Musvi_Logic::SetPractice(int id){
  */
 void Musvi_Logic::detectPulse(QString pulse){
     qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
+    if(this->checker.HasError(pulse,currentCompas)){
+        this->errors++;
+    }
+    currentCompas++;
     emit sendPulse(pulse);
 }
 
