@@ -1193,6 +1193,32 @@
 			settings = {
 			};
 		};
+		A7AF181FE3BC932E2E4061B1 = {
+			isa = PBXFileReference;
+			name = "qtgraphicaleffectsplugin";
+			path = "/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/libqtgraphicaleffectsplugin$(QT_LIBRARY_SUFFIX).a";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		138FCDE318B5089FB87C031B = {
+			fileRef = "A7AF181FE3BC932E2E4061B1";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		9A6B6084EEC2311F67FF7D5E = {
+			isa = PBXFileReference;
+			name = "qtgraphicaleffectsprivate";
+			path = "/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private/libqtgraphicaleffectsprivate$(QT_LIBRARY_SUFFIX).a";
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		8E217477AABB4CD52DB23A0A = {
+			fileRef = "9A6B6084EEC2311F67FF7D5E";
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		04068E323A794230524E1F24 = {
 			isa = PBXFileReference;
 			name = "Qt5Quick";
@@ -1354,6 +1380,8 @@
 				"A5355E6F3D57B347E6463450",
 				"1A38B6189750C83E2E932051",
 				"0B41530495D7CBEE1A4DBF9A",
+				"A7AF181FE3BC932E2E4061B1",
+				"9A6B6084EEC2311F67FF7D5E",
 				"04068E323A794230524E1F24",
 				"A1745A88097C33426CF66393",
 				"FB2A5AEA1CDF098589E2F371",
@@ -1424,6 +1452,8 @@
 				"12FB8766C90E9F0E47204D6D",
 				"3D4A7CB5BCE911E6189E634A",
 				"A3C461C30922AC0B66ED3019",
+				"138FCDE318B5089FB87C031B",
+				"8E217477AABB4CD52DB23A0A",
 				"4432CE15A71227590D4EB4B7",
 				"92B5CA49210D96ED4F304495",
 				"24FFED827BC0187819923C6D",
@@ -1601,7 +1631,9 @@
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Layouts",
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2",
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2",
-					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform");
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform",
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects",
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private");
 				FRAMEWORK_SEARCH_PATHS = "";
 				OTHER_CFLAGS = (
 					"-pipe",
@@ -1665,6 +1697,8 @@
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2",
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2",
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform",
+						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects",
+						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private",
 						"-lm",
 						"-lz");
 				ARCHS = "armv7 arm64 i386 x86_64";
@@ -1749,7 +1783,9 @@
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Layouts",
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2",
 					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2",
-					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform");
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform",
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects",
+					"/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private");
 				FRAMEWORK_SEARCH_PATHS = "";
 				OTHER_CFLAGS = (
 					"-pipe",
@@ -1813,6 +1849,8 @@
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2",
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2",
 						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform",
+						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects",
+						"-L/Users/Eva/Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private",
 						"-lm",
 						"-lz");
 				ARCHS = "armv7 arm64 i386 x86_64";

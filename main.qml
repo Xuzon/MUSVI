@@ -60,6 +60,8 @@ Item {
                 controller.sendStartRecording()
             }
             onStopRecording: {
+                popUp.typePopup = "save"
+                popUp.visible = true
                 controller.sendStopRecording()
             }
             onShowPopUp: {

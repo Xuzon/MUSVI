@@ -59,6 +59,24 @@
         <file>images/popupConfig/slider.png</file>
         <file>images/popupConfig/sliderColor.png</file>
         <file>images/popupConfig/closePopup.png</file>
+        <file>images/popupSave/bgSave.png</file>
+        <file>images/popupSave/botonCancel.png</file>
+        <file>images/popupSave/closePopup.png</file>
+        <file>images/popupSave/export.png</file>
+        <file>images/popupSave/save.png</file>
+        <file>images/popupSaveApp/backButton.png</file>
+        <file>images/popupSaveApp/bgSaveApp.png</file>
+        <file>images/popupSaveApp/commentsSpace.png</file>
+        <file>images/popupSaveApp/nameSpace.png</file>
+        <file>images/popupSaveApp/saveButton.png</file>
+        <file>images/popupSaveApp/selectCreations.png</file>
+        <file>images/popupSaveApp/ubication.png</file>
+        <file>images/popupSavePDF/backButton.png</file>
+        <file>images/popupSavePDF/bgSavePDF.png</file>
+        <file>images/popupSavePDF/nameSpace.png</file>
+        <file>images/popupSavePDF/saveButton.png</file>
+        <file>images/popupSavePDF/select.png</file>
+        <file>images/popupSavePDF/ubicationPath.png</file>
         <file>images/calibrate/calibrate.gif</file>
         <file>images/calibrate/bgCalibrate.png</file>
         <file>images/calibrate/textCalibrate.png</file>

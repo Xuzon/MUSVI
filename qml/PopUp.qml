@@ -1,7 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.6
 import Qt.labs.platform 1.0
 import QtQuick.Controls 2.2
-import QtQuick.Controls.Styles 1.4
+//import QtQuick.Controls.Styles.Flat 1.4
 import QtGraphicalEffects 1.0
 
 
@@ -204,25 +204,210 @@ Item{
 
     Item{
         //Popup de guardar partitura
-        //  - Opción guardar partitura en .xml:
-        //      - Ver como añadir un buscar ruta en la que guardar el archivo
-        //      - Como exportar a music .xml el array de las figuras para poder exportarlo con el programita famoso.
-        //      - Pasar los datos a logica
-        //  - Opción guardar partitura en la app
-        //      - Determinar en donde se van a guardar: ejercicios o tus creaciones
-        //      - Pasar datos a logica
-        //  - Opción cancelar arriba derecha
         id: save
+        visible: typePopup === "save"
+        Image {
+            id: bgSave
+            source: "qrc:/images/popupSave/bgSave.png"
+        }
+        Image{
+            id: closePopupSave
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSave.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSave.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Text{
+            id: textSave
+            text: "¿Cómo quieres que se guarde? PDF o en la propia app"
+            font.family: gothamBook.name
+            font.pixelSize: 18
+            color: "#666666"
+            x: 283
+            y: 223
+        }
+
+        Image{
+            id: saveAPPButtonSave
+            source: "qrc:/images/popupSave/save.png"
+            x: 400
+            y: 234
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    saveAPPButtonSave.scale = 1.1
+                }
+                onReleased: {
+                    saveAPPButtonSave.scale = 1
+                    typePopup = "saveApp"
+                }
+            }
+        }
+        Image{
+            id: exportPDFButtonSave
+            source: "qrc:/images/popupSave/export.png"
+            x: 400
+            y: 299
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    exportPDFButtonSave.scale = 1.1
+                }
+                onReleased: {
+                    exportPDFButtonSave.scale = 1
+                    typePopup = "savePDF"
+                }
+            }
+        }
+        Image{
+            id: cancelButtonSave
+            source: "qrc:/images/popupSave/botonCancel.png"
+            x: 400
+            y: 365
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cancelButtonSave.scale = 1.1
+                }
+                onReleased: {
+                    cancelButtonSave.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
     }
 
     Item{
         //Popup de guardar partitura
-        //  -
-        id: save_path
+        id: savePDF
+        visible: typePopup === "savePDF"
+        Image {
+            id: bgSavePDF
+            source: "qrc:/images/popupSavePDF/bgSavePDF.png"
+        }
+        Text{
+            id: textSavePDF
+            text: "Elige un nombre para tu creación"
+            font.family: gothamBook.name
+            font.pixelSize: 18
+            color: "#666666"
+            x: 354
+            y: 200
+        }
+        Image{
+            id: namePDF
+            source: "qrc:/images/popupSavePDF/nameSpace.png"
+            x: 288
+            y: 269
+        }
+
+        TextField {
+            id: field
+            x: 390
+            y: 282
+            font.pixelSize: 18
+            color: "#666666"
+            background: Rectangle{
+                width: 308
+                height: 60
+                border.color: "transparent"
+                color: "transparent"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        field.focus = true;
+                    }
+                }
+            }
+
+        }
+
+        Image {
+            id: buttonBackSavePDF
+            source: "qrc:/images/popupSavePDF/backButton.png"
+            x: 263
+            y: 396
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonBackSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    buttonBackSavePDF.scale = 1
+                    typePopup = "save"
+                }
+            }
+        }
+
+        Image {
+            id: buttonSavePDF
+            source: "qrc:/images/popupSavePDF/saveButton.png"
+            x: 555
+            y: 396
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    buttonSavePDF.scale = 1
+                    closePopup()
+                }
+            }
+        }
     }
 
     Item{
-        id: save_ex
+        id: saveApp
+        visible: typePopup === "saveApp"
+        Image {
+            id: bgSaveAPP
+            source: "qrc:/images/popupSaveApp/bgSaveApp.png"
+            x:0
+            y:-5
+        }
+        Image {
+            id: buttonBackSaveApp
+            source: "qrc:/images/popupSaveApp/backButton.png"
+            x: 239
+            y: 595
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonBackSaveApp.scale = 1.1
+                }
+                onReleased: {
+                    buttonBackSaveApp.scale = 1
+                    typePopup = "save"
+                }
+            }
+        }
+        Image {
+            id: buttonSaveApp
+            source: "qrc:/images/popupSaveApp/saveButton.png"
+            x: 567
+            y: 595
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonBackSaveApp.scale = 1.1
+                }
+                onReleased: {
+                    buttonBackSaveApp.scale = 1
+                    //typePopup = "save"
+                }
+            }
+        }
     }
 
 }

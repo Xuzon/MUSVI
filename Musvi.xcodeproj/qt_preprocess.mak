@@ -71,6 +71,40 @@ qrc_ressources.cpp: ressources.qrc \
 		images/blanca.png \
 		images/corche-semi.png \
 		images/line.png \
+		images/popupSaveApp/saveButton.png \
+		images/popupSaveApp/ubication.png \
+		images/popupSaveApp/selectCreations.png \
+		images/popupSaveApp/backButton.png \
+		images/popupSaveApp/commentsSpace.png \
+		images/popupSaveApp/bgSaveApp.png \
+		images/popupSaveApp/nameSpace.png \
+		images/popupSave/save.png \
+		images/popupSave/botonCancel.png \
+		images/popupSave/export.png \
+		images/popupSave/bgSave.png \
+		images/popupSave/closePopup.png \
+		images/popupConfig/slider.png \
+		images/popupConfig/botonCancel.png \
+		images/popupConfig/sliderColor.png \
+		images/popupConfig/botonSlider.png \
+		images/popupConfig/selectorCompas.png \
+		images/popupConfig/bgConfig.png \
+		images/popupConfig/closePopup.png \
+		images/popupConfig/botonChange.png \
+		images/artist/count1.png \
+		images/artist/count3.png \
+		images/artist/score.png \
+		images/artist/count2.png \
+		images/artist/settings.png \
+		images/calibrate/textCalibrate.png \
+		images/calibrate/calibrate.gif \
+		images/calibrate/bgCalibrate.png \
+		images/popupSavePDF/ubicationPath.png \
+		images/popupSavePDF/saveButton.png \
+		images/popupSavePDF/select.png \
+		images/popupSavePDF/backButton.png \
+		images/popupSavePDF/bgSavePDF.png \
+		images/popupSavePDF/nameSpace.png \
 		images/menu/stop.png \
 		images/menu/botonInfo.png \
 		images/menu/botonConfig.png \
@@ -90,18 +124,107 @@ compiler_moc_header_make_all: moc_logic.cpp moc_transcriptor.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_logic.cpp moc_transcriptor.cpp
 moc_logic.cpp: ../../Qt5.9.4/5.9.4/ios/include/QtCore/QObject \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobject.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobjectdefs.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qnamespace.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qconfig.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtcore-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsystemdetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qprocessordetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcompilerdetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtypeinfo.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsysinfo.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlogging.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qflags.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbasicatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_bootstrap.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qgenericatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_cxx11.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_msvc.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qglobalstatic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmutex.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qnumeric.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qversiontagging.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobjectdefs_impl.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstring.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qchar.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbytearray.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qrefcount.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qarraydata.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringbuilder.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qalgorithms.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qiterator.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qhashfunctions.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qpair.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbytearraylist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringlist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qregexp.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringmatcher.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcoreevent.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qscopedpointer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmetatype.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvarlengtharray.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcontainerfwd.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobject_impl.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QDebug \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qdebug.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qhash.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmap.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtextstream.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qiodevice.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlocale.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvariant.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qshareddata.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvector.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qpoint.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qset.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcontiguouscache.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsharedpointer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsharedpointer_impl.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QVariantMap \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QMetaEnum \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmetaobject.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QMetaObject \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QThread \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qthread.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QTimer \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtimer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbasictimer.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtGui/QList \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qevent.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qtguiglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qtgui-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qwindowdefs.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qwindowdefs_win.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qregion.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qrect.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmargins.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsize.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qdatastream.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qkeysequence.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qurl.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qurlquery.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfile.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfiledevice.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qvector2d.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qtouchdevice.h \
 		transcriptor.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QFile \
 		metronomethread.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioOutput \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudiooutput.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qtmultimediaglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qtmultimedia-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qmultimedia.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudio.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudioformat.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudiodeviceinfo.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioInput \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudioinput.h \
 		bufferprocessor.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioFormat \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QVector \
@@ -111,25 +234,106 @@ moc_logic.cpp: ../../Qt5.9.4/5.9.4/ios/include/QtCore/QObject \
 		filter.h \
 		highpassfilter.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QDir \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qdir.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfileinfo.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QStandardPaths \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QString \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QJsonDocument \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsonvalue.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QJsonObject \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsonobject.h \
 		calibrator.h \
 		logic.h \
 		../../Qt5.9.4/5.9.4/ios/bin/moc
 	/Users/Eva/Qt5.9.4/5.9.4/ios/bin/moc $(DEFINES) -D__APPLE__ -D__GNUC__=4 -D__APPLE_CC__ -D__cplusplus=199711L -D__APPLE_CC__=6000 -D__clang__ -D__clang_major__=9 -D__clang_minor__=0 -D__clang_patchlevel__=0 -D__GNUC__=4 -D__GNUC_MINOR__=2 -D__GNUC_PATCHLEVEL__=1 -I/Users/Eva/Qt5.9.4/5.9.4/ios/mkspecs/macx-ios-clang -I/Users/Eva/QT-PROJECTS/MUSVI -I/Users/Eva/Qt5.9.4/5.9.4/ios/mkspecs/common/uikit -I/Users/Eva/Qt5.9.4/5.9.4/ios/include -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtQuick -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtMultimedia -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtWidgets -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtGui -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtQml -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtNetwork -I/Users/Eva/Qt5.9.4/5.9.4/ios/include/QtCore -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.2.sdk/usr/include logic.h -o moc_logic.cpp
 
 moc_transcriptor.cpp: ../../Qt5.9.4/5.9.4/ios/include/QtCore/QObject \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobject.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobjectdefs.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qnamespace.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qconfig.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtcore-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsystemdetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qprocessordetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcompilerdetection.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtypeinfo.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsysinfo.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlogging.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qflags.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbasicatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_bootstrap.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qgenericatomic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_cxx11.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qatomic_msvc.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qglobalstatic.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmutex.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qnumeric.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qversiontagging.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobjectdefs_impl.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstring.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qchar.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbytearray.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qrefcount.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qarraydata.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringbuilder.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qalgorithms.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qiterator.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qhashfunctions.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qpair.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbytearraylist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringlist.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qregexp.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstringmatcher.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcoreevent.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qscopedpointer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmetatype.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvarlengtharray.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcontainerfwd.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qobject_impl.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QFile \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfile.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfiledevice.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qiodevice.h \
 		metronomethread.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QDebug \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qdebug.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qhash.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qmap.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtextstream.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qlocale.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvariant.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qshareddata.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qvector.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qpoint.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qset.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qcontiguouscache.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsharedpointer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qsharedpointer_impl.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QThread \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qthread.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioOutput \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudiooutput.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qtmultimediaglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qtguiglobal.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtGui/qtgui-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qtmultimedia-config.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qmultimedia.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudio.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudioformat.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudiodeviceinfo.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioInput \
+		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/qaudioinput.h \
 		bufferprocessor.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QTimer \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qtimer.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qbasictimer.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtMultimedia/QAudioFormat \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QVector \
 		impulse.h \
@@ -138,11 +342,17 @@ moc_transcriptor.cpp: ../../Qt5.9.4/5.9.4/ios/include/QtCore/QObject \
 		filter.h \
 		highpassfilter.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QDir \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qdir.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qfileinfo.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QStandardPaths \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QString \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QJsonDocument \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsonvalue.h \
 		../../Qt5.9.4/5.9.4/ios/include/QtCore/QJsonObject \
+		../../Qt5.9.4/5.9.4/ios/include/QtCore/qjsonobject.h \
 		calibrator.h \
 		transcriptor.h \
 		../../Qt5.9.4/5.9.4/ios/bin/moc

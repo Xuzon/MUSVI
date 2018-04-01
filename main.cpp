@@ -6,6 +6,7 @@
 
 int main(int argc, char *argv[])
 {
+    qputenv("QT_QUICK_CONTROLS_1_STYLE", "Flat");
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;

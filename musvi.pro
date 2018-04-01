@@ -6,7 +6,13 @@ target.path = $$PWD
 
 TARGET = Musvi
 
+
 CONFIG += c++11
+
+#static {
+#    QTPLUGIN += qtvirtualkeyboardplugin
+#    QT += svg
+#}
 
 SOURCES += main.cpp \
     logic.cpp \
@@ -44,7 +50,7 @@ DISTFILES +=\
         qml/Menu.qml \
         qml/Information.qml \
         qml/Init.qml \
-        qml/Musvi_Controller \
+        qml/Musvi_Controller.qml \
         qml/Practice.qml \
         qml/PopUp.qml \
         main.qml

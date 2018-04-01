@@ -291,7 +291,9 @@ Musvi.xcodeproj/project.pbxproj: musvi.pro ../../Qt5.9.4/5.9.4/ios/mkspecs/macx-
 		../../Qt5.9.4/5.9.4/ios/qml/QtQuick/Layouts/libqquicklayoutsplugin_debug.prl \
 		../../Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2/libwindowplugin_debug.prl \
 		../../Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2/libqtquicktemplates2plugin_debug.prl \
-		../../Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform/libqtlabsplatformplugin_debug.prl
+		../../Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform/libqtlabsplatformplugin_debug.prl \
+		../../Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/libqtgraphicaleffectsplugin_debug.prl \
+		../../Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private/libqtgraphicaleffectsprivate_debug.prl
 	$(QMAKE) -o Musvi.xcodeproj/project.pbxproj musvi.pro -spec macx-xcode CONFIG+=iphoneos CONFIG+=device CONFIG+=qml_debug
 ../../Qt5.9.4/5.9.4/ios/mkspecs/features/spec_pre.prf:
 ../../Qt5.9.4/5.9.4/ios/mkspecs/qdevice.pri:
@@ -576,6 +578,8 @@ ressources.qrc:
 ../../Qt5.9.4/5.9.4/ios/qml/QtQuick/Window.2/libwindowplugin_debug.prl:
 ../../Qt5.9.4/5.9.4/ios/qml/QtQuick/Templates.2/libqtquicktemplates2plugin_debug.prl:
 ../../Qt5.9.4/5.9.4/ios/qml/Qt/labs/platform/libqtlabsplatformplugin_debug.prl:
+../../Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/libqtgraphicaleffectsplugin_debug.prl:
+../../Qt5.9.4/5.9.4/ios/qml/QtGraphicalEffects/private/libqtgraphicaleffectsprivate_debug.prl:
 qmake: FORCE
 	@$(QMAKE) -o Musvi.xcodeproj/project.pbxproj musvi.pro -spec macx-xcode CONFIG+=iphoneos CONFIG+=device CONFIG+=qml_debug
 
