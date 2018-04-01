@@ -41,12 +41,20 @@ public slots:
     /* Slot para recoger datos del QML */
     void startRecording();
     void stopRecording();
-    void Config(int bpm, QString compas);
-    void detectPulse(QString pulse);
     //artist or practice
-    void SetMode(QString type);
+    void mode(QString type);
+    //change bpm and subdivisions
+    void config(int speed, QString compas);
+    //calibrate the mic while time
+    void calibrate(int time);
+    //load the practice of id
     void SetPractice(int id);
-    void Calibrate(int time);
+    //
+    void metronome();
+    //On pulse detected
+    void detectPulse(QString pulse);
+
+
 };
 
 #endif // SMC_LOGIC_H

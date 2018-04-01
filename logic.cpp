@@ -36,35 +36,42 @@ void Musvi_Logic::stopRecording(){
 }
 
 ///Change the tempo and compas
-void Musvi_Logic::Config(int bpm, QString compas){
+void Musvi_Logic::config(int speed, QString compas){
+    qDebug() << "QML->LOGIC :: CHANGE CONFIG:: " << speed << " " << compas;
     if(this->transcriptor == nullptr){
         return;
     }
+    //todo
     // 2/4 3/4 6/8 12/8
     // 4/4 3/8 9/8
     int subdivisions = 4;
-    this->transcriptor->ChangeTempoCompas(bpm,subdivisions);
+    this->transcriptor->ChangeTempoCompas(speed,subdivisions);
 }
 
-///Set the artist mode
-void Musvi_Logic::SetMode(QString type){
+void Musvi_Logic::mode(QString type){
+    qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
     if(type.compare("artist")){
-        this->checker.LoadPractice(-1);
+        this->SetPractice(-1);
     }
+}
+
+void Musvi_Logic::calibrate(int time){
+    qDebug() << "QML->LOGIC :: CALIBRATE:: " << time;
+    if(this->transcriptor == nullptr){
+        return;
+    }
+    this->transcriptor->Calibrate(time);
+}
+
+void Musvi_Logic::metronome(){
+    qDebug() << "QML->LOGIC :: METRONOME";
+
 }
 
 ///Load the practice into the checker
 ///
 void Musvi_Logic::SetPractice(int id){
     this->checker.LoadPractice(id);
-}
-
-///Calibrate the threshold
-void Musvi_Logic::Calibrate(int time){
-    if(this->transcriptor == nullptr){
-        return;
-    }
-    this->transcriptor->Calibrate(time);
 }
 
 /* SEÑALES PARA EL QML */

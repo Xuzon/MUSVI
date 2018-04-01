@@ -81,6 +81,7 @@ OBJECTS       = main.o \
 		moc_transcriptor.o
 DIST          = config/config.ini \
 		qml/ArtistMode.qml \
+		qml/Menu.qml \
 		qml/Information.qml \
 		qml/Init.qml \
 		qml/Musvi_Controller \
@@ -762,6 +763,7 @@ compiler_rcc_clean:
 qrc_ressources.cpp: ressources.qrc \
 		../../Qt5.9.4/5.9.4/clang_64/bin/rcc \
 		main.qml \
+		qml/Menu.qml \
 		qml/PopUp.qml \
 		qml/ArtistMode.qml \
 		qml/Information.qml \
@@ -795,6 +797,32 @@ qrc_ressources.cpp: ressources.qrc \
 		images/blanca.png \
 		images/corche-semi.png \
 		images/line.png \
+		images/popupConfig/slider.png \
+		images/popupConfig/botonCancel.png \
+		images/popupConfig/sliderColor.png \
+		images/popupConfig/botonSlider.png \
+		images/popupConfig/selectorCompas.png \
+		images/popupConfig/bgConfig.png \
+		images/popupConfig/closePopup.png \
+		images/popupConfig/botonChange.png \
+		images/artist/count1.png \
+		images/artist/count3.png \
+		images/artist/score.png \
+		images/artist/count2.png \
+		images/artist/settings.png \
+		images/calibrate/textCalibrate.png \
+		images/calibrate/calibrate.gif \
+		images/calibrate/bgCalibrate.png \
+		images/menu/stop.png \
+		images/menu/botonInfo.png \
+		images/menu/botonConfig.png \
+		images/menu/start.png \
+		images/menu/bgMenu.png \
+		images/menu/init.png \
+		images/menu/info.png \
+		images/init/selectMode.png \
+		images/init/bgModeArtist.png \
+		images/init/bgModePractice.png \
 		sounds/beat.wav \
 		fonts/gotham/GothamLight.ttf \
 		fonts/gotham/GothamBook.ttf
@@ -844,6 +872,10 @@ moc_logic.cpp: ../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QObject
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h \
@@ -878,6 +910,10 @@ moc_transcriptor.cpp: ../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h \
@@ -944,6 +980,10 @@ main.o: main.cpp ../../Qt5.9.4/5.9.4/clang_64/lib/QtGui.framework/Headers/QGuiAp
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h
@@ -985,6 +1025,10 @@ logic.o: logic.cpp logic.h \
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h
@@ -1026,6 +1070,10 @@ bufferprocessor.o: bufferprocessor.cpp bufferprocessor.h \
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h
@@ -1090,6 +1138,10 @@ transcriptor.o: transcriptor.cpp transcriptor.h \
 		scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QString \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h \
 		calibrator.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/QAudioInput \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtMultimedia.framework/Headers/qaudioinput.h
@@ -1116,7 +1168,11 @@ scoresaver.o: scoresaver.cpp scoresaver.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QStandardPaths \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qstandardpaths.h \
 		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QDebug \
-		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonDocument \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsondocument.h \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/QJsonObject \
+		../../Qt5.9.4/5.9.4/clang_64/lib/QtCore.framework/Headers/qjsonobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scoresaver.o scoresaver.cpp
 
 calibrator.o: calibrator.cpp calibrator.h \
