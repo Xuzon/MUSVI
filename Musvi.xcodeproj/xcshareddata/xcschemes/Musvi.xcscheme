@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ED208CC2E08605FD6B6B9FB1"
-               BuildableName = "Musvi"
+               BuildableName = "Musvi.app"
                BlueprintName = "Musvi"
                ReferencedContainer = "container:Musvi.xcodeproj">
             </BuildableReference>
@@ -23,10 +23,11 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO"
-      buildConfiguration = "Debug">
+      language = ""
+      shouldUseLaunchSchemeArgsEnv = "NO">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -43,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ED208CC2E08605FD6B6B9FB1"
-            BuildableName = "Musvi"
+            BuildableName = "Musvi.app"
             BlueprintName = "Musvi"
             ReferencedContainer = "container:Musvi.xcodeproj">
          </BuildableReference>
@@ -54,22 +55,27 @@
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      disableMainThreadChecker = "YES"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
-      disableMainThreadChecker = "YES"
       debugDocumentVersioning = "NO"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ED208CC2E08605FD6B6B9FB1"
-            BuildableName = "Musvi"
+            BuildableName = "Musvi.app"
             BlueprintName = "Musvi"
             ReferencedContainer = "container:Musvi.xcodeproj">
          </BuildableReference>
@@ -85,16 +91,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "NO">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ED208CC2E08605FD6B6B9FB1"
-            BuildableName = "Musvi"
+            BuildableName = "Musvi.app"
             BlueprintName = "Musvi"
             ReferencedContainer = "container:Musvi.xcodeproj">
          </BuildableReference>

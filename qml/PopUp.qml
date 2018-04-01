@@ -14,6 +14,7 @@ Item{
 
     signal closePopup()
     signal configChanged(var speed, var compas)
+    signal savePDFSignal(var name)
 
 
 
@@ -312,7 +313,7 @@ Item{
         }
 
         TextField {
-            id: field
+            id: fieldText
             x: 390
             y: 282
             font.pixelSize: 18
@@ -325,7 +326,7 @@ Item{
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        field.focus = true;
+                        fieldText.focus = true;
                     }
                 }
             }
@@ -361,6 +362,7 @@ Item{
                 }
                 onReleased: {
                     buttonSavePDF.scale = 1
+                    savePDFSignal(fieldText.text)
                     closePopup()
                 }
             }

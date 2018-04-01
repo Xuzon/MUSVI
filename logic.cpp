@@ -7,7 +7,7 @@ Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
     this->transcriptor = new Transcriptor(this);
-    this->checker.LoadPractice(1);
+    //this->checker.LoadPractice(1);
 }
 
 Musvi_Logic::~Musvi_Logic(){
@@ -94,6 +94,10 @@ void Musvi_Logic::detectPulse(QString pulse){
     emit sendPulse(pulse);
 }
 
+void Musvi_Logic::savePDF(QString name){
+    qDebug() << "LOGIC->QML :: SAVE PDF:: " << name;
+
+}
 
 
 

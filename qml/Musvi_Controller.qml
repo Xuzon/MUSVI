@@ -75,4 +75,8 @@ Item{
         Logic.calibrate(time)
     }
 
+    function savePDF(name){
+        Logic.savePDF(name)
+    }
+
 }

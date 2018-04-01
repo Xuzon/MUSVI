@@ -34,6 +34,9 @@ Item {
                 artistMode.compasValue = compas
                 controller.configChanged(speed, compas)
             }
+            onSavePDFSignal: {
+                controller.savePDF(name)
+            }
             onClosePopup: popUp.visible = false
         }
 

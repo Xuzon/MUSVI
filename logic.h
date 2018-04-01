@@ -58,6 +58,7 @@ public slots:
     void metronome();
     //On pulse detected
     void detectPulse(QString pulse);
+    void savePDF(QString name);
 
 
 };
