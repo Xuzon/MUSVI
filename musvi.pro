@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     transcriptor.cpp \
     metronomethread.cpp \
     scoresaver.cpp \
-    calibrator.cpp
+    calibrator.cpp \
+    scorechecker.cpp
 
 HEADERS += \
     logic.h \
@@ -38,7 +39,8 @@ HEADERS += \
     transcriptor.h \
     metronomethread.h \
     scoresaver.h \
-    calibrator.h
+    calibrator.h \
+    scorechecker.h
 
 RESOURCES += ressources.qrc
 

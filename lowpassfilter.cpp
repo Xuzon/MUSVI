@@ -8,11 +8,11 @@ void LowPassFilter::CalculateCoeffs(){
 }
 
 LowPassFilter::LowPassFilter(int numCoeffs,double freq, double sampleFreq) : Filter(numCoeffs){
-    qDebug() << "Creating low pass filter" << numCoeffs;
+    //qDebug() << "Creating low pass filter" << numCoeffs;
     this->normalizedFreq = freq * 2 / sampleFreq;
     this->CalculateCoeffs();
 }
 
 LowPassFilter::~LowPassFilter(){
-    qDebug() << "Deleting low pass filter";
+    //qDebug() << "Deleting low pass filter";
 }
