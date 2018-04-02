@@ -8,7 +8,7 @@ BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,
     this->window = window;
     this->filterOrder = 100;
     //set the threshold 10% more than the received
-    this->waveThreshold = threshold + threshold * 10 / 100;
+    this->waveThreshold = threshold + threshold * 30 / 100;
     this->lowFreq = 1000;
     this->highFreq = 5000;
     this->classifier = new Classifier(subdivisions,length);

@@ -13,9 +13,11 @@ int ScoreChecker::LoadPractice(int id, int* sub){
         qDebug() << "Setting artist mode";
         return 0;
     }
-    //TODO
     QJsonObject json = ScoreSaver::LoadScore(id);
     QString jsonData = json["data"].toString();
+    if(jsonData.isEmpty()){
+        return -1;
+    }
     int subdivisions = json["subdivisions"].toInt();
     int pulses = jsonData.length() / subdivisions;
     for(int i = 0; i < pulses; i++){

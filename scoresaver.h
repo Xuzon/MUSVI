@@ -16,7 +16,8 @@ class ScoreSaver{
 private:
 
     static QVector<QJsonObject> scores;
-
+    static void DeleteFromCurrentScores(int id);
+    static void DeleteFromFileSystem(int id);
 
 public:
 
@@ -24,6 +25,8 @@ public:
     static void LoadScores();
     static QJsonObject LoadScore(int id);
     static int GetNewId();
+    static void DeleteScore(int id);
+
 };
 
 #endif // SCORESAVER_H

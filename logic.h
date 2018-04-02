@@ -59,6 +59,7 @@ public slots:
     //On pulse detected
     void detectPulse(QString pulse);
     void savePDF(QString name);
+    //delete a score with the given id from file system and current heap
     void deleteScore(int id);
 
 
