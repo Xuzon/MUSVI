@@ -1,7 +1,6 @@
 import QtQuick 2.6
 import Qt.labs.platform 1.0
 import QtQuick.Controls 2.2
-//import QtQuick.Controls.Styles.Flat 1.4
 import QtGraphicalEffects 1.0
 
 
@@ -9,13 +8,23 @@ Item{
     id: popUp
     z: 10
 
-    property string typePopup //config, info, save, save_PDF, save_App, calibrate
+    property string typePopup //config, info, save, save_PDF, save_App, calibrate, deleteScore
     property string title
+    //Para info y para deleteScore
+    property var scoreData : {
+        "id"        : "0",
+        "name"      : "Partitura 2/4",
+        "speed"     : "120",
+        "compas"    : "2/4",
+        "comments"  : "Este ejercicio es de nivel\n1, tiene un compás 2/4 a una\nvelocidad de 120",
+        "numErrors" : "1"
+    }
+
 
     signal closePopup()
     signal configChanged(var speed, var compas)
     signal savePDFSignal(var name)
-
+    signal deleteScoreSignal(var id)
 
 
     Item{
@@ -151,11 +160,6 @@ Item{
         }
     }
 
-    //    FolderDialog {
-    //        id: folderDialog
-    //        folder: StandardPaths.standardLocations(StandardPaths.PicturesLocation)[0]
-    //    }
-
     Item{
         //Popup de información
         //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
@@ -182,7 +186,7 @@ Item{
 
         Timer{
             id: timerCalibrate
-            interval: 5000
+            interval: 1500
             onTriggered: {
                 console.log("finish calibrate")
                 closePopup()
@@ -201,6 +205,107 @@ Item{
         //Popup de información
         //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
         id: info
+        visible: typePopup === "info"
+        Image{
+            id: bgInfo
+            source: "qrc:/images/popupInfo/bgPopupInfo.png"
+        }
+        Image{
+            id: closePopupInfo
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupInfo.scale = 1.1
+                }
+                onReleased: {
+                    closePopupInfo.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Image {
+            id: nameInfo
+            source: "qrc:/images/popupInfo/name.png"
+            x: 300
+            y: 196
+        }
+        Text{
+            id: textNameInfo
+            text: scoreData.name
+            font.family: gothamLight.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 344
+            y: 233
+        }
+        Image{
+            id: speedInfo
+            source: "qrc:/images/popupInfo/speed.png"
+            x: 300
+            y: 273
+        }
+        Text{
+            id: textSpeedInfo
+            text: scoreData.speed
+            font.family: gothamLight.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 344
+            y: 309
+        }
+        Image{
+            id: compasInfo
+            source: "qrc:/images/popupInfo/compas.png"
+            x: 300
+            y: 346
+        }
+        Text{
+            id: textCompasInfo
+            text: scoreData.compas
+            font.family: gothamLight.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 344
+            y: 382
+        }
+        Image{
+            id: commentsInfo
+            source: "qrc:/images/popupInfo/comments.png"
+            x: 300
+            y: 424
+        }
+        Text{
+            id: textComentsInfo
+            text: scoreData.comments
+            font.family: gothamLight.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 344
+            y: 471
+        }
+        Image{
+            id: closeInfo
+            source: "qrc:/images/popupInfo/closeButton.png"
+            x: 410
+            y: 644
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closeInfo.scale = 1.1
+                }
+                onReleased: {
+                    closeInfo.scale = 1
+                    closePopup()
+                }
+            }
+        }
     }
 
     Item{
@@ -234,7 +339,7 @@ Item{
             font.pixelSize: 18
             color: "#666666"
             x: 283
-            y: 223
+            y: 210
         }
 
         Image{
@@ -303,7 +408,7 @@ Item{
             font.pixelSize: 18
             color: "#666666"
             x: 354
-            y: 200
+            y: 210
         }
         Image{
             id: namePDF
@@ -312,25 +417,16 @@ Item{
             y: 269
         }
 
-        TextField {
+        TextArea {
             id: fieldText
             x: 390
             y: 282
+            activeFocusOnPress: true
+            width: 308
+            height: 60
             font.pixelSize: 18
+            font.family: gothamLight.name
             color: "#666666"
-            background: Rectangle{
-                width: 308
-                height: 60
-                border.color: "transparent"
-                color: "transparent"
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: {
-                        fieldText.focus = true;
-                    }
-                }
-            }
-
         }
 
         Image {
@@ -412,4 +508,71 @@ Item{
         }
     }
 
+    Item{
+        id: deleteScore
+        visible: typePopup === "deleteScore"
+        Image{
+            id: bgDelete
+            source: "qrc:/images/popupDelete/bgPopupDelete.png"
+        }
+        Text{
+            id: textDelete
+            text: "¿Estás seguro de que quieres eliminar esta partitura?"
+            font.family: gothamBook.name
+            font.pixelSize: 18
+            color: "#666666"
+            //font.bold: true
+            anchors.horizontalCenter: bgDelete.horizontalCenter
+            y: 210
+        }
+        Image{
+            id: closePopupDelete
+            source: "qrc:/images/popupDelete/closeButton.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupDelete.scale = 1.1
+                }
+                onReleased: {
+                    closePopupDelete.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Image{
+            id: cancelDeleteButton
+            source: "qrc:/images/popupDelete/cancelButton.png"
+            x: 238
+            y: 278
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cancelDeleteButton.scale = 1.1
+                }
+                onReleased: {
+                    cancelDeleteButton.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Image{
+            id: deleteButton
+            source: "qrc:/images/popupDelete/deleteButton.png"
+            x: 238
+            y: 278
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    deleteButton.scale = 1.1
+                }
+                onReleased: {
+                    deleteButton.scale = 1
+                    deleteScoreSignal(scoreData.id)
+                    closePopup()
+                }
+            }
+        }
+    }
 }

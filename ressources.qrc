@@ -1,16 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>images/line.png</file>
-        <file>images/corchea.png</file>
-        <file>images/negra.png</file>
-        <file>images/blanca.png</file>
-        <file>images/semicorchea-silencio.png</file>
-        <file>images/semicorcheas.png</file>
-        <file>images/negra-silencio.png</file>
-        <file>images/corcheas.png</file>
-        <file>images/corche-semi.png</file>
-        <file>images/bar.png</file>
-        <file>images/partitura-practice.png</file>
         <file>main.qml</file>
         <file>qml/ArtistMode.qml</file>
         <file>qml/Practice.qml</file>
@@ -20,22 +9,23 @@
         <file>qml/Musvi_Controller.qml</file>
         <file>qml/Menu.qml</file>
         <file>sounds/beat.wav</file>
-        <file>images/0000.png</file>
-        <file>images/0001.png</file>
-        <file>images/0010.png</file>
-        <file>images/0011.png</file>
-        <file>images/0100.png</file>
-        <file>images/0101.png</file>
-        <file>images/0110.png</file>
-        <file>images/0111.png</file>
-        <file>images/1000.png</file>
-        <file>images/1001.png</file>
-        <file>images/1010.png</file>
-        <file>images/1011.png</file>
-        <file>images/1100.png</file>
-        <file>images/1101.png</file>
-        <file>images/1110.png</file>
-        <file>images/1111.png</file>
+        <file>images/figures/bar.png</file>
+        <file>images/figures/0000.png</file>
+        <file>images/figures/0001.png</file>
+        <file>images/figures/0010.png</file>
+        <file>images/figures/0011.png</file>
+        <file>images/figures/0100.png</file>
+        <file>images/figures/0101.png</file>
+        <file>images/figures/0110.png</file>
+        <file>images/figures/0111.png</file>
+        <file>images/figures/1000.png</file>
+        <file>images/figures/1001.png</file>
+        <file>images/figures/1010.png</file>
+        <file>images/figures/1011.png</file>
+        <file>images/figures/1100.png</file>
+        <file>images/figures/1101.png</file>
+        <file>images/figures/1110.png</file>
+        <file>images/figures/1111.png</file>
         <file>images/menu/info.png</file>
         <file>images/menu/init.png</file>
         <file>images/menu/bgMenu.png</file>
@@ -77,6 +67,17 @@
         <file>images/popupSavePDF/saveButton.png</file>
         <file>images/popupSavePDF/select.png</file>
         <file>images/popupSavePDF/ubicationPath.png</file>
+		<file>images/popupDelete/bgPopupDelete.png</file>
+		<file>images/popupDelete/cancelButton.png</file>
+		<file>images/popupDelete/closeButton.png</file>
+		<file>images/popupDelete/deleteButton.png</file>
+		<file>images/popupInfo/bgPopupInfo.png</file>
+		<file>images/popupInfo/closeButton.png</file>
+		<file>images/popupInfo/closePopup.png</file>
+		<file>images/popupInfo/comments.png</file>
+		<file>images/popupInfo/compas.png</file>
+		<file>images/popupInfo/name.png</file>
+		<file>images/popupInfo/speed.png</file>
         <file>images/calibrate/calibrate.gif</file>
         <file>images/calibrate/bgCalibrate.png</file>
         <file>images/calibrate/textCalibrate.png</file>

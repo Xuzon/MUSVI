@@ -59,6 +59,7 @@ public slots:
     //On pulse detected
     void detectPulse(QString pulse);
     void savePDF(QString name);
+    void deleteScore(int id);
 
 
 };

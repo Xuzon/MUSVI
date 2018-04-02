@@ -99,5 +99,7 @@ void Musvi_Logic::savePDF(QString name){
 
 }
 
-
+void Musvi_Logic::deleteScore(int id){
+    qDebug() << "LOGIC->QML :: DELETE SCORE:: " << id;
+}
 

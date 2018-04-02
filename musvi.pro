@@ -9,11 +9,6 @@ TARGET = Musvi
 
 CONFIG += c++11
 
-#static {
-#    QTPLUGIN += qtvirtualkeyboardplugin
-#    QT += svg
-#}
-
 SOURCES += main.cpp \
     logic.cpp \
     bufferprocessor.cpp \

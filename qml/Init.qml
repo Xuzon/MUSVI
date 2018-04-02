@@ -4,10 +4,16 @@ Item {
     id: init
 
     signal selectMode(var type)
+    signal showInfoPopup()
 
     Menu{
         id: menu
         type: "init"
+        onPressButton: {
+            if(type === "infoMusvi"){
+                showInfoPopup()
+            }
+        }
     }
 
 

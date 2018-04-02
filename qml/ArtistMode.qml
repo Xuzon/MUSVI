@@ -39,6 +39,8 @@ Item {
                     stopRecording()
                     break
                 case "infoMusvi":
+                    stopRecording()
+                    showPopUp("info")
                     break
             }
         }
@@ -98,18 +100,33 @@ Item {
             y: 185
         }
 
-        ListView{
-            id: list
-            width: 800
-            height: 50
-            x: 150
+        Rectangle{
+            width: 950
+            height: 200
+            x: 70
             y: 285
-            model: figuresModel
-            delegate: figuresDelegate
-            orientation: ListView.Horizontal
-            interactive: false
-            layoutDirection: Qt.RightToLeft
+            color: "transparent"
+            ListView{
+                id: list
+                anchors.fill: parent
+                anchors.verticalCenter: parent.verticalCenter
+                model: figuresModel
+                delegate: figuresDelegate
+                orientation: ListView.Horizontal
+                interactive: false
+                layoutDirection: Qt.RightToLeft
+                clip: true
+                add: Transition {
+                    NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
+                    NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 400 }
+                }
+                displaced: Transition {
+                    NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutInCirc }
+                }
+            }
+
         }
+
 
     }
 
@@ -145,12 +162,12 @@ Item {
 
     function printFigure(figure){
         figuresModel.insert(0, {
-           "path" : "qrc:/images/" + figure + ".png"
+           "path" : "qrc:/images/figures/" + figure + ".png"
         })
         if(pulseCount === pulsesNumber){
             pulseCount = 1;
             figuresModel.insert(0, {
-              "path" : "qrc:/images/bar.png"
+              "path" : "qrc:/images/figures/bar.png"
             })
         }else{
             pulseCount++;

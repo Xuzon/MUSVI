@@ -79,4 +79,7 @@ Item{
         Logic.savePDF(name)
     }
 
+    function deleteScore(id){
+        Logic.deleteScore(id)
+    }
 }

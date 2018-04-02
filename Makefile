@@ -741,67 +741,15 @@ qrc_ressources.cpp: ressources.qrc \
 		qml/Init.qml \
 		qml/Musvi_Controller.qml \
 		qml/Practice.qml \
-		images/negra.png \
-		images/1110.png \
-		images/1010.png \
-		images/1111.png \
-		images/negra-silencio.png \
-		images/1011.png \
-		images/corchea.png \
-		images/0110.png \
-		images/1100.png \
-		images/0010.png \
-		images/0111.png \
-		images/1000.png \
-		images/1101.png \
-		images/0011.png \
-		images/1001.png \
-		images/bar.png \
-		images/semicorcheas.png \
-		images/corcheas.png \
-		images/0100.png \
-		images/0000.png \
-		images/0101.png \
-		images/0001.png \
-		images/partitura-practice.png \
-		images/semicorchea-silencio.png \
-		images/blanca.png \
-		images/corche-semi.png \
-		images/line.png \
-		images/popupSaveApp/saveButton.png \
-		images/popupSaveApp/ubication.png \
-		images/popupSaveApp/selectCreations.png \
-		images/popupSaveApp/backButton.png \
-		images/popupSaveApp/commentsSpace.png \
-		images/popupSaveApp/bgSaveApp.png \
-		images/popupSaveApp/nameSpace.png \
+		images/popupDelete/cancelButton.png \
+		images/popupDelete/bgPopupDelete.png \
+		images/popupDelete/deleteButton.png \
+		images/popupDelete/closeButton.png \
 		images/popupSave/save.png \
 		images/popupSave/botonCancel.png \
 		images/popupSave/export.png \
 		images/popupSave/bgSave.png \
 		images/popupSave/closePopup.png \
-		images/popupConfig/slider.png \
-		images/popupConfig/botonCancel.png \
-		images/popupConfig/sliderColor.png \
-		images/popupConfig/botonSlider.png \
-		images/popupConfig/selectorCompas.png \
-		images/popupConfig/bgConfig.png \
-		images/popupConfig/closePopup.png \
-		images/popupConfig/botonChange.png \
-		images/artist/count1.png \
-		images/artist/count3.png \
-		images/artist/score.png \
-		images/artist/count2.png \
-		images/artist/settings.png \
-		images/calibrate/textCalibrate.png \
-		images/calibrate/calibrate.gif \
-		images/calibrate/bgCalibrate.png \
-		images/popupSavePDF/ubicationPath.png \
-		images/popupSavePDF/saveButton.png \
-		images/popupSavePDF/select.png \
-		images/popupSavePDF/backButton.png \
-		images/popupSavePDF/bgSavePDF.png \
-		images/popupSavePDF/nameSpace.png \
 		images/menu/stop.png \
 		images/menu/botonInfo.png \
 		images/menu/botonConfig.png \
@@ -812,6 +760,59 @@ qrc_ressources.cpp: ressources.qrc \
 		images/init/selectMode.png \
 		images/init/bgModeArtist.png \
 		images/init/bgModePractice.png \
+		images/artist/count1.png \
+		images/artist/count3.png \
+		images/artist/score.png \
+		images/artist/count2.png \
+		images/artist/settings.png \
+		images/popupSavePDF/ubicationPath.png \
+		images/popupSavePDF/saveButton.png \
+		images/popupSavePDF/select.png \
+		images/popupSavePDF/backButton.png \
+		images/popupSavePDF/bgSavePDF.png \
+		images/popupSavePDF/nameSpace.png \
+		images/calibrate/textCalibrate.png \
+		images/calibrate/calibrate.gif \
+		images/calibrate/bgCalibrate.png \
+		images/popupConfig/slider.png \
+		images/popupConfig/botonCancel.png \
+		images/popupConfig/sliderColor.png \
+		images/popupConfig/botonSlider.png \
+		images/popupConfig/selectorCompas.png \
+		images/popupConfig/bgConfig.png \
+		images/popupConfig/closePopup.png \
+		images/popupConfig/botonChange.png \
+		images/figures/0100.png \
+		images/figures/1000.png \
+		images/figures/0000.png \
+		images/figures/1111.png \
+		images/figures/0111.png \
+		images/figures/1011.png \
+		images/figures/0011.png \
+		images/figures/1110.png \
+		images/figures/0110.png \
+		images/figures/1101.png \
+		images/figures/0101.png \
+		images/figures/1010.png \
+		images/figures/bar.png \
+		images/figures/0010.png \
+		images/figures/1001.png \
+		images/figures/0001.png \
+		images/figures/1100.png \
+		images/popupSaveApp/saveButton.png \
+		images/popupSaveApp/ubication.png \
+		images/popupSaveApp/selectCreations.png \
+		images/popupSaveApp/backButton.png \
+		images/popupSaveApp/commentsSpace.png \
+		images/popupSaveApp/bgSaveApp.png \
+		images/popupSaveApp/nameSpace.png \
+		images/popupInfo/compas.png \
+		images/popupInfo/comments.png \
+		images/popupInfo/bgPopupInfo.png \
+		images/popupInfo/closePopup.png \
+		images/popupInfo/speed.png \
+		images/popupInfo/name.png \
+		images/popupInfo/closeButton.png \
 		sounds/beat.wav \
 		fonts/gotham/GothamLight.ttf \
 		fonts/gotham/GothamBook.ttf

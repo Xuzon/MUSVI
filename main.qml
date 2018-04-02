@@ -22,11 +22,6 @@ Item {
         width: 1024
         height: 768
 
-        Screens.PopUp{
-            id: popUp
-            z: 10
-        }
-
         Screens.Musvi_Controller{
             id:controller
         }
@@ -41,6 +36,9 @@ Item {
             }
             onSavePDFSignal: {
                 controller.savePDF(name)
+            }
+            onDeleteScoreSignal: {
+                controller.deleteScore(id)
             }
             onClosePopup: popUp.visible = false
         }
@@ -101,6 +99,10 @@ Item {
 
         Screens.Init{
             id: init
+            onShowInfoPopup: {
+                popUp.typePopup = "infoMusvi"
+                popUp.visible = true
+            }
             onSelectMode: {
                 switch(type){
                     case "artist":
@@ -117,12 +119,6 @@ Item {
                         init.visible = false
                         artistMode.visible = false
                         practice.visible = true
-                        break
-                    case "info":
-                        practice.visible = false
-                        init.visible = true
-                        artistMode.visible = false
-                        info.visible = true
                         break
                 }
             }
