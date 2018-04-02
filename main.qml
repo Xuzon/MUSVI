@@ -22,6 +22,11 @@ Item {
         width: 1024
         height: 768
 
+        Screens.PopUp{
+            id: popUp
+            z: 10
+        }
+
         Screens.Musvi_Controller{
             id:controller
         }
@@ -42,6 +47,9 @@ Item {
             }
             onStopRecording: {
                 controller.sendStopRecording()
+            }
+            onPopup: {
+                popUp.typePopup = type
             }
             Connections{
                 target: controller

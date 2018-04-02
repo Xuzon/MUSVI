@@ -3,7 +3,6 @@
 
 #include <QAudioInput>
 
-
 class Calibrator: public QIODevice{
 
 public:

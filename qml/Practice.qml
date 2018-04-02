@@ -221,7 +221,7 @@ Item {
             width: 720
             Image{
                 id:partituraExImage
-                source: "qrc:/images/p1.png"
+                source: ""
                 smooth: true
                 x: 10
                 y: 60
@@ -237,7 +237,7 @@ Item {
             width: 720
             Image{
                 id:partituraDoImage
-                source: "qrc:/images/pError.png"
+                source: ""
                 smooth: true
                 x: 10
                 y: 60

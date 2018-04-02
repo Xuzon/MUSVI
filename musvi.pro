@@ -39,7 +39,13 @@ RESOURCES += ressources.qrc
 
 DISTFILES +=\
         config/config.ini \
-    PopUp.qml
+        qml/PopUp.qml \
+        qml/ArtistMode.qml \
+        qml/Information.qml \
+        qml/Init.qml \
+        qml/Musvi_Controller \
+        qml/Practice.qml \
+        main.qml
 
 INSTALLS += target
 
