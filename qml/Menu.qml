@@ -49,7 +49,7 @@ Item {
             }
             onReleased: {
                 config.scale = 1
-                onClicked: pressButton("config")
+                pressButton("config")
             }
         }
         transitions: Transition {
@@ -71,7 +71,7 @@ Item {
             }
             onReleased: {
                 infoScore.scale = 1
-                onClicked: pressButton("infoScore")
+                pressButton("infoScore")
             }
         }
         transitions: Transition {
@@ -93,7 +93,7 @@ Item {
             }
             onReleased: {
                 start.scale = 1
-                onClicked: pressButton("start")
+                pressButton("start")
             }
         }
         transitions: Transition {
@@ -104,7 +104,7 @@ Item {
     //Stop -> type=practice or artist
     Image{
         id: stop
-        visible: playState === "stop"
+        visible: (type === "artist" || type === "practice") && playState === "stop"
         source: "qrc:/images/menu/stop.png"
         x: 720
         anchors.verticalCenter: backgoundMenu.verticalCenter
@@ -115,7 +115,7 @@ Item {
             }
             onReleased: {
                 stop.scale = 1
-                onClicked: pressButton("stop")
+                pressButton("stop")
             }
         }
         transitions: Transition {
