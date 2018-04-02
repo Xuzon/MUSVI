@@ -61,7 +61,8 @@ SOURCES       = main.cpp \
 		transcriptor.cpp \
 		metronomethread.cpp \
 		scoresaver.cpp \
-		calibrator.cpp qrc_ressources.cpp \
+		calibrator.cpp \
+		scorechecker.cpp qrc_ressources.cpp \
 		moc_logic.cpp \
 		moc_transcriptor.cpp
 OBJECTS       = main.o \
@@ -76,16 +77,18 @@ OBJECTS       = main.o \
 		metronomethread.o \
 		scoresaver.o \
 		calibrator.o \
+		scorechecker.o \
 		qrc_ressources.o \
 		moc_logic.o \
 		moc_transcriptor.o
 DIST          = config/config.ini \
-		qml/PopUp.qml \
 		qml/ArtistMode.qml \
+		qml/Menu.qml \
 		qml/Information.qml \
 		qml/Init.qml \
-		qml/Musvi_Controller \
+		qml/Musvi_Controller.qml \
 		qml/Practice.qml \
+		qml/PopUp.qml \
 		main.qml \
 		../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/common/unix.conf \
@@ -278,7 +281,8 @@ DIST          = config/config.ini \
 		transcriptor.h \
 		metronomethread.h \
 		scoresaver.h \
-		calibrator.h main.cpp \
+		calibrator.h \
+		scorechecker.h main.cpp \
 		logic.cpp \
 		bufferprocessor.cpp \
 		classifier.cpp \
@@ -289,7 +293,8 @@ DIST          = config/config.ini \
 		transcriptor.cpp \
 		metronomethread.cpp \
 		scoresaver.cpp \
-		calibrator.cpp
+		calibrator.cpp \
+		scorechecker.cpp
 QMAKE_TARGET  = Musvi
 DESTDIR       = 
 TARGET        = Musvi
@@ -698,8 +703,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ressources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents logic.h bufferprocessor.h classifier.h filter.h highpassfilter.h impulse.h lowpassfilter.h transcriptor.h metronomethread.h scoresaver.h calibrator.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp logic.cpp bufferprocessor.cpp classifier.cpp filter.cpp highpassfilter.cpp impulse.cpp lowpassfilter.cpp transcriptor.cpp metronomethread.cpp scoresaver.cpp calibrator.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents logic.h bufferprocessor.h classifier.h filter.h highpassfilter.h impulse.h lowpassfilter.h transcriptor.h metronomethread.h scoresaver.h calibrator.h scorechecker.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp logic.cpp bufferprocessor.cpp classifier.cpp filter.cpp highpassfilter.cpp impulse.cpp lowpassfilter.cpp transcriptor.cpp metronomethread.cpp scoresaver.cpp calibrator.cpp scorechecker.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -729,6 +734,7 @@ compiler_rcc_clean:
 qrc_ressources.cpp: ressources.qrc \
 		../../../../Qt5.9.4/5.9.4/gcc_64/bin/rcc \
 		main.qml \
+		qml/Menu.qml \
 		qml/PopUp.qml \
 		qml/ArtistMode.qml \
 		qml/Information.qml \
@@ -762,6 +768,50 @@ qrc_ressources.cpp: ressources.qrc \
 		images/blanca.png \
 		images/corche-semi.png \
 		images/line.png \
+		images/popupSaveApp/saveButton.png \
+		images/popupSaveApp/ubication.png \
+		images/popupSaveApp/selectCreations.png \
+		images/popupSaveApp/backButton.png \
+		images/popupSaveApp/commentsSpace.png \
+		images/popupSaveApp/bgSaveApp.png \
+		images/popupSaveApp/nameSpace.png \
+		images/popupSave/save.png \
+		images/popupSave/botonCancel.png \
+		images/popupSave/export.png \
+		images/popupSave/bgSave.png \
+		images/popupSave/closePopup.png \
+		images/popupConfig/slider.png \
+		images/popupConfig/botonCancel.png \
+		images/popupConfig/sliderColor.png \
+		images/popupConfig/botonSlider.png \
+		images/popupConfig/selectorCompas.png \
+		images/popupConfig/bgConfig.png \
+		images/popupConfig/closePopup.png \
+		images/popupConfig/botonChange.png \
+		images/artist/count1.png \
+		images/artist/count3.png \
+		images/artist/score.png \
+		images/artist/count2.png \
+		images/artist/settings.png \
+		images/calibrate/textCalibrate.png \
+		images/calibrate/calibrate.gif \
+		images/calibrate/bgCalibrate.png \
+		images/popupSavePDF/ubicationPath.png \
+		images/popupSavePDF/saveButton.png \
+		images/popupSavePDF/select.png \
+		images/popupSavePDF/backButton.png \
+		images/popupSavePDF/bgSavePDF.png \
+		images/popupSavePDF/nameSpace.png \
+		images/menu/stop.png \
+		images/menu/botonInfo.png \
+		images/menu/botonConfig.png \
+		images/menu/start.png \
+		images/menu/bgMenu.png \
+		images/menu/init.png \
+		images/menu/info.png \
+		images/init/selectMode.png \
+		images/init/bgModeArtist.png \
+		images/init/bgModePractice.png \
 		sounds/beat.wav \
 		fonts/gotham/GothamLight.ttf \
 		fonts/gotham/GothamBook.ttf
@@ -893,7 +943,15 @@ moc_logic.cpp: ../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QObject \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
 		calibrator.h \
+		scorechecker.h \
 		logic.h \
 		moc_predefs.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/bin/moc
@@ -997,6 +1055,13 @@ moc_transcriptor.cpp: ../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QObject \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
 		calibrator.h \
 		transcriptor.h \
 		moc_predefs.h \
@@ -1158,7 +1223,15 @@ main.o: main.cpp ../../../../Qt5.9.4/5.9.4/gcc_64/include/QtGui/QGuiApplication 
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
-		calibrator.h
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
+		calibrator.h \
+		scorechecker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 logic.o: logic.cpp logic.h \
@@ -1279,7 +1352,15 @@ logic.o: logic.cpp logic.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
-		calibrator.h
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
+		calibrator.h \
+		scorechecker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o logic.o logic.cpp
 
 bufferprocessor.o: bufferprocessor.cpp bufferprocessor.h \
@@ -1400,7 +1481,15 @@ bufferprocessor.o: bufferprocessor.cpp bufferprocessor.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
-		calibrator.h
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
+		calibrator.h \
+		scorechecker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bufferprocessor.o bufferprocessor.cpp
 
 classifier.o: classifier.cpp classifier.h \
@@ -1813,6 +1902,13 @@ transcriptor.o: transcriptor.cpp transcriptor.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h \
 		calibrator.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o transcriptor.o transcriptor.cpp
 
@@ -1955,6 +2051,8 @@ scoresaver.o: scoresaver.cpp scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qobject_impl.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qshareddata.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QStandardPaths \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDebug \
@@ -1966,7 +2064,12 @@ scoresaver.o: scoresaver.cpp scoresaver.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qset.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qcontiguouscache.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsharedpointer.h \
-		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsharedpointer_impl.h
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scoresaver.o scoresaver.cpp
 
 calibrator.o: calibrator.cpp calibrator.h \
@@ -2030,6 +2133,87 @@ calibrator.o: calibrator.cpp calibrator.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qhash.h \
 		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtMultimedia/qaudiodeviceinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o calibrator.o calibrator.cpp
+
+scorechecker.o: scorechecker.cpp scorechecker.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QString \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstring.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qchar.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qglobal.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qconfig.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qtcore-config.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsysinfo.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qlogging.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qflags.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qatomic.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qmutex.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qnumeric.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qversiontagging.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qbytearray.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qrefcount.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qnamespace.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qarraydata.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QVector \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qvector.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qalgorithms.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qiterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qlist.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qpair.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstringlist.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qregexp.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qpoint.h \
+		scoresaver.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDir \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdir.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qfileinfo.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qfile.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qfiledevice.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qiodevice.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qobject.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qcoreevent.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qmetatype.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qobject_impl.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qshareddata.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qhash.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDirIterator \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdiriterator.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QStandardPaths \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qstandardpaths.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QDebug \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qdebug.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qmap.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qtextstream.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qlocale.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qvariant.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qset.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonDocument \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsondocument.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonvalue.h \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/QJsonObject \
+		../../../../Qt5.9.4/5.9.4/gcc_64/include/QtCore/qjsonobject.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scorechecker.o scorechecker.cpp
 
 qrc_ressources.o: qrc_ressources.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_ressources.o qrc_ressources.cpp

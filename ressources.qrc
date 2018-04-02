@@ -18,6 +18,7 @@
         <file>qml/Information.qml</file>
         <file>qml/Init.qml</file>
         <file>qml/Musvi_Controller.qml</file>
+        <file>qml/Menu.qml</file>
         <file>sounds/beat.wav</file>
         <file>images/0000.png</file>
         <file>images/0001.png</file>
@@ -35,6 +36,50 @@
         <file>images/1101.png</file>
         <file>images/1110.png</file>
         <file>images/1111.png</file>
+        <file>images/menu/info.png</file>
+        <file>images/menu/init.png</file>
+        <file>images/menu/bgMenu.png</file>
+        <file>images/menu/botonConfig.png</file>
+        <file>images/menu/botonInfo.png</file>
+        <file>images/menu/start.png</file>
+        <file>images/menu/stop.png</file>
+        <file>images/init/bgModeArtist.png</file>
+        <file>images/init/bgModePractice.png</file>
+        <file>images/init/selectMode.png</file>
+        <file>images/artist/count1.png</file>
+        <file>images/artist/count2.png</file>
+        <file>images/artist/count3.png</file>
+        <file>images/artist/score.png</file>
+        <file>images/artist/settings.png</file>
+        <file>images/popupConfig/bgConfig.png</file>
+        <file>images/popupConfig/botonCancel.png</file>
+        <file>images/popupConfig/botonChange.png</file>
+        <file>images/popupConfig/botonSlider.png</file>
+        <file>images/popupConfig/selectorCompas.png</file>
+        <file>images/popupConfig/slider.png</file>
+        <file>images/popupConfig/sliderColor.png</file>
+        <file>images/popupConfig/closePopup.png</file>
+        <file>images/popupSave/bgSave.png</file>
+        <file>images/popupSave/botonCancel.png</file>
+        <file>images/popupSave/closePopup.png</file>
+        <file>images/popupSave/export.png</file>
+        <file>images/popupSave/save.png</file>
+        <file>images/popupSaveApp/backButton.png</file>
+        <file>images/popupSaveApp/bgSaveApp.png</file>
+        <file>images/popupSaveApp/commentsSpace.png</file>
+        <file>images/popupSaveApp/nameSpace.png</file>
+        <file>images/popupSaveApp/saveButton.png</file>
+        <file>images/popupSaveApp/selectCreations.png</file>
+        <file>images/popupSaveApp/ubication.png</file>
+        <file>images/popupSavePDF/backButton.png</file>
+        <file>images/popupSavePDF/bgSavePDF.png</file>
+        <file>images/popupSavePDF/nameSpace.png</file>
+        <file>images/popupSavePDF/saveButton.png</file>
+        <file>images/popupSavePDF/select.png</file>
+        <file>images/popupSavePDF/ubicationPath.png</file>
+        <file>images/calibrate/calibrate.gif</file>
+        <file>images/calibrate/bgCalibrate.png</file>
+        <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
     </qresource>

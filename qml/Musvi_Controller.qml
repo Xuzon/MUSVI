@@ -59,4 +59,24 @@ Item{
         Logic.stopRecording()
     }
 
+    function mode(type){
+        Logic.mode(type)
+    }
+
+    function configChanged(speed, compas){
+        Logic.config(speed, compas)
+    }
+
+    function metronome(){
+        Logic.metronome()
+    }
+
+    function calibrate(time){
+        Logic.calibrate(time)
+    }
+
+    function savePDF(name){
+        Logic.savePDF(name)
+    }
+
 }

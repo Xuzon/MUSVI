@@ -23,11 +23,11 @@ void HighPassFilter::CalculateCoeffs(){
 
 
 HighPassFilter::HighPassFilter(int numCoeffs, double freq, double sampleFreq) : Filter(numCoeffs){
-    qDebug() << "Creating high pass filter" << numCoeffs;
+    //qDebug() << "Creating high pass filter" << numCoeffs;
     this->normalizedFreq = freq * 2 / sampleFreq;
     this->CalculateCoeffs();
 }
 
 HighPassFilter::~HighPassFilter(){
-    qDebug() << "Deleting high pass filter";
+    //qDebug() << "Deleting high pass filter";
 }

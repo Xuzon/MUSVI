@@ -13,12 +13,18 @@
 #include <QList>
 #include <cstdlib>
 #include "transcriptor.h"
+#include "scorechecker.h"
 
 using namespace std;
 
 class Musvi_Logic : public QObject{
 
     Q_OBJECT
+
+protected:
+
+    int errors;
+    int currentCompas;
 
 public:
 
@@ -29,6 +35,7 @@ public:
     /* Objects */
     QTimer *timer;
     Transcriptor* transcriptor;
+    ScoreChecker checker;
 
 signals:
 
@@ -39,8 +46,21 @@ public slots:
     /* Slot para recoger datos del QML */
     void startRecording();
     void stopRecording();
-    void ChangeTempoCompas(int bpm, int subdivisions);
+    //artist or practice
+    void mode(QString type);
+    //change bpm and subdivisions
+    void config(int speed, QString compas);
+    //calibrate the mic while time
+    void calibrate(int time);
+    //load the practice of id
+    void SetPractice(int id);
+    //
+    void metronome();
+    //On pulse detected
     void detectPulse(QString pulse);
+    void savePDF(QString name);
+
+
 };
 
 #endif // SMC_LOGIC_H

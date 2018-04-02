@@ -5,158 +5,108 @@ Item {
 
     signal selectMode(var type)
 
+    Menu{
+        id: menu
+        type: "init"
+    }
 
-    Rectangle{
-        id: backgoundMenu
-        color: "#7FFFD4"
-        width: 1029
-        height: 110
-        x: -3
-        y: -3
-        opacity: 1
-        Text {
-            id: title
-            anchors.horizontalCenter: backgoundMenu.horizontalCenter
-            y: 25
-            text: "MUSVI"
-            font.family: gothamBook.name
-            font.pixelSize: 72
-            color: "#e2587b"
+
+    Item{
+        id: artist
+        Image{
+            id: artistModeBg
+            source: "qrc:/images/init/bgModeArtist.png"
+            x: 75
+            y: 200
         }
-    }
-
-
-    Rectangle{
-        id: logo
-        color: "#e2587b"
-        radius: 5
-        width: 250
-        height: 500
-        x: 25
-        y: 150
-
-        Text {
-            text: "LOGO"
-            font.family: gothamBook.name
-            font.pixelSize: 50
-            anchors.horizontalCenter: logo.horizontalCenter
-            anchors.verticalCenter: logo.verticalCenter
-            color: "#ffffff"
-        }
-    }
-
-    Rectangle{
-        id: logo2
-        color: "#e2587b"
-        radius: 5
-        width: 500
-        height: 150
-        x: 200
-        y: 500
-    }
-
-
-    Rectangle{
-        id: artistMode
-        visible: true
-        color: "#7FFFD4"
-        radius: 5
-        width: 300
-        height: 200
-        x: 350
-        y: 200
-        Text {
+        Text{
+            id: titleArtistMode
             text: "MODO ARTISTA"
             font.family: gothamBook.name
             font.pixelSize: 28
-            anchors.horizontalCenter: artistMode.horizontalCenter
-            anchors.verticalCenter: artistMode.verticalCenter
-            color: "#000000"
+            //font.bold: true
+            anchors.horizontalCenter: artistModeBg.horizontalCenter
+            y: 428
+            color: "#0a465b"
         }
-        MouseArea{
-            anchors.fill: artistMode
-            onPressed: {
-                artistMode.color = "#40e0d0"
-                artistMode.scale = 1.1
-            }
-            onReleased: {
-                artistMode.color = "#7FFFD4"
-                artistMode.scale = 1
-                selectMode("artist")
-            }
+        Text{
+            id: textArtistMode
+            text: "Aqui se añadira todo el texto a mayores"
+            font.family: gothamLight.name
+            font.pixelSize: 18
+            color: "#666666"
+            //font.bold: true
+            anchors.horizontalCenter: artistModeBg.horizontalCenter
+            y: 484
+
         }
-        transitions: Transition {
-            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+        Image{
+            id: selectArtistMode
+            source: "qrc:/images/init/selectMode.png"
+            anchors.horizontalCenter: artistModeBg.horizontalCenter
+            y: 549
+            MouseArea{
+                anchors.fill: selectArtistMode
+                onPressed: {
+                    selectArtistMode.scale = 1.1
+                }
+                onReleased: {
+                    selectArtistMode.scale = 1
+                    selectMode("artist")
+                }
+            }
+            transitions: Transition {
+                NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+            }
         }
     }
 
-    Rectangle{
-        id: practice
-        color: "#7FFFD4"
-        radius: 5
-        width: 300
-        height: 200
-        x: 700
-        y: 200
-        Text {
-            text: "MODO PRACTICAR"
+    Item{
+        id: pratice
+        Image{
+            id: practiceModeBg
+            source: "qrc:/images/init/bgModePractice.png"
+            x: 542
+            y: 200
+        }
+        Text{
+            id: titlePracticeMode
+            text: "PRACTICAR"
             font.family: gothamBook.name
             font.pixelSize: 28
-            anchors.horizontalCenter: practice.horizontalCenter
-            anchors.verticalCenter: practice.verticalCenter
-            color: "#000000"
+            //font.bold: true
+            anchors.horizontalCenter: practiceModeBg.horizontalCenter
+            y: 428
+            color: "#0a465b"
         }
-        MouseArea{
-            anchors.fill: practice
-            onPressed: {
-                practice.color = "#40e0d0"
-                practice.scale = 1.1
-            }
-            onReleased: {
-                practice.color = "#7FFFD4"
-                practice.scale = 1
-                selectMode("practice")
-            }
+        Text{
+            id: textPracticeMode
+            text: "Aqui se añadira todo el texto a mayores"
+            font.family: gothamLight.name
+            font.pixelSize: 18
+            //font.bold: true
+            anchors.horizontalCenter: practiceModeBg.horizontalCenter
+            y: 484
+            color: "#666666"
         }
-        transitions: Transition {
-            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+        Image{
+            id: selectPracticeMode
+            source: "qrc:/images/init/selectMode.png"
+            anchors.horizontalCenter: practiceModeBg.horizontalCenter
+            y: 549
+            MouseArea{
+                anchors.fill: selectPracticeMode
+                onPressed: {
+                    selectPracticeMode.scale = 1.1
+                }
+                onReleased: {
+                    selectPracticeMode.scale = 1
+                    selectMode("practice")
+                }
+            }
+            transitions: Transition {
+                NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+            }
         }
     }
-
-    Rectangle{
-        id: info
-        color: "#e9a4fb"
-        radius: 5
-        width: 250
-        height: 150
-        x: 750
-        y: 500
-        Text {
-            text: "INFO"
-            font.family: gothamBook.name
-            font.pixelSize: 28
-            anchors.horizontalCenter: info.horizontalCenter
-            anchors.verticalCenter: info.verticalCenter
-            color: "#000000"
-        }
-        MouseArea{
-            anchors.fill: info
-            onPressed: {
-                info.color = "#ba83c8"
-                info.scale = 1.1
-            }
-            onReleased: {
-                info.color = "#e9a4fb"
-                info.scale = 1
-                selectMode("info")
-            }
-        }
-        transitions: Transition {
-            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
-        }
-
-    }
-
-
-
 }

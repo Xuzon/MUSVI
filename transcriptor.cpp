@@ -53,7 +53,6 @@ void Transcriptor::stopRecording(){
             delete this->metronomeThread;
         }
     }
-    ScoreSaver::SaveScore("test.json",&this->processor->currentScore);;
 }
 
 
@@ -73,10 +72,11 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     if(this->processor != nullptr){
         delete this->processor;
     }
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
 }
 
 void Transcriptor::Calibrate(int time){
+    //TODO what the hell this causes an exception
     if(this->calibrator != nullptr){
         //delete this->calibrator;
     }
@@ -103,6 +103,10 @@ void Transcriptor::Calibrate(int time){
     QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
 }
 
+void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QString comments){
+    ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,errors,this->bpm,this->subdivisions);
+}
+
 
 
 ///Interface to start and stop recording from qml
@@ -121,6 +125,10 @@ Transcriptor::Transcriptor(){
 }
 
 Transcriptor::Transcriptor(Musvi_Logic* logic){
+    //HACK for testing
+    ScoreSaver::LoadScores();
+    //ScoreSaver::LoadScore(1);
+
     //set variables
     this->logic = logic;
     this->fs = 44100;
@@ -128,11 +136,10 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     this->bpm = 60;
     this->subdivisions = 4;
     this->window = 100;
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm);
     this->recording = false;
     this->beatFileName = ":/sounds/beat.wav";
     this->beatFile.setFileName(beatFileName);
-    qDebug() << "file exists: " << this->beatFile.exists();
+    //qDebug() << "beat file exists: " << this->beatFile.exists();
 
 
     //Output
@@ -151,7 +158,7 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
        outputFormat = output.nearestFormat(outputFormat);
     }
     speakers = new QAudioOutput(output,outputFormat);
-    this->Calibrate(3);
+    this->Calibrate(1);
 }
 
 ///Destructor
@@ -174,4 +181,5 @@ void Transcriptor::StopCalibration(){
     this->calibrator->close();
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
 }
