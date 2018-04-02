@@ -37,9 +37,6 @@ Item {
             onSavePDFSignal: {
                 controller.savePDF(name)
             }
-            onDeleteScoreSignal: {
-                controller.deleteScore(id)
-            }
             onClosePopup: popUp.visible = false
         }
 
@@ -90,6 +87,26 @@ Item {
         Screens.Practice{
             id: practice
             visible: false
+            onGoInit: {
+                //Llamar a la función que reinicie todo
+                practice.visible = false
+                info.visible = false
+                artistMode.visible = false
+                init.visible = true
+            }
+            onStartRecording: {
+                //Enviar la señal al controlador
+                controller.sendStartRecording()
+            }
+            onStopRecording: {
+                controller.sendStopRecording()
+            }
+            Connections{
+                target: controller
+                onDetectPulse:{
+                    practice.printFigure(figure)
+                }
+            }
         }
 
         Screens.Information{
@@ -99,10 +116,6 @@ Item {
 
         Screens.Init{
             id: init
-            onShowInfoPopup: {
-                popUp.typePopup = "infoMusvi"
-                popUp.visible = true
-            }
             onSelectMode: {
                 switch(type){
                     case "artist":
@@ -119,6 +132,12 @@ Item {
                         init.visible = false
                         artistMode.visible = false
                         practice.visible = true
+                        break
+                    case "info":
+                        practice.visible = false
+                        init.visible = true
+                        artistMode.visible = false
+                        info.visible = true
                         break
                 }
             }
