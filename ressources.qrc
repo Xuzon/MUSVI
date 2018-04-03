@@ -7,6 +7,7 @@
         <file>qml/Information.qml</file>
         <file>qml/Init.qml</file>
         <file>qml/Musvi_Controller.qml</file>
+		<file>qml/Practice_v2.qml</file>
         <file>qml/Menu.qml</file>
         <file>sounds/beat.wav</file>
         <file>images/figures/bar.png</file>

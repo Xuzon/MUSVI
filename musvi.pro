@@ -50,6 +50,7 @@ DISTFILES +=\
         qml/Musvi_Controller.qml \
         qml/Practice.qml \
         qml/PopUp.qml \
-        main.qml
+        main.qml \
+        qml/Practice_v2.qml
 
 INSTALLS += target

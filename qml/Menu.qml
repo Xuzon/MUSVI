@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item {
     property string type: "init"
+    property string screenPractice: "screenSelection"
     property string playState: "start"
 
     signal pressButton(var type)
@@ -60,7 +61,7 @@ Item {
     //Information -> type=practice
     Image{
         id: infoScore
-        visible: (type === "practice")
+        visible: (type === "practice" && screenPractice === "screenScore")
         source: "qrc:/images/menu/botonInfo.png"
         x: 517
         anchors.verticalCenter: backgoundMenu.verticalCenter
@@ -79,10 +80,32 @@ Item {
         }
     }
 
+    //Back to  -> type=practice
+    Image{
+        id: backScreen
+        visible: (type === "practice" && (screenPractice === "screenList" || screenPractice === "screenExamples"))
+        source: "qrc:/images/menu/botonInfo.png"
+        x: 517
+        anchors.verticalCenter: backgoundMenu.verticalCenter
+        MouseArea{
+            anchors.fill: parent
+            onPressed: {
+                backScreen.scale = 1.1
+            }
+            onReleased: {
+                backScreen.scale = 1
+                pressButton("backScreenSelection")
+            }
+        }
+        transitions: Transition {
+            NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+        }
+    }
+
     //Start -> type=practice or artist
     Image{
         id: start
-        visible: (type === "artist" || type === "practice") && playState === "start"
+        visible: (type === "artist" || (type === "practice" && screenPractice === "screenScore")) && playState === "start"
         source: "qrc:/images/menu/start.png"
         x: 720
         anchors.verticalCenter: backgoundMenu.verticalCenter
@@ -104,7 +127,7 @@ Item {
     //Stop -> type=practice or artist
     Image{
         id: stop
-        visible: (type === "artist" || type === "practice") && playState === "stop"
+        visible: (type === "artist" || (type === "practice" && screenPractice === "screenScore")) && playState === "stop"
         source: "qrc:/images/menu/stop.png"
         x: 720
         anchors.verticalCenter: backgoundMenu.verticalCenter

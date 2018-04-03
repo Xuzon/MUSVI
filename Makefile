@@ -90,6 +90,7 @@ DIST          = config/config.ini \
 		qml/Practice.qml \
 		qml/PopUp.qml \
 		main.qml \
+		qml/Practice_v2.qml \
 		../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt5.9.4/5.9.4/gcc_64/mkspecs/common/linux.conf \
@@ -738,6 +739,7 @@ qrc_ressources.cpp: ressources.qrc \
 		qml/PopUp.qml \
 		qml/ArtistMode.qml \
 		qml/Information.qml \
+		qml/Practice_v2.qml \
 		qml/Init.qml \
 		qml/Musvi_Controller.qml \
 		qml/Practice.qml \

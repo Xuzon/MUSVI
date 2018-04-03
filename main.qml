@@ -84,7 +84,7 @@ Item {
         }
 
 
-        Screens.Practice{
+        Screens.Practice_v2{
             id: practice
             visible: false
             onGoInit: {
@@ -131,6 +131,7 @@ Item {
                         info.visible = false
                         init.visible = false
                         artistMode.visible = false
+                        practice.typeScreen = "screenSelection"
                         practice.visible = true
                         break
                     case "info":
