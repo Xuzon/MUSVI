@@ -15,34 +15,19 @@ Item{
     signal emitAllQmlFiles(var data)
     signal info(var data)
     signal detectPulse(var figure)
-
+    signal scoreList(var list)
 
     Connections{
         target: Logic
         onSendPulse:{
             detectPulse(pulse)
         }
+        onGetScoreList: {
+            console.log("Logic - getScoreList")
+            scoreList(scoreList)
+        }
     }
 
-    Keys.onPressed: {
-        console.log("pressed")
-        if (event.key === Qt.Key_0) {
-            console.log("Negra");
-            detectPulse("negra")
-        }
-        if (event.key === Qt.Key_1) {
-            console.log("Negra");
-            detectPulse("corchea")
-        }
-        if (event.key === Qt.Key_2) {
-            console.log("Negra");
-            detectPulse("silencio")
-        }
-        if (event.key === Qt.Key_5) {
-            console.log("5");
-            sendStartRecording("gg")
-        }
-    }
 
     /* Cualquier elemento .qml que haga un import de Musvi_Controller puede acceder a estas funciones */
     function sendToLogic(place, selection){
@@ -82,4 +67,5 @@ Item{
     function deleteScore(id){
         Logic.deleteScore(id)
     }
+
 }

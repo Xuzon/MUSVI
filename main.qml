@@ -101,11 +101,14 @@ Item {
             onStopRecording: {
                 controller.sendStopRecording()
             }
-            Connections{
-                target: controller
-                onDetectPulse:{
-                    practice.printFigure(figure)
+            onTypeScreenChanged: {
+                if(typeScreen === "screenScore"){
+                    controller.calibrate(5)
                 }
+            }
+            onSetPractice: {
+                //Llamar a la funcion de controller que llame a setPractice(id) de la logica
+                console.log("OnSetPractice")
             }
         }
 
@@ -131,6 +134,7 @@ Item {
                         info.visible = false
                         init.visible = false
                         artistMode.visible = false
+                        controller.mode("practice")
                         practice.typeScreen = "screenSelection"
                         practice.visible = true
                         break

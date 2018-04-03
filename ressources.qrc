@@ -42,6 +42,19 @@
         <file>images/artist/count3.png</file>
         <file>images/artist/score.png</file>
         <file>images/artist/settings.png</file>
+		<file>images/practice/creations/backMenu.png</file>
+		<file>images/practice/creations/bgItem.png</file>
+		<file>images/practice/creations/delete.png</file>
+		<file>images/practice/creations/menuCreations.png</file>
+		<file>images/practice/creations/menuExercises.png</file>
+		<file>images/practice/ejer_vs_ejem/BgExamples.png</file>
+		<file>images/practice/ejer_vs_ejem/BgExCreate.png</file>
+		<file>images/practice/ejer_vs_ejem/Select.png</file>
+		<file>images/practice/examples/BgLvl0.png</file>
+		<file>images/practice/examples/BgLvl1.png</file>
+		<file>images/practice/examples/BgLvl2.png</file>
+		<file>images/practice/examples/BgLvl3.png</file>
+		<file>images/practice/examples/SelectLvl.png</file>
         <file>images/popupConfig/bgConfig.png</file>
         <file>images/popupConfig/botonCancel.png</file>
         <file>images/popupConfig/botonChange.png</file>

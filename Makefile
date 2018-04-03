@@ -762,6 +762,19 @@ qrc_ressources.cpp: ressources.qrc \
 		images/init/selectMode.png \
 		images/init/bgModeArtist.png \
 		images/init/bgModePractice.png \
+		images/practice/creations/menuExercises.png \
+		images/practice/creations/backMenu.png \
+		images/practice/creations/bgItem.png \
+		images/practice/creations/menuCreations.png \
+		images/practice/creations/delete.png \
+		images/practice/ejer_vs_ejem/Select.png \
+		images/practice/ejer_vs_ejem/BgExamples.png \
+		images/practice/ejer_vs_ejem/BgExCreate.png \
+		images/practice/examples/BgLvl2.png \
+		images/practice/examples/BgLvl1.png \
+		images/practice/examples/BgLvl0.png \
+		images/practice/examples/BgLvl3.png \
+		images/practice/examples/SelectLvl.png \
 		images/artist/count1.png \
 		images/artist/count3.png \
 		images/artist/score.png \

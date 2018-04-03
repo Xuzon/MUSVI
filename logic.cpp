@@ -54,11 +54,15 @@ void Musvi_Logic::config(int speed, QString compas){
 
 void Musvi_Logic::mode(QString type){
     qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
+    //SI ES PRACTICE HAY QUE ENVIAR LA SEÑAL CON LA LISTA DE PARTITURAS
     //dont know why but there was an invisible character
     type.chop(1);
     if(QString::compare(type,"artist")){
         this->SetPractice(-1);
+    }else{
+        emit getScoreList();
     }
+
 }
 
 void Musvi_Logic::calibrate(int time){

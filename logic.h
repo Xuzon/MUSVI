@@ -41,6 +41,7 @@ signals:
 
     /* Signal a QML del buffer */
     void sendPulse(QString pulse);
+    void getScoreList();
 
 public slots:
     /* Slot para recoger datos del QML */
