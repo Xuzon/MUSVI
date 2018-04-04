@@ -10,11 +10,14 @@
 class Classifier{
 
 protected:
+    QVector<QString> ternaryLUT;
     int subdivisions;
     float totalLength;
     bool* buffer;
     float* timeStamps;
 
+    void FillLUT();
+    QString ClassifyTernary(QString compas);
     void CalculateTimeStamps();
     float Lerp(float x, float y, float t);
     bool ClassifyImpulse(float ms);
@@ -23,6 +26,9 @@ public:
     ~Classifier();
 
     QString Classify(QVector<Impulse>* beatBuffer);
+    static int StringToByte(QString compas);
+    static QString ByteToString(int input);
+    static int HammingWeight(int vector);
 };
 
 #endif // CLASSIFIER_H
