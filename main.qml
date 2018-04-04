@@ -37,6 +37,13 @@ Item {
             onSavePDFSignal: {
                 controller.savePDF(name)
             }
+            onSaveExample: {
+                controller.saveExample(name, comments, folder)
+            }
+
+            onDeleteScoreSignal: {
+                controller.deleteScore(id)
+            }
             onClosePopup: popUp.visible = false
         }
 
@@ -50,7 +57,6 @@ Item {
                     controller.calibrate(5)
                 }
             }
-
             onGoInit: {
                 //Llamar a la función que reinicie todo
                 practice.visible = false
@@ -87,6 +93,10 @@ Item {
         Screens.Practice_v2{
             id: practice
             visible: false
+            onShowPopUp: {
+                popUp.typePopup = type
+                popUp.visible = true
+            }
             onGoInit: {
                 //Llamar a la función que reinicie todo
                 practice.visible = false

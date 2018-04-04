@@ -11,10 +11,9 @@ Item {
 
     property string typeScreen: ""
 
-    property variant scoreList : []
-    property variant examples : [
+    property variant scoreList : [
         {
-            "id" : "0",
+            "id" : 0,
             "name" : "Ejemplo 1",
             "BPM" : "65",
             "compas" : "2/4",
@@ -24,7 +23,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "1",
+            "id" : 1,
             "name" : "Ejemplo 2",
             "BPM" : "80",
             "compas" : "4/4",
@@ -34,7 +33,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "2",
+            "id" : 2,
             "name" : "Ejemplo 3",
             "BPM" : "100",
             "compas" : "3/4",
@@ -44,7 +43,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "3",
+            "id" : 3,
             "name" : "Ejemplo 4",
             "BPM" : "130",
             "compas" : "3/8",
@@ -52,12 +51,9 @@ Item {
             "errors" : 4,
             "folder" : "examples",
             "data" : ["0000", "0011" , "1111", "1011"]
-        }
-
-    ]
-    property variant exercises : [
+        },
         {
-            "id" : "4",
+            "id" : 4,
             "name" : "Ejercicio 1",
             "BPM" : "65",
             "compas" : "2/4",
@@ -67,7 +63,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "5",
+            "id" : 5,
             "name" : "Ejercicio 2",
             "BPM" : "80",
             "compas" : "4/4",
@@ -77,7 +73,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "6",
+            "id" : 6,
             "name" : "Ejercicio 3",
             "BPM" : "100",
             "compas" : "3/4",
@@ -85,11 +81,9 @@ Item {
             "errors" : 15,
             "folder" : "exercises",
             "data" : ["0000", "0011" , "1111", "1011"]
-        }
-    ]
-    property variant creations : [
+        },
         {
-            "id" : "7",
+            "id" : 7,
             "name" : "Creación 1",
             "BPM" : "65",
             "compas" : "2/4",
@@ -99,7 +93,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "8",
+            "id" : 8,
             "name" : "Creación 2",
             "BPM" : "80",
             "compas" : "4/4",
@@ -109,7 +103,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         },
         {
-            "id" : "9",
+            "id" : 9,
             "name" : "Creación 3",
             "BPM" : "100",
             "compas" : "3/4",
@@ -119,10 +113,14 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         }
     ]
+    property variant examples : []
+    property variant exercises : []
+    property variant creations : []
 
     signal goInit()
     signal startRecording()
     signal stopRecording()
+    signal sendInformationToPopup(var scoreData)
     signal showPopUp(var type)
     signal metronome()
     signal setPractice(var id)
@@ -142,7 +140,7 @@ Item {
         }
         onScoreList: {
             console.log("onScoreList")
-            scoreList = list
+            //scoreList = list
             var listExamples = new Array (0)
             var listExercises = new Array (0)
             var listCreations = new Array (0)
@@ -523,7 +521,7 @@ Item {
         Image{
             id: bgListExercisesMenu
             source: "qrc:/images/practice/creations/menuExercises.png"
-            x: -12
+            x: -10
             y: 120
         }
 
@@ -531,12 +529,27 @@ Item {
             id: itemList
             Item {
                 width: 1024
-                height: 88
+                height: 63
                 Image{
                     id: bgItem
                     source: "qrc:/images/practice/creations/bgItem.png"
-                    x: 0
+                    x: -8
                     y: 0
+                    MouseArea{
+                        anchors.fill: bgItem
+                        onPressed: {
+                            bgItem.scale = 1.1
+                        }
+                        onReleased: {
+                            console.log("info")
+                            bgItem.scale = 1
+                            sendInformationToPopup()
+                            showPopUp("infoScore")
+                        }
+                    }
+                    transitions: Transition {
+                        NumberAnimation { properties: "scale"; duration: 600; easing.type: Easing.InOutQuad }
+                    }
                 }
                 Text{
                     id: nameItem
@@ -544,7 +557,7 @@ Item {
                     font.family: gothamLight.name
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.verticalCenter: bgItem.verticalCenter
+                    y: 50
                     x: 200
                     color: "#666666"
                 }
@@ -554,7 +567,7 @@ Item {
                     font.family: gothamLight.name
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.verticalCenter: bgItem.verticalCenter
+                    y: 50
                     x: 544
                     color: "#666666"
                 }
@@ -564,7 +577,7 @@ Item {
                     font.family: gothamLight.name
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.verticalCenter: bgItem.verticalCenter
+                    y: 50
                     x: 703
                     color: "#666666"
                 }
@@ -574,7 +587,7 @@ Item {
                     font.family: gothamLight.name
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.verticalCenter: bgItem.verticalCenter
+                    y: 50
                     x: 849
                     color: "#666666"
                 }
@@ -622,7 +635,7 @@ Item {
         Image{
             id: bgListCreationsMenu
             source: "qrc:/images/practice/creations/menuCreations.png"
-            x: -12
+            x: -10
             y: 429
         }
 

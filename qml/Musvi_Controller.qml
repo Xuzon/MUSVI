@@ -64,6 +64,10 @@ Item{
         Logic.savePDF(name)
     }
 
+    function saveExample(name, comments, folder){
+        Logic.saveExample(name, comments, folder)
+    }
+    
     function deleteScore(id){
         Logic.deleteScore(id)
     }

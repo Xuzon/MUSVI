@@ -821,6 +821,7 @@ qrc_ressources.cpp: ressources.qrc \
 		images/popupSaveApp/commentsSpace.png \
 		images/popupSaveApp/bgSaveApp.png \
 		images/popupSaveApp/nameSpace.png \
+		images/popupSaveApp/ubicationTitle.png \
 		images/popupInfo/compas.png \
 		images/popupInfo/comments.png \
 		images/popupInfo/bgPopupInfo.png \
