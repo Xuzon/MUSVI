@@ -56,11 +56,12 @@ void Musvi_Logic::mode(QString type){
     qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
     //SI ES PRACTICE HAY QUE ENVIAR LA SEÑAL CON LA LISTA DE PARTITURAS
     //dont know why but there was an invisible character
+    if(type == "practice"){
+        emit getScoreList();
+    }
     type.chop(1);
     if(QString::compare(type,"artist")){
         this->SetPractice(-1);
-    }else{
-        emit getScoreList();
     }
 
 }
@@ -103,7 +104,10 @@ void Musvi_Logic::savePDF(QString name){
 
 }
 
+void Musvi_Logic::saveExample(QString name, QString comments, QString folder){
+    qDebug() << "LOGIC->QML :: SAVE EXAMPLE:: " << name << "\n " << comments << "\n " << folder;
+
+}
 void Musvi_Logic::deleteScore(int id){
     qDebug() << "LOGIC->QML :: DELETE SCORE:: " << id;
 }
-

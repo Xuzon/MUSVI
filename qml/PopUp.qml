@@ -24,13 +24,14 @@ Item{
     signal closePopup()
     signal configChanged(var speed, var compas)
     signal savePDFSignal(var name)
+    signal saveExample(var name, var comments, var folder)
+
     signal deleteScoreSignal(var id)
 
-
+    /*************************/
+    /* POPUP - CONFIGURACION */
+    /*************************/
     Item{
-        //Popup de configuración
-        //  - Velocity : velocidades a elegir o escritas (int)
-        //  - Compas : compases a elegir (string)
         id: config
         visible: typePopup === "config"
         Image{
@@ -160,9 +161,10 @@ Item{
         }
     }
 
+    /***********************/
+    /* POPUP - CALIBRACIÓN */
+    /***********************/
     Item{
-        //Popup de información
-        //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
         id: calibrate
         visible: typePopup === "calibrate"
         onVisibleChanged: {
@@ -201,6 +203,9 @@ Item{
         }
     }
 
+    /***********************/
+    /* POPUP - INFORMACIÓN */
+    /***********************/
     Item{
         //Popup de información
         //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
@@ -308,6 +313,9 @@ Item{
         }
     }
 
+    /****************************/
+    /* POPUP - OPCIONES GUARDAR */
+    /****************************/
     Item{
         //Popup de guardar partitura
         id: save
@@ -393,13 +401,31 @@ Item{
 
     }
 
+    /**************************/
+    /* POPUP - GUARDAR EN PDF */
+    /**************************/
     Item{
-        //Popup de guardar partitura
         id: savePDF
         visible: typePopup === "savePDF"
         Image {
             id: bgSavePDF
             source: "qrc:/images/popupSavePDF/bgSavePDF.png"
+        }
+        Image{
+            id: closePopupSavePDF
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSavePDF.scale = 1
+                    closePopup()
+                }
+            }
         }
         Text{
             id: textSavePDF
@@ -465,6 +491,9 @@ Item{
         }
     }
 
+    /**************************/
+    /* POPUP - GUARDAR EN APP */
+    /**************************/
     Item{
         id: saveApp
         visible: typePopup === "saveApp"
@@ -474,6 +503,107 @@ Item{
             x:0
             y:-5
         }
+        Image{
+            id: closePopupSaveApp
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSaveApp.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSaveApp.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Text{
+            id: textSaveApp
+            text: "Introduce todos los datos de tu creación"
+            font.family: gothamBook.name
+            font.pixelSize: 18
+            color: "#666666"
+            anchors.horizontalCenter: bgSaveAPP.horizontalCenter
+            y: 223
+        }
+        Image{
+            id: nameScoreApp
+            source: "qrc:/images/popupSaveApp/nameSpace.png"
+            x: 300
+            y: 261
+        }
+        TextField {
+            id: nameText
+            x: 415
+            y: 274
+            width: 282
+            height: 32
+            font.pixelSize: 18
+            color: "#666666"
+            background: Rectangle{
+                width: 282
+                height: 32
+                border.color: "transparent"
+                color: "transparent"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        nameText.focus = true;
+                    }
+                }
+            }
+        }
+
+        Image{
+            id: commentsScoreApp
+            source: "qrc:/images/popupSaveApp/commentsSpace.png"
+            x: 258
+            y: 323
+        }
+        TextField {
+            id: commentsText
+            x: 415
+            y: 336
+            width: 282
+            height: 32
+            font.pixelSize: 18
+            color: "#666666"
+            background: Rectangle{
+                width: 282
+                height: 131
+                border.color: "transparent"
+                color: "transparent"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        commentsText.focus = true;
+                    }
+                }
+            }
+        }
+
+        Image{
+            id: folderSelectorTitle
+            source: "qrc:/images/popupSaveApp/ubicationTitle.png"
+            x: 284
+            y: 505
+        }
+        ComboBox {
+            id: folderSelector
+            model: [ "Ejercicios", "Tus creaciones"]
+            x: 399
+            y: 493
+            background: Rectangle {
+                implicitWidth: 308
+                implicitHeight: 40
+                border.color: "#0a465b"
+                border.width: 1
+                radius: 5
+            }
+        }
+
         Image {
             id: buttonBackSaveApp
             source: "qrc:/images/popupSaveApp/backButton.png"
@@ -502,12 +632,19 @@ Item{
                 }
                 onReleased: {
                     buttonBackSaveApp.scale = 1
-                    //typePopup = "save"
+                    var name = nameText.text
+                    var comments = commentsText.text
+                    var folder = (folderSelector.currentText === "Ejercicios") ? "exercises" : "creations"
+                    saveExample(name, comments, folder)
+                    closePopup()
                 }
             }
         }
     }
 
+    /********************/
+    /* POPUP - ELIMINAR */
+    /********************/
     Item{
         id: deleteScore
         visible: typePopup === "deleteScore"
