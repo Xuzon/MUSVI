@@ -7,7 +7,7 @@
         <file>qml/Information.qml</file>
         <file>qml/Init.qml</file>
         <file>qml/Musvi_Controller.qml</file>
-		<file>qml/Practice_v2.qml</file>
+        <file>qml/Practice_v2.qml</file>
         <file>qml/Menu.qml</file>
         <file>sounds/beat.wav</file>
         <file>images/figures/bar.png</file>
@@ -42,19 +42,19 @@
         <file>images/artist/count3.png</file>
         <file>images/artist/score.png</file>
         <file>images/artist/settings.png</file>
-		<file>images/practice/creations/backMenu.png</file>
-		<file>images/practice/creations/bgItem.png</file>
-		<file>images/practice/creations/delete.png</file>
-		<file>images/practice/creations/menuCreations.png</file>
-		<file>images/practice/creations/menuExercises.png</file>
-		<file>images/practice/ejer_vs_ejem/BgExamples.png</file>
-		<file>images/practice/ejer_vs_ejem/BgExCreate.png</file>
-		<file>images/practice/ejer_vs_ejem/Select.png</file>
-		<file>images/practice/examples/BgLvl0.png</file>
-		<file>images/practice/examples/BgLvl1.png</file>
-		<file>images/practice/examples/BgLvl2.png</file>
-		<file>images/practice/examples/BgLvl3.png</file>
-		<file>images/practice/examples/SelectLvl.png</file>
+        <file>images/practice/creations/backMenu.png</file>
+        <file>images/practice/creations/bgItem.png</file>
+        <file>images/practice/creations/delete.png</file>
+        <file>images/practice/creations/menuCreations.png</file>
+        <file>images/practice/creations/menuExercises.png</file>
+        <file>images/practice/ejer_vs_ejem/BgExamples.png</file>
+        <file>images/practice/ejer_vs_ejem/BgExCreate.png</file>
+        <file>images/practice/ejer_vs_ejem/Select.png</file>
+        <file>images/practice/examples/BgLvl0.png</file>
+        <file>images/practice/examples/BgLvl1.png</file>
+        <file>images/practice/examples/BgLvl2.png</file>
+        <file>images/practice/examples/BgLvl3.png</file>
+        <file>images/practice/examples/SelectLvl.png</file>
         <file>images/popupConfig/bgConfig.png</file>
         <file>images/popupConfig/botonCancel.png</file>
         <file>images/popupConfig/botonChange.png</file>
@@ -81,21 +81,22 @@
         <file>images/popupSavePDF/saveButton.png</file>
         <file>images/popupSavePDF/select.png</file>
         <file>images/popupSavePDF/ubicationPath.png</file>
-		<file>images/popupDelete/bgPopupDelete.png</file>
-		<file>images/popupDelete/cancelButton.png</file>
-		<file>images/popupDelete/closeButton.png</file>
-		<file>images/popupDelete/deleteButton.png</file>
-		<file>images/popupInfo/bgPopupInfo.png</file>
-		<file>images/popupInfo/closeButton.png</file>
-		<file>images/popupInfo/closePopup.png</file>
-		<file>images/popupInfo/comments.png</file>
-		<file>images/popupInfo/compas.png</file>
-		<file>images/popupInfo/name.png</file>
-		<file>images/popupInfo/speed.png</file>
+        <file>images/popupDelete/bgPopupDelete.png</file>
+        <file>images/popupDelete/cancelButton.png</file>
+        <file>images/popupDelete/closeButton.png</file>
+        <file>images/popupDelete/deleteButton.png</file>
+        <file>images/popupInfo/bgPopupInfo.png</file>
+        <file>images/popupInfo/closeButton.png</file>
+        <file>images/popupInfo/closePopup.png</file>
+        <file>images/popupInfo/comments.png</file>
+        <file>images/popupInfo/compas.png</file>
+        <file>images/popupInfo/name.png</file>
+        <file>images/popupInfo/speed.png</file>
         <file>images/calibrate/calibrate.gif</file>
         <file>images/calibrate/bgCalibrate.png</file>
         <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
+        <file>json/example0.json</file>
     </qresource>
 </RCC>
