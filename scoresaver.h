@@ -23,9 +23,11 @@ public:
 
     static void SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder, int lastErrors,int speed, int subdivisions);
     static void LoadScores();
+    static void LoadJsonFromFile(QString fileName);
     static QJsonObject LoadScore(int id);
     static int GetNewId();
     static void DeleteScore(int id);
+
 
 };
 

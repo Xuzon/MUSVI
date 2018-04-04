@@ -47,12 +47,30 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
 }
 
 
-///Load all scores on the ram
+///Giving a path load a json into the current scores if exists
+void ScoreSaver::LoadJsonFromFile(QString fileName){
+    QJsonObject json;
+    QString fileVal;
+    QFile* file = new QFile(fileName);
+    if(!file->exists()){
+        qDebug() << "the file: " << fileName << " don't exists";
+        delete file;
+        return;
+    }
+    file->open(QIODevice::ReadOnly | QIODevice::Text);
+    fileVal = file->readAll();
+    file->close();
+    delete file;
+    QJsonDocument doc = QJsonDocument::fromJson(fileVal.toUtf8());
+    json = doc.object();
+    scores.append(json);
+}
+
+///Load all scores on the heap
 void ScoreSaver::LoadScores(){
 
     scores.clear();
 
-    QJsonObject json;
     QString fileName;
     //*****SEARCH IN TO THE PATH SYSTEM*************
     QString musviDir = "/MUSVI/";
@@ -62,16 +80,12 @@ void ScoreSaver::LoadScores(){
     //iterate over files to load them
     while (it.hasNext()){
         fileName = it.next();
-        QString fileVal;
-        QFile* file = new QFile(fileName);
-        file->open(QIODevice::ReadOnly | QIODevice::Text);
-        fileVal = file->readAll();
-        file->close();
-        delete file;
-        QJsonDocument doc = QJsonDocument::fromJson(fileVal.toUtf8());
-        json = doc.object();
-        scores.append(json);
+        LoadJsonFromFile(fileName);
     }
+    LoadJsonFromFile(":/json/example0.json");
+    LoadJsonFromFile(":/json/example1.json");
+    LoadJsonFromFile(":/json/example2.json");
+    LoadJsonFromFile(":/json/example3.json");
 }
 
 ///Return a score with the given id, if there isn't a score with that id
@@ -92,7 +106,7 @@ QJsonObject ScoreSaver::LoadScore(int id){
 
 ///Get a new non used id
 int ScoreSaver::GetNewId(){
-    int toRet = 0;
+    int toRet = 4;
     for(QJsonObject score : ScoreSaver::scores){
         if(!score.contains("id")){
             continue;
