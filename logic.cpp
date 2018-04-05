@@ -35,13 +35,14 @@ void Musvi_Logic::stopRecording(){
     qDebug() << "QML->LOGIC :: STOP RECORDING";
     if(this->transcriptor->IsRecording()){
         this->transcriptor->record();
-        this->transcriptor->SaveScore("test.json",this->errors,"This is a folder","This is a comment");
+        this->transcriptor->SaveScore("test.json",this->errors,"creations","This is a comment",sCurrentCompas);
     }
 }
 
 ///Change the tempo and compas
 void Musvi_Logic::config(int speed, QString compas){
     qDebug() << "QML->LOGIC :: CHANGE CONFIG:: " << speed << " " << compas;
+    this->sCurrentCompas = compas;
     if(this->transcriptor == nullptr){
         return;
     }
@@ -53,12 +54,10 @@ void Musvi_Logic::config(int speed, QString compas){
 void Musvi_Logic::mode(QString type){
     qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
     //SI ES PRACTICE HAY QUE ENVIAR LA SEÑAL CON LA LISTA DE PARTITURAS
-    //dont know why but there was an invisible character
     if(type == "practice"){
-        emit getScoreList();
+        emit getScoreList(ScoreSaver::GetScores());
     }
-    type.chop(1);
-    if(QString::compare(type,"artist")){
+    if(type == "artist"){
         this->SetPractice(-1);
     }
 
@@ -104,6 +103,7 @@ void Musvi_Logic::savePDF(QString name){
 
 void Musvi_Logic::saveExample(QString name, QString comments, QString folder){
     qDebug() << "LOGIC->QML :: SAVE EXAMPLE:: " << name << "\n " << comments << "\n " << folder;
+    this->transcriptor->SaveScore(name,errors,folder,comments,sCurrentCompas);
 
 }
 void Musvi_Logic::deleteScore(int id){

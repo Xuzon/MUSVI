@@ -75,7 +75,7 @@
         <file>images/popupSaveApp/saveButton.png</file>
         <file>images/popupSaveApp/selectCreations.png</file>
         <file>images/popupSaveApp/ubication.png</file>
-	<file>images/popupSaveApp/ubicationTitle.png</file>
+        <file>images/popupSaveApp/ubicationTitle.png</file>
         <file>images/popupSavePDF/backButton.png</file>
         <file>images/popupSavePDF/bgSavePDF.png</file>
         <file>images/popupSavePDF/nameSpace.png</file>
@@ -98,6 +98,17 @@
         <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
+        <file>images/figures/000000.png</file>
+        <file>images/figures/100000.png</file>
+        <file>images/figures/101010.png</file>
+        <file>images/figures/101011.png</file>
+        <file>images/figures/101110.png</file>
+        <file>images/figures/111010.png</file>
+        <file>images/figures/111110.png</file>
+        <file>images/figures/111111.png</file>
         <file>json/example0.json</file>
+        <file>json/example1.json</file>
+        <file>json/example2.json</file>
+        <file>json/example3.json</file>
     </qresource>
 </RCC>

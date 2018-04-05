@@ -25,6 +25,7 @@ protected:
 
     int errors;
     int currentCompas;
+    QString sCurrentCompas;
 
 public:
 
@@ -41,7 +42,7 @@ signals:
 
     /* Signal a QML del buffer */
     void sendPulse(QString pulse);
-    void getScoreList();
+    void getScoreList(QVector<QJsonObject> jsons);
 
 public slots:
     /* Slot para recoger datos del QML */

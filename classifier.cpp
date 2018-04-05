@@ -27,12 +27,18 @@ float Classifier::Lerp(float x, float y, float t) {
 
 ///Fill the ternary LUT
 void Classifier::FillLUT(){
-    this->ternaryLUT.append("100010");
-    this->ternaryLUT.append("101000");
-    this->ternaryLUT.append("100100");
-    this->ternaryLUT.append("110000");
-    this->ternaryLUT.append("001100");
-    this->ternaryLUT.append("101010");
+    this->ternaryApproximations.append("000000");
+    this->ternaryApproximations.append("100000");
+    this->ternaryApproximations.append("101010");
+    this->ternaryApproximations.append("101011");
+    this->ternaryApproximations.append("101110");
+    this->ternaryApproximations.append("111010");
+    this->ternaryApproximations.append("111110");
+    this->ternaryApproximations.append("111111");
+
+    for(int i = 0; i < 64; i++){
+        this->ternaryLUT[i] = CalculateTernaryApproximation(Classifier::ByteToString(i));
+    }
 }
 
 ///Return a 111000 (binary string) to a int 0011 -> 3
@@ -70,8 +76,8 @@ int Classifier::HammingWeight(int vector){
     return result;
 }
 
-///Search over the LUT for the closest vector using Hamming Weight
-QString Classifier::ClassifyTernary(QString compas){
+///Search over the Approximations for the closest vector using Hamming Weight
+QString Classifier::CalculateTernaryApproximation(QString compas){
     int compasByte = Classifier::StringToByte(compas);
     int compasWeight = Classifier::HammingWeight(compasByte);
     int index = -1;
@@ -79,8 +85,8 @@ QString Classifier::ClassifyTernary(QString compas){
     QVector<QString> candidates;
     int minZeroes = 6;
 
-    for(int i = 0; i < this->ternaryLUT.count(); i++){
-        int lutByte = Classifier::StringToByte(this->ternaryLUT[i]);
+    for(int i = 0; i < this->ternaryApproximations.count(); i++){
+        int lutByte = Classifier::StringToByte(this->ternaryApproximations[i]);
         if(compasWeight != Classifier::HammingWeight(lutByte)){
             continue;
         }
@@ -97,7 +103,7 @@ QString Classifier::ClassifyTernary(QString compas){
                 candidates.clear();
             }
             minZeroes = zeroes;
-            candidates.append(this->ternaryLUT[i]);
+            candidates.append(this->ternaryApproximations[i]);
         }
     }
 
@@ -117,6 +123,10 @@ QString Classifier::ClassifyTernary(QString compas){
         }
     }
     return index > -1 ? candidates[index] : compas;
+}
+
+QString Classifier::ClassifyTernary(QString compas){
+    return this->ternaryLUT[Classifier::StringToByte(compas)];
 }
 
 ///Calculate subbeats in ms
@@ -176,6 +186,7 @@ QString Classifier::Classify(QVector<Impulse>* beatBuffer){
     }
     //Classify ternaries
     if(this->subdivisions == 6){
+        qDebug() << "from:: " << toRet << " to:: " << ClassifyTernary(toRet);
         toRet = ClassifyTernary(toRet);
     }
     return toRet;

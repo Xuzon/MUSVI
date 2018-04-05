@@ -4,7 +4,7 @@ QVector<QJsonObject> ScoreSaver::scores;
 
 
 ///Save a score
-void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder, int lastErrors,int speed, int subdivisions){
+void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder,QString compas, int lastErrors,int speed, int subdivisions){
     QJsonObject json;
 
     //*****SEARCH IN TO THE PATH SYSTEM*************
@@ -31,6 +31,7 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
     json["folder"] = folder;
     json["speed"] = speed;
     json["subdivisions"] = subdivisions;
+    json["compas"] = compas;
 
     //****WRITE JSON OBJECT******
     QFile* file = new QFile(fileName);
@@ -152,6 +153,10 @@ void ScoreSaver::DeleteFromFileSystem(int id){
 void ScoreSaver::DeleteScore(int id){
     DeleteFromCurrentScores(id);
     DeleteFromFileSystem(id);
+}
+
+QVector<QJsonObject> ScoreSaver::GetScores(){
+    return ScoreSaver::scores;
 }
 
 ///Delete the score with the given id on the loaded scores

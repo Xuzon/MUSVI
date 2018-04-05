@@ -14,6 +14,7 @@ public:
     ScoreChecker();
 
     //if id -1 is artist mode
+    //returns speed
     int LoadPractice(int id, int* sub = nullptr);
     bool HasError(QString pulse, int nCompas);
 };

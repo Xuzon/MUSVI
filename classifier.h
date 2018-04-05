@@ -10,13 +10,16 @@
 class Classifier{
 
 protected:
-    QVector<QString> ternaryLUT;
+    QVector<QString> ternaryApproximations;
+    QString ternaryLUT[64];
+
     int subdivisions;
     float totalLength;
     bool* buffer;
     float* timeStamps;
 
     void FillLUT();
+    QString CalculateTernaryApproximation(QString compas);
     QString ClassifyTernary(QString compas);
     void CalculateTimeStamps();
     float Lerp(float x, float y, float t);

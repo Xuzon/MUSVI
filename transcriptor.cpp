@@ -103,8 +103,8 @@ void Transcriptor::Calibrate(int time){
     QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
 }
 
-void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QString comments){
-    ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,errors,this->bpm,this->subdivisions);
+void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QString comments, QString compas){
+    ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,compas,errors,this->bpm,this->subdivisions);
 }
 
 
