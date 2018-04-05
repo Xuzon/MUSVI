@@ -98,17 +98,21 @@
         <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
-        <file>images/figures/000000.png</file>
-        <file>images/figures/100000.png</file>
-        <file>images/figures/101010.png</file>
-        <file>images/figures/101011.png</file>
-        <file>images/figures/101110.png</file>
-        <file>images/figures/111010.png</file>
-        <file>images/figures/111110.png</file>
-        <file>images/figures/111111.png</file>
         <file>json/example0.json</file>
         <file>json/example1.json</file>
         <file>json/example2.json</file>
         <file>json/example3.json</file>
+        <file>images/figures/000000.png</file>
+        <file>images/figures/100000.png</file>
+        <file>images/figures/100010.png</file>
+        <file>images/figures/101000.png</file>
+        <file>images/figures/101010.png</file>
+        <file>images/figures/101011.png</file>
+        <file>images/figures/101110.png</file>
+        <file>images/figures/101111.png</file>
+        <file>images/figures/111010.png</file>
+        <file>images/figures/111110.png</file>
+        <file>images/figures/111111.png</file>
+        <file>images/figures/001010.png</file>
     </qresource>
 </RCC>

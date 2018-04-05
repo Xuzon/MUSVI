@@ -35,7 +35,6 @@ void Musvi_Logic::stopRecording(){
     qDebug() << "QML->LOGIC :: STOP RECORDING";
     if(this->transcriptor->IsRecording()){
         this->transcriptor->record();
-        this->transcriptor->SaveScore("test.json",this->errors,"creations","This is a comment",sCurrentCompas);
     }
 }
 

@@ -10,7 +10,7 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
     //*****SEARCH IN TO THE PATH SYSTEM*************
     QString id = "/MUSVI/";
     QString dir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)[0] + id;
-    fileName = dir + fileName;
+    fileName = dir + fileName + ".json";
     if (!QDir(dir).exists()) {
         if (!QDir().mkdir(dir)) {
             qDebug() << "Fatal error: Insufficient premissions to create directory -> " << dir;

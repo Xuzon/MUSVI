@@ -29,11 +29,15 @@ float Classifier::Lerp(float x, float y, float t) {
 void Classifier::FillLUT(){
     this->ternaryApproximations.append("000000");
     this->ternaryApproximations.append("100000");
+    this->ternaryApproximations.append("001010");
+    this->ternaryApproximations.append("100010");
+    this->ternaryApproximations.append("101000");
     this->ternaryApproximations.append("101010");
     this->ternaryApproximations.append("101011");
     this->ternaryApproximations.append("101110");
     this->ternaryApproximations.append("111010");
     this->ternaryApproximations.append("111110");
+    this->ternaryApproximations.append("101111");
     this->ternaryApproximations.append("111111");
 
     for(int i = 0; i < 64; i++){
