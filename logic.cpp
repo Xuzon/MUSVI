@@ -88,11 +88,10 @@ void Musvi_Logic::SetPractice(int id){
  */
 void Musvi_Logic::detectPulse(QString pulse){
     qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
-    if(this->checker.HasError(pulse,currentCompas)){
-        this->errors++;
-    }
+    int hasError = this->checker.HasError(pulse,currentCompas) ? 1 : 0;
+    this->errors += hasError;
     currentCompas++;
-    emit sendPulse(pulse);
+    emit sendPulse(pulse,hasError);
 }
 
 void Musvi_Logic::savePDF(QString name){
