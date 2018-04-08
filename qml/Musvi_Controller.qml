@@ -24,7 +24,7 @@ Item{
         }
         onGetScoreList: {
             console.log("Logic - getScoreList")
-            scoreList(scoreList)
+            scoreList(jsons)
         }
     }
 

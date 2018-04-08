@@ -4,7 +4,7 @@ Item {
     property string type: "init"
     property string screenPractice: "screenSelection"
     property string playState: "start"
-
+    onScreenPracticeChanged: console.log("ha cambiado screen a : " + screenPractice)
     signal pressButton(var type)
 
     Image{
@@ -83,8 +83,8 @@ Item {
     //Back to  -> type=practice
     Image{
         id: backScreen
-        visible: (type === "practice" && (screenPractice === "screenList" || screenPractice === "screenExamples"))
-        source: "qrc:/images/menu/botonInfo.png"
+        visible: (type === "practice" && screenPractice !== "screenScore")
+        source: "qrc:/images/menu/backMenu.png"
         x: 517
         anchors.verticalCenter: backgoundMenu.verticalCenter
         MouseArea{
@@ -94,7 +94,7 @@ Item {
             }
             onReleased: {
                 backScreen.scale = 1
-                pressButton("backScreenSelection")
+                pressButton("backScreen")
             }
         }
         transitions: Transition {

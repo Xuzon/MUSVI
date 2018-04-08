@@ -14,112 +14,113 @@ Item {
     property var json3 : {}
 
 
-    property string typeScreen: ""
+    property string typeScreen: ""//screenSelection, screenExamples, screenList, screenScore
 
     property variant dataToShow: []
 
-    property variant scoreList : [
-        {
-            "id" : 0,
-            "name" : "Ejemplo 1",
-            "BPM" : "65",
-            "compas" : "2/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 1,
-            "folder" : "examples",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 1,
-            "name" : "Ejemplo 2",
-            "BPM" : "80",
-            "compas" : "4/4",
-            "comments" : "Este es un ejemplo a 4/4",
-            "errors" : 2,
-            "folder" : "examples",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 2,
-            "name" : "Ejemplo 3",
-            "BPM" : "100",
-            "compas" : "3/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 3,
-            "folder" : "examples",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 3,
-            "name" : "Ejemplo 4",
-            "BPM" : "130",
-            "compas" : "3/8",
-            "comments" : "Este es un ejemplo a 8/8",
-            "errors" : 4,
-            "folder" : "examples",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 4,
-            "name" : "Ejercicio 1",
-            "BPM" : "65",
-            "compas" : "2/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 2,
-            "folder" : "exercises",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 5,
-            "name" : "Ejercicio 2",
-            "BPM" : "80",
-            "compas" : "4/4",
-            "comments" : "Este es un ejemplo a 4/4",
-            "errors" : 20,
-            "folder" : "exercises",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 6,
-            "name" : "Ejercicio 3",
-            "BPM" : "100",
-            "compas" : "3/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 15,
-            "folder" : "exercises",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 7,
-            "name" : "Creación 1",
-            "BPM" : "65",
-            "compas" : "2/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 17,
-            "folder" : "creations",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 8,
-            "name" : "Creación 2",
-            "BPM" : "80",
-            "compas" : "4/4",
-            "comments" : "Este es un ejemplo a 4/4",
-            "errors" : 9,
-            "folder" : "creations",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        },
-        {
-            "id" : 9,
-            "name" : "Creación 3",
-            "BPM" : "100",
-            "compas" : "3/4",
-            "comments" : "Este es un ejemplo a 2/4",
-            "errors" : 3,
-            "folder" : "creations",
-            "data" : ["0000", "0011" , "1111", "1011"]
-        }
-    ]
+//    property var scoreList : [
+//        {
+//            "id" : 0,
+//            "name" : "Ejemplo 1",
+//            "BPM" : "65",
+//            "compas" : "2/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 1,
+//            "folder" : "examples",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 1,
+//            "name" : "Ejemplo 2",
+//            "BPM" : "80",
+//            "compas" : "4/4",
+//            "comments" : "Este es un ejemplo a 4/4",
+//            "errors" : 2,
+//            "folder" : "examples",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 2,
+//            "name" : "Ejemplo 3",
+//            "BPM" : "100",
+//            "compas" : "3/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 3,
+//            "folder" : "examples",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 3,
+//            "name" : "Ejemplo 4",
+//            "BPM" : "130",
+//            "compas" : "3/8",
+//            "comments" : "Este es un ejemplo a 8/8",
+//            "errors" : 4,
+//            "folder" : "examples",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 4,
+//            "name" : "Ejercicio 1",
+//            "BPM" : "65",
+//            "compas" : "2/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 2,
+//            "folder" : "exercises",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 5,
+//            "name" : "Ejercicio 2",
+//            "BPM" : "80",
+//            "compas" : "4/4",
+//            "comments" : "Este es un ejemplo a 4/4",
+//            "errors" : 20,
+//            "folder" : "exercises",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 6,
+//            "name" : "Ejercicio 3",
+//            "BPM" : "100",
+//            "compas" : "3/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 15,
+//            "folder" : "exercises",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 7,
+//            "name" : "Creación 1",
+//            "BPM" : "65",
+//            "compas" : "2/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 17,
+//            "folder" : "creations",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 8,
+//            "name" : "Creación 2",
+//            "BPM" : "80",
+//            "compas" : "4/4",
+//            "comments" : "Este es un ejemplo a 4/4",
+//            "errors" : 9,
+//            "folder" : "creations",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        },
+//        {
+//            "id" : 9,
+//            "name" : "Creación 3",
+//            "BPM" : "100",
+//            "compas" : "3/4",
+//            "comments" : "Este es un ejemplo a 2/4",
+//            "errors" : 3,
+//            "folder" : "creations",
+//            "data" : ["0000", "0011" , "1111", "1011"]
+//        }
+//    ]
+    property var scoreList
     property var examples
     property variant exercises : []
     property variant creations : []
@@ -146,12 +147,16 @@ Item {
             practice.printFigure(figure)
         }
         onScoreList: {
-            console.log("onScoreList")
-            //scoreList = list
+            console.log("onScoreList: " + list)
+            scoreList = list
             var listExamples = new Array (0)
             var listExercises = new Array (0)
             var listCreations = new Array (0)
-            scoreList.forEach(function(item){
+            //scoreList.forEach(function(item){
+            console.log(scoreList.length)
+            for(var i = 0; i<scoreList.length; i++){
+                var item = scoreList[i]
+                console.log("item id: " + item.id)
                 switch(item.folder){
                     case "examples":
                         console.log("examples")
@@ -188,7 +193,7 @@ Item {
                     default:
                         break
                 }
-            });
+            };
             examples = listExamples
             exercises = listExercises
             creations = listCreations
@@ -209,6 +214,18 @@ Item {
                 showPopUp("infoScore")
                 break
             case "backScreen":
+                switch(typeScreen){
+                    case "screenSelection":
+                        goInit()
+                        break
+                    case "screenExamples":
+                        typeScreen = "screenSelection"
+                        break
+                    case "screenList":
+                        typeScreen = "screenSelection"
+                        break
+                }
+
                 typeScreen = "screenSelection"
                 break
             case "start":

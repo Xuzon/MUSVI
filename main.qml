@@ -53,6 +53,7 @@ Item {
                 controller.deleteScore(id)
             }
             onClosePopup: popUp.visible = false
+
         }
 
         Screens.ArtistMode{

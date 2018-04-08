@@ -42,7 +42,7 @@ signals:
 
     /* Signal a QML del buffer */
     void sendPulse(QString pulse);
-    void getScoreList(QVector<QJsonObject> jsons);
+    void getScoreList(QList<QJsonObject> jsons);
 
 public slots:
     /* Slot para recoger datos del QML */

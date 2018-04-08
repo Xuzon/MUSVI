@@ -27,7 +27,7 @@ public:
     static QJsonObject LoadScore(int id);
     static int GetNewId();
     static void DeleteScore(int id);
-    static QVector<QJsonObject> GetScores();
+    static QList<QJsonObject> GetScores();
 
 
 };

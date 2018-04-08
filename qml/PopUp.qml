@@ -13,9 +13,6 @@ Item{
     //Para info y para deleteScore
     property var scoreData : {}
 
-
-
-
     signal closePopup()
     signal configChanged(var speed, var compas)
     signal savePDFSignal(var name)
@@ -74,8 +71,8 @@ Item{
 
         Slider {
             id: slider
-            from: 60
-            to: 200
+            from: 40
+            to: 120
             value: 60
             stepSize: 1
             width: 493

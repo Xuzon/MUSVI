@@ -753,6 +753,7 @@ qrc_ressources.cpp: ressources.qrc \
 		images/popupSave/bgSave.png \
 		images/popupSave/closePopup.png \
 		images/menu/stop.png \
+		images/menu/backMenu.png \
 		images/menu/botonInfo.png \
 		images/menu/botonConfig.png \
 		images/menu/start.png \
@@ -841,6 +842,8 @@ qrc_ressources.cpp: ressources.qrc \
 		images/popupInfo/speed.png \
 		images/popupInfo/name.png \
 		images/popupInfo/closeButton.png \
+		sounds/beat.aiff \
+		sounds/beat.ogg \
 		sounds/beat.wav \
 		json/example1.json \
 		json/example0.json \
