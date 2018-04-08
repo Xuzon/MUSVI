@@ -53,6 +53,13 @@ Item {
                 controller.deleteScore(id)
             }
             onClosePopup: popUp.visible = false
+            onChangeScreenScore: {
+                practice.typeScreen = "screenScore"
+                popUp.typePopup = "calibrate"
+                popUp.visible = true
+                controller.calibrate(5)
+                beat.play()
+            }
 
         }
 
@@ -125,9 +132,17 @@ Item {
                     controller.calibrate(5)
                 }
             }
+            onMetronome: {
+                controller.metronome()
+            }
             onSetPractice: {
                 //Llamar a la funcion de controller que llame a setPractice(id) de la logica
                 console.log("OnSetPractice")
+            }
+            onSendInformationToPopup: {
+                popUp.scoreData = scoreData
+                popUp.typePopup = "info"
+                popUp.visible = true
             }
         }
 
@@ -151,8 +166,10 @@ Item {
                         artistMode.visible = true
                         break
                     case "practice":
+                        //beat.play()
                         info.visible = false
                         init.visible = false
+                        practice.clear()
                         artistMode.visible = false
                         controller.mode("practice")
                         practice.typeScreen = "screenSelection"
