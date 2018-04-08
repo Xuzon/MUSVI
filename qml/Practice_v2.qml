@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
 Item {
     id: practice
@@ -6,6 +7,7 @@ Item {
     property int number : 3
     property int pulsesNumber: 2
     property int pulseCount: 1
+    property int pulseCountArriba: 1
     property int speedValue: 120
     property string compasValue: "2/4"
     property var json0 : {}
@@ -14,113 +16,117 @@ Item {
     property var json3 : {}
 
 
-    property string typeScreen: ""//screenSelection, screenExamples, screenList, screenScore
+    property string typeScreen: ""
 
     property variant dataToShow: []
+    property string figuraActual: ""
+    property int m: 0
+    property int longitud: 0
+    property int posicionActual: 0
+    property int nuevoCont: 0
 
-//    property var scoreList : [
-//        {
-//            "id" : 0,
-//            "name" : "Ejemplo 1",
-//            "BPM" : "65",
-//            "compas" : "2/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 1,
-//            "folder" : "examples",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 1,
-//            "name" : "Ejemplo 2",
-//            "BPM" : "80",
-//            "compas" : "4/4",
-//            "comments" : "Este es un ejemplo a 4/4",
-//            "errors" : 2,
-//            "folder" : "examples",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 2,
-//            "name" : "Ejemplo 3",
-//            "BPM" : "100",
-//            "compas" : "3/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 3,
-//            "folder" : "examples",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 3,
-//            "name" : "Ejemplo 4",
-//            "BPM" : "130",
-//            "compas" : "3/8",
-//            "comments" : "Este es un ejemplo a 8/8",
-//            "errors" : 4,
-//            "folder" : "examples",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 4,
-//            "name" : "Ejercicio 1",
-//            "BPM" : "65",
-//            "compas" : "2/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 2,
-//            "folder" : "exercises",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 5,
-//            "name" : "Ejercicio 2",
-//            "BPM" : "80",
-//            "compas" : "4/4",
-//            "comments" : "Este es un ejemplo a 4/4",
-//            "errors" : 20,
-//            "folder" : "exercises",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 6,
-//            "name" : "Ejercicio 3",
-//            "BPM" : "100",
-//            "compas" : "3/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 15,
-//            "folder" : "exercises",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 7,
-//            "name" : "Creación 1",
-//            "BPM" : "65",
-//            "compas" : "2/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 17,
-//            "folder" : "creations",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 8,
-//            "name" : "Creación 2",
-//            "BPM" : "80",
-//            "compas" : "4/4",
-//            "comments" : "Este es un ejemplo a 4/4",
-//            "errors" : 9,
-//            "folder" : "creations",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        },
-//        {
-//            "id" : 9,
-//            "name" : "Creación 3",
-//            "BPM" : "100",
-//            "compas" : "3/4",
-//            "comments" : "Este es un ejemplo a 2/4",
-//            "errors" : 3,
-//            "folder" : "creations",
-//            "data" : ["0000", "0011" , "1111", "1011"]
-//        }
-//    ]
-    property var scoreList
+    property variant scoreList : [
+        {
+            "id" : 0,
+            "name" : "Ejemplo 1",
+            "BPM" : "60",
+            "compas" : "2/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 1,
+            "folder" : "examples",
+            "data" : ["1010","1010","1011","1011","1110","1110","1111","1111","1110","1110","1011","1011","1010","1000"]
+        },
+        {
+            "id" : 1,
+            "name" : "Ejemplo 2",
+            "BPM" : "120",
+            "compas" : "3/4",
+            "comments" : "Este es un ejemplo a 4/4",
+            "errors" : 2,
+            "folder" : "examples",
+            "data" : ["1000","1010","1010","1000","1001","1010","1000","1010","1001","1000","1000","0000","1010","1010","1000","1010","1001","1000","1001","1010","1000","1000","0000","0000"]
+        },
+        {
+            "id" : 2,
+            "name" : "Ejemplo 3",
+            "BPM" : "120",
+            "compas" : "2/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 3,
+            "folder" : "examples",
+            "data" : ["0000","0000","0000","0000","0000","0000","00000","0000","0000","0000","0110","0000","0000","0101","1100","0000"]
+        },
+        {
+            "id" : 3,
+            "name" : "Ejemplo 4",
+            "BPM" : "130",
+            "compas" : "3/8",
+            "comments" : "Este es un ejemplo a 8/8",
+            "errors" : 4,
+            "folder" : "examples",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 4,
+            "name" : "Ejercicio 1",
+            "BPM" : "65",
+            "compas" : "2/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 2,
+            "folder" : "exercises",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 5,
+            "name" : "Ejercicio 2",
+            "BPM" : "80",
+            "compas" : "4/4",
+            "comments" : "Este es un ejemplo a 4/4",
+            "errors" : 20,
+            "folder" : "exercises",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 6,
+            "name" : "Ejercicio 3",
+            "BPM" : "100",
+            "compas" : "3/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 15,
+            "folder" : "exercises",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 7,
+            "name" : "Creación 1",
+            "BPM" : "65",
+            "compas" : "2/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 17,
+            "folder" : "creations",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 8,
+            "name" : "Creación 2",
+            "BPM" : "80",
+            "compas" : "4/4",
+            "comments" : "Este es un ejemplo a 4/4",
+            "errors" : 9,
+            "folder" : "creations",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        },
+        {
+            "id" : 9,
+            "name" : "Creación 3",
+            "BPM" : "100",
+            "compas" : "3/4",
+            "comments" : "Este es un ejemplo a 2/4",
+            "errors" : 3,
+            "folder" : "creations",
+            "data" : ["0000", "0011" , "1111", "1011"]
+        }
+    ]
     property var examples
     property variant exercises : []
     property variant creations : []
@@ -147,16 +153,12 @@ Item {
             practice.printFigure(figure)
         }
         onScoreList: {
-            console.log("onScoreList: " + list)
-            scoreList = list
+            console.log("onScoreList")
+            //scoreList = list
             var listExamples = new Array (0)
             var listExercises = new Array (0)
             var listCreations = new Array (0)
-            //scoreList.forEach(function(item){
-            console.log(scoreList.length)
-            for(var i = 0; i<scoreList.length; i++){
-                var item = scoreList[i]
-                console.log("item id: " + item.id)
+            scoreList.forEach(function(item){
                 switch(item.folder){
                     case "examples":
                         console.log("examples")
@@ -193,7 +195,7 @@ Item {
                     default:
                         break
                 }
-            };
+            });
             examples = listExamples
             exercises = listExercises
             creations = listCreations
@@ -398,6 +400,8 @@ Item {
                         setPractice(0)
                         select0.scale = 1
                         dataToShow = json0.data
+                        speedValue = json0.BPM
+                        practice.printFigureArriba(dataToShow)
                         sendInformationToPopup(json0)
                         showPopUp("info")
                     }
@@ -454,6 +458,8 @@ Item {
                         setPractice(1)
                         select1.scale = 1
                         dataToShow = json1.data
+                        speedValue = json1.BPM
+                        practice.printFigureArriba(dataToShow)
                         sendInformationToPopup(json1)
                         showPopUp("info")
                        // typeScreen = "screenScore"
@@ -512,6 +518,8 @@ Item {
                         setPractice(2)
                         select2.scale = 1
                         dataToShow = json2.data
+                        speedValue = json2.BPM
+                        practice.printFigureArriba(dataToShow)
                         sendInformationToPopup(json2)
                         showPopUp("info")
                       //  typeScreen = "screenScore"
@@ -570,6 +578,8 @@ Item {
                         setPractice(3)
                         select3.scale = 1
                         dataToShow = json3.data
+                        speedValue = json3.BPM
+                        practice.printFigureArriba(dataToShow)
                         sendInformationToPopup(json3)
                         showPopUp("info")
                       //  typeScreen = "screenScore"
@@ -616,12 +626,14 @@ Item {
                             var jsonToSend = {
                                 "id" : id,
                                 "name" : name,
-                                "speed" : BPM,
+                                "BPM" : BPM,
                                 "compas" : compas,
                                 "comments" : comments
                             }
                             dataToShow = data
                             setPractice(id)
+                            speedValue = BPM
+                            practice.printFigureArriba(dataToShow)
                             sendInformationToPopup(jsonToSend)
                             showPopUp("info")
                         }
@@ -759,12 +771,26 @@ Item {
         ListModel {
             id: figuresModelUp
         }
+
         //Este es el formato que va a tener cada uno de los elementos que se van a mostrar en la lista, en este caso imagenes
         Component {
             id: figuresDelegate
-            Image{
-                source: path
+            Item{
+                width: imageFigure.width
+                height: imageFigure.height
+                Image {
+                    id: imageFigure
+                    source: path
+                    x:0
+                    y:0
+                }
+                ColorOverlay {
+                    anchors.fill: imageFigure
+                    source: imageFigure
+                    color: "transparent"
+                }
             }
+
         }
 
         Timer{
@@ -795,12 +821,15 @@ Item {
         //Lista de arriba
         ListView{
             id: listUp
-            width: 800
+           // width: 800
+            width: 750
             height: 50
             x: 150
             y: 260
             //            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
             // onContentWidthChanged: console.log("width changed: " + contentWidth)
+
+
 
             onContentWidthChanged: {
                 //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
@@ -811,14 +840,14 @@ Item {
                     //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
                     //   figuresModelUp.insert(0,figuresModelDown.get(1))
                     //A la lista de abajo se le quita ese ultimo elemento
-                    figuresModelDown.remove(listDown.count - 1)
+                   //figuresModelDown.remove(listDown.count - 1)
                 }
             }
 
 
             //En el modelo añadimos el listado de las figuras que se van a mostrar
             // model: figuresModelUp
-            model: figuresModelDown
+            model: figuresModelUp
             //El delegate lleva el formato arriba descrito
             delegate: figuresDelegate
             //Especificamos que la lista es horizontal
@@ -841,7 +870,7 @@ Item {
                     // bothPartitures = true
                     //A la lista de arriba le añadimos el ultimo elemento de la de abajo
                     //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
-                    //  figuresModelUp.insert(0,figuresModelDown.get(1))
+                   // figuresModelUp.insert(0,figuresModelDown.get(1))
                     //A la lista de abajo se le quita ese ultimo elemento
                     figuresModelDown.remove(listDown.count - 1)
                 }
@@ -854,28 +883,6 @@ Item {
         }
     }
 
-   /* function printFigure(figure){
-        //A la lista de abajo se le añade la nueva figura
-        figuresModelDown.insert(0, {
-           "path" : "qrc:/images/figures/" + figure + ".png"
-        })
-        //Si ya ha cargado el ultimo pulso del compás
-        if(pulseCount === pulsesNumber){
-            //Se reinicia el valor y se añade la figura de la separación
-            pulseCount = 1;
-            figuresModelDown.insert(0, {
-              "path" : "qrc:/images/figures/bar.png"
-            })
-        }else{
-            pulseCount++;
-        }
-        //En el caso en el que ya se esté pintando en ambas lineas
-        if(bothPartitures){
-            //Se inserta arriba y se elimina abajo
-            figuresModelUp.insert(0, figuresModelDown.get(listDown.count - 1))
-            figuresModelDown.remove(listDown.count - 1)
-        }
-    }   */
 
 
 
@@ -883,6 +890,25 @@ Item {
         figuresModelDown.insert(0, {
            "path" : "qrc:/images/figures/" + figure + ".png"
         })
+        nuevoCont++
+        if (nuevoCont > 4){
+            figuresModelUp.insert(0, {
+               "path" : "qrc:/images/figures/" + dataToShow[m] + ".png"
+            })
+            m = m+1
+            if(pulseCountArriba === pulsesNumber){
+                pulseCountArriba = 1;
+                figuresModelUp.insert(0, {
+                  "path" : "qrc:/images/figures/bar.png"
+                })
+            }else{
+                pulseCountArriba++;
+            }
+            if (m>dataToShow.length){
+                menu.playState = "start"
+                stopRecording()
+            }
+        }
         if(pulseCount === pulsesNumber){
             pulseCount = 1;
             figuresModelDown.insert(0, {
@@ -892,6 +918,29 @@ Item {
             pulseCount++;
         }
     }
+
+
+    function printFigureArriba(dataEntero){
+        longitud = dataEntero.length -1
+       // for (m = 0 ; m < dataEntero.length ; m++){
+        for (m = 0 ; m < 5 ; m++){
+            posicionActual = longitud - m
+            figuraActual = dataEntero[m]
+        figuresModelUp.insert(0, {
+           "path" : "qrc:/images/figures/" + figuraActual + ".png"
+        })
+        if(pulseCountArriba === pulsesNumber){
+            pulseCountArriba = 1;
+            figuresModelUp.insert(0, {
+              "path" : "qrc:/images/figures/bar.png"
+            })
+        }else{
+            pulseCountArriba++;
+        }
+        }
+    }
+
+
 
     function clear(){
         figuresModelDown.clear()
