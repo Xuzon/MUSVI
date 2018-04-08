@@ -2,6 +2,7 @@ import QtQuick 2.7
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Window 2.2
+import QtMultimedia 5.8
 
 import "qml/" as Screens
 
@@ -15,6 +16,8 @@ Item {
     FontLoader {id: gothamLight; source: "qrc:/fonts/gotham/GothamLight.ttf"}
 
 
+
+
     //VENTANA PRINCIPAL - INICIO
     Window{
         id: portada
@@ -24,6 +27,10 @@ Item {
 
         Screens.Musvi_Controller{
             id:controller
+        }
+        Audio{
+            id: beat
+            source: "qrc:/sounds/beat.aiff"
         }
 
         Screens.PopUp{
@@ -132,6 +139,7 @@ Item {
             onSelectMode: {
                 switch(type){
                     case "artist":
+                        beat.play()
                         practice.visible = false
                         info.visible = false
                         init.visible = false

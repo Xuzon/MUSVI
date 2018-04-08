@@ -10,6 +10,8 @@
         <file>qml/Practice_v2.qml</file>
         <file>qml/Menu.qml</file>
         <file>sounds/beat.wav</file>
+        <file>sounds/beat.aiff</file>
+        <file>sounds/beat.ogg</file>
         <file>images/figures/bar.png</file>
         <file>images/figures/0000.png</file>
         <file>images/figures/0001.png</file>

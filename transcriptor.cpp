@@ -83,6 +83,7 @@ void Transcriptor::Calibrate(int time){
     this->calibrator = new Calibrator(this->input);
     this->calibrator->open(QIODevice::ReadWrite);
     QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
+
     QAudioFormat inputFormat;
     inputFormat.setSampleRate(this->fs);
     inputFormat.setChannelCount(1);
@@ -121,7 +122,7 @@ void Transcriptor::record(){
 
 ///Default constructor
 Transcriptor::Transcriptor(){
-  qDebug() << "This should never be called";
+    qDebug() << "This should never be called";
 }
 
 Transcriptor::Transcriptor(Musvi_Logic* logic){
@@ -137,7 +138,7 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     this->subdivisions = 4;
     this->window = 100;
     this->recording = false;
-    this->beatFileName = ":/sounds/beat.wav";
+    this->beatFileName = ":/sounds/beat.aiff";
     this->beatFile.setFileName(beatFileName);
     //qDebug() << "beat file exists: " << this->beatFile.exists();
 
@@ -145,17 +146,20 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     //Output
     QAudioDeviceInfo output = QAudioDeviceInfo::defaultOutputDevice();
     //set format
+    for(QAudioDeviceInfo inf : QAudioDeviceInfo::availableDevices(QAudio::Mode::AudioOutput)){
+        qDebug() << inf.deviceName();
+    }
     QAudioFormat outputFormat;
     outputFormat.setSampleRate(this->fs);
-    outputFormat.setChannelCount(1);
+    outputFormat.setChannelCount(2);
     outputFormat.setSampleSize(16);
     outputFormat.setCodec("audio/pcm");
     outputFormat.setByteOrder(QAudioFormat::LittleEndian);
     outputFormat.setSampleType(QAudioFormat::SignedInt);
     //check format
     if (!output.isFormatSupported(outputFormat)) {
-       qWarning() << "Default format not supported, trying to use the nearest.";
-       outputFormat = output.nearestFormat(outputFormat);
+        qWarning() << "Default format not supported, trying to use the nearest.";
+        outputFormat = output.nearestFormat(outputFormat);
     }
     speakers = new QAudioOutput(output,outputFormat);
     this->Calibrate(1);

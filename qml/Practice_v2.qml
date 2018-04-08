@@ -8,8 +8,15 @@ Item {
     property int pulseCount: 1
     property int speedValue: 120
     property string compasValue: "2/4"
+    property var json0 : {}
+    property var json1 : {}
+    property var json2 : {}
+    property var json3 : {}
+
 
     property string typeScreen: ""
+
+    property variant dataToShow: []
 
     property variant scoreList : [
         {
@@ -113,7 +120,7 @@ Item {
             "data" : ["0000", "0011" , "1111", "1011"]
         }
     ]
-    property variant examples : []
+    property var examples
     property variant exercises : []
     property variant creations : []
 
@@ -147,6 +154,11 @@ Item {
             scoreList.forEach(function(item){
                 switch(item.folder){
                     case "examples":
+                        console.log("examples")
+                        if(item.id === 0) json0 = item
+                        if(item.id === 1) json1 = item
+                        if(item.id === 2) json2 = item
+                        if(item.id === 3) json3 = item
                         listExamples.push(item)
                         break
                     case "creations":
@@ -154,9 +166,11 @@ Item {
                         creationsModel.append({
                            "id" : item.id,
                            "name" : item.name,
-                           "speed" : item.BPM,
+                           "BPM" : item.BPM,
                            "errors" : item.errors,
-                           "compas" : item.compas
+                           "comments" : item.comments,
+                           "compas" : item.compas,
+                           "data" : item.data
                         })
                         break
                     case "exercises":
@@ -164,15 +178,20 @@ Item {
                         exercisesModel.append({
                            "id" : item.id,
                            "name" : item.name,
-                           "speed" : item.BPM,
+                           "BPM" : item.BPM,
                            "errors" : item.errors,
-                           "compas" : item.compas
+                           "comments" : item.comments,
+                           "compas" : item.compas,
+                           "data" : item.data
                         })
                         break
                     default:
                         break
                 }
             });
+            examples = listExamples
+            exercises = listExercises
+            creations = listCreations
         }
     }
 
@@ -320,6 +339,7 @@ Item {
         visible: typeScreen === "screenExamples"
         Item{
             id: lvl0
+
             Image{
                 id: lvl0Image
                 source: "qrc:/images/practice/examples/BgLvl0.png"
@@ -346,14 +366,23 @@ Item {
 
             }
             Image{
+
                 id: select0
                 source: "qrc:/images/practice/examples/SelectLvl.png"
                 y: 357
                 x: 191
                 MouseArea{
                     anchors.fill: select0
-                    onClicked: {
+
+                    onPressed: {
+                        select0.scale = 1.1
+                    }
+                    onReleased: {
                         setPractice(0)
+                        select0.scale = 1
+                        dataToShow = json0.data
+                        sendInformationToPopup(json0)
+                        showPopUp("info")
                     }
                 }
                 transitions: Transition {
@@ -401,8 +430,16 @@ Item {
                 x: 651
                 MouseArea{
                     anchors.fill: select1
-                    onClicked: {
+                    onPressed: {
+                        select1.scale = 1.1
+                    }
+                    onReleased: {
                         setPractice(1)
+                        select1.scale = 1
+                        dataToShow = json1.data
+                        sendInformationToPopup(json1)
+                        showPopUp("info")
+                       // typeScreen = "screenScore"
                     }
                 }
                 transitions: Transition {
@@ -451,8 +488,16 @@ Item {
                 x: 191
                 MouseArea{
                     anchors.fill: select2
-                    onClicked: {
+                    onPressed: {
+                        select2.scale = 1.1
+                    }
+                    onReleased: {
                         setPractice(2)
+                        select2.scale = 1
+                        dataToShow = json2.data
+                        sendInformationToPopup(json2)
+                        showPopUp("info")
+                      //  typeScreen = "screenScore"
                     }
                 }
                 transitions: Transition {
@@ -501,8 +546,16 @@ Item {
                 x: 651
                 MouseArea{
                     anchors.fill: select3
-                    onClicked: {
+                    onPressed: {
+                        select3.scale = 1.1
+                    }
+                    onReleased: {
                         setPractice(3)
+                        select3.scale = 1
+                        dataToShow = json3.data
+                        sendInformationToPopup(json3)
+                        showPopUp("info")
+                      //  typeScreen = "screenScore"
                     }
                 }
                 transitions: Transition {
@@ -541,10 +594,19 @@ Item {
                             bgItem.scale = 1.1
                         }
                         onReleased: {
-                            console.log("info")
+                           // console.log("info")
                             bgItem.scale = 1
-                            sendInformationToPopup()
-                            showPopUp("infoScore")
+                            var jsonToSend = {
+                                "id" : id,
+                                "name" : name,
+                                "speed" : BPM,
+                                "compas" : compas,
+                                "comments" : comments
+                            }
+                            dataToShow = data
+                            setPractice(id)
+                            sendInformationToPopup(jsonToSend)
+                            showPopUp("info")
                         }
                     }
                     transitions: Transition {
@@ -563,7 +625,7 @@ Item {
                 }
                 Text{
                     id: speedItem
-                    text: speed
+                    text: BPM
                     font.family: gothamLight.name
                     font.pixelSize: 18
                     horizontalAlignment: Text.AlignHCenter
@@ -662,6 +724,7 @@ Item {
         id: screenScore
         visible: typeScreen === "screenScore"
 
+
         Image{
             id: circle
             visible: false
@@ -706,7 +769,7 @@ Item {
 
         Image{
             id:partituraBg
-            source: "qrc:/images/partitura-practice.png"
+            source: "qrc:/images/practice/partiture/partitura-practice.png"
             smooth: true
             x: 20
             y: 230
@@ -774,17 +837,17 @@ Item {
         }
     }
 
-    function printFigure(figure){
+   /* function printFigure(figure){
         //A la lista de abajo se le añade la nueva figura
         figuresModelDown.insert(0, {
-           "path" : "qrc:/images/" + figure + ".png"
+           "path" : "qrc:/images/figures/" + figure + ".png"
         })
         //Si ya ha cargado el ultimo pulso del compás
         if(pulseCount === pulsesNumber){
             //Se reinicia el valor y se añade la figura de la separación
             pulseCount = 1;
             figuresModelDown.insert(0, {
-              "path" : "qrc:/images/bar.png"
+              "path" : "qrc:/images/figures/bar.png"
             })
         }else{
             pulseCount++;
@@ -795,6 +858,27 @@ Item {
             figuresModelUp.insert(0, figuresModelDown.get(listDown.count - 1))
             figuresModelDown.remove(listDown.count - 1)
         }
+    }   */
+
+
+
+    function printFigure(figure){
+        figuresModelDown.insert(0, {
+           "path" : "qrc:/images/figures/" + figure + ".png"
+        })
+        if(pulseCount === pulsesNumber){
+            pulseCount = 1;
+            figuresModelDown.insert(0, {
+              "path" : "qrc:/images/figures/bar.png"
+            })
+        }else{
+            pulseCount++;
+        }
+    }
+
+    function clear(){
+        figuresModelDown.clear()
+        pulseCount = 1
     }
 
 }

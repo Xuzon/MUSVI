@@ -11,14 +11,9 @@ Item{
     property string typePopup //config, info, save, save_PDF, save_App, calibrate, deleteScore
     property string title
     //Para info y para deleteScore
-    property var scoreData : {
-        "id"        : "0",
-        "name"      : "Partitura 2/4",
-        "speed"     : "120",
-        "compas"    : "2/4",
-        "comments"  : "Este ejercicio es de nivel\n1, tiene un compás 2/4 a una\nvelocidad de 120",
-        "numErrors" : "1"
-    }
+    property var scoreData : {}
+
+
 
 
     signal closePopup()
@@ -27,6 +22,7 @@ Item{
     signal saveExample(var name, var comments, var folder)
 
     signal deleteScoreSignal(var id)
+    signal changeScreenScore()
 
     /*************************/
     /* POPUP - CONFIGURACION */
@@ -188,7 +184,7 @@ Item{
 
         Timer{
             id: timerCalibrate
-            interval: 1500
+            interval: 5000
             onTriggered: {
                 console.log("finish calibrate")
                 closePopup()
@@ -255,7 +251,7 @@ Item{
         }
         Text{
             id: textSpeedInfo
-            text: scoreData.speed
+            text: scoreData.BPM
             font.family: gothamLight.name
             font.pixelSize: 22
             color: "#666666"
@@ -296,6 +292,23 @@ Item{
             y: 471
         }
         Image{
+             id: selectInfo
+             source: "qrc:/images/practice/ejer_vs_ejem/Select.png"
+             x: 400
+             y: 644
+             MouseArea{
+                 anchors.fill: parent
+                 onPressed: {
+                     selectInfo.scale = 1.1
+                 }
+                 onReleased: {
+                     selectInfo.scale = 1
+                     changeScreenScore()
+
+                 }
+             }
+         }
+      /* Image{
             id: closeInfo
             source: "qrc:/images/popupInfo/closeButton.png"
             x: 410
@@ -310,7 +323,7 @@ Item{
                     closePopup()
                 }
             }
-        }
+        }  */
     }
 
     /****************************/
