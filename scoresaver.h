@@ -10,6 +10,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QVector>
+#include <QVariantList>
+
 
 class ScoreSaver{
 
@@ -27,7 +29,7 @@ public:
     static QJsonObject LoadScore(int id);
     static int GetNewId();
     static void DeleteScore(int id);
-    static QList<QJsonObject> GetScores();
+    static QVariantList GetScores();
 
 
 };

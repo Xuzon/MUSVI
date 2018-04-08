@@ -5,6 +5,7 @@
 #include <string>
 #include <QObject>
 #include <QDebug>
+#include <QVariantList>
 #include <QVariantMap>
 #include <QMetaEnum>
 #include <QMetaObject>
@@ -42,7 +43,7 @@ signals:
 
     /* Signal a QML del buffer */
     void sendPulse(QString pulse);
-    void getScoreList(QList<QJsonObject> jsons);
+    void getScoreList(QVariantList jsons);
 
 public slots:
     /* Slot para recoger datos del QML */

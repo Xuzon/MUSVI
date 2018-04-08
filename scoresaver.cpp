@@ -155,9 +155,16 @@ void ScoreSaver::DeleteScore(int id){
     DeleteFromFileSystem(id);
 }
 
-QList<QJsonObject> ScoreSaver::GetScores(){
+//QList<QJsonObject> ScoreSaver::GetScores(){
+QVariantList ScoreSaver::GetScores(){
 
-    return ScoreSaver::scores.toList();
+    //return ScoreSaver::scores.toList();
+    QVariantList toRet;
+    for(QJsonObject json : scores){
+    toRet.append(json.toVariantMap());
+    }
+    return toRet;
+
 }
 
 ///Delete the score with the given id on the loaded scores

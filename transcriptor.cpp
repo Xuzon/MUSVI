@@ -183,6 +183,10 @@ bool Transcriptor::IsRecording(){
 
 void Transcriptor::StopCalibration(){
     this->calibrator->close();
+
+    //only for the presentation
+    this->calibrator->threshold=4000; //DELETE this line later
+
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
     this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
