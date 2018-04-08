@@ -3,10 +3,10 @@ Item {
     id: artistMode
 
     property int number : 3
-    property int pulsesNumber: 2
+    property int pulsesNumber: 4
     property int pulseCount: 1
-    property int speedValue: 120
-    property string compasValue: "2/4"
+    property int speedValue: 60
+    property string compasValue: "4/4"
 
     signal goInit()
     signal startRecording()
@@ -14,6 +14,7 @@ Item {
     signal showPopUp(var type)
     signal metronome()
 
+    onPulsesNumberChanged: console.log("ha cambiado el pulso: " + pulsesNumber)
 
     Menu{
         id: menu
@@ -85,6 +86,7 @@ Item {
         id: figuresDelegate
         Image{
             source: path
+            y: 8
         }
     }
 

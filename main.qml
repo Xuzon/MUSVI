@@ -40,6 +40,7 @@ Item {
                 artistMode.speedValue = speed
                 artistMode.compasValue = compas
                 controller.configChanged(speed, compas)
+                artistMode.pulsesNumber = compas.split("/")[0]
             }
             onSavePDFSignal: {
                 controller.savePDF(name)
