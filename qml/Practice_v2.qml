@@ -24,6 +24,7 @@ Item {
     property int longitud: 0
     property int posicionActual: 0
     property int nuevoCont: 0
+    property int existeError: 0
 
     property variant scoreList : [
         {
@@ -152,6 +153,10 @@ Item {
         onDetectPulse:{
             practice.printFigure(figure)
         }
+        onErrores:{
+            existeError = hasError
+        }
+
         onScoreList: {
             console.log("onScoreList")
             //scoreList = list
@@ -774,7 +779,7 @@ Item {
 
         //Este es el formato que va a tener cada uno de los elementos que se van a mostrar en la lista, en este caso imagenes
         Component {
-            id: figuresDelegate
+            id: figuresDelegateDown
             Item{
                 width: imageFigure.width
                 height: imageFigure.height
@@ -787,10 +792,23 @@ Item {
                 ColorOverlay {
                     anchors.fill: imageFigure
                     source: imageFigure
-                    color: "transparent"
+
+                    color: {
+                        existeError? "red" : "transparent"
+                    }
+
+
                 }
             }
 
+        }
+
+        Component {
+            id: figuresDelegate
+            Image{
+                source: path
+                y: 8
+            }
         }
 
         Timer{
@@ -812,7 +830,7 @@ Item {
 
         Image{
             id:partituraBg
-            source: "qrc:/images/practice/partiture/partitura-practice.png"
+            source: "qrc:/images/partitura-practice.png"
             smooth: true
             x: 20
             y: 230
@@ -876,7 +894,7 @@ Item {
                 }
             }
             model: figuresModelDown
-            delegate: figuresDelegate
+            delegate: figuresDelegateDown
             orientation: ListView.Horizontal
             interactive: false
             layoutDirection: Qt.RightToLeft
