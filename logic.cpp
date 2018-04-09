@@ -57,7 +57,7 @@ void Musvi_Logic::mode(QString type){
         emit getScoreList(ScoreSaver::GetScores());
     }
     if(type == "artist"){
-        this->SetPractice(-1);
+        this->setPractice(-1);
     }
 
 }
@@ -77,8 +77,11 @@ void Musvi_Logic::metronome(){
 
 ///Load the practice into the checker
 ///
-void Musvi_Logic::SetPractice(int id){
-    this->checker.LoadPractice(id);
+void Musvi_Logic::setPractice(int id){
+    qDebug() << "setting practice::" << id;
+    int sub;
+    int speed = this->checker.LoadPractice(id,&sub);
+    this->config(speed,sub == 4 ? "2/4" : "3/6");
 }
 
 /* SEÑALES PARA EL QML */

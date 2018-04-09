@@ -31,7 +31,7 @@
         <file>images/figures/1111.png</file>
         <file>images/menu/info.png</file>
         <file>images/menu/init.png</file>
- 	<file>images/menu/backMenu.png</file>
+        <file>images/menu/backMenu.png</file>
         <file>images/menu/bgMenu.png</file>
         <file>images/menu/botonConfig.png</file>
         <file>images/menu/botonInfo.png</file>
@@ -117,5 +117,6 @@
         <file>images/figures/111110.png</file>
         <file>images/figures/111111.png</file>
         <file>images/figures/001010.png</file>
+        <file>images/partitura-practice.png</file>
     </qresource>
 </RCC>

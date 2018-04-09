@@ -56,7 +56,7 @@ public slots:
     //calibrate the mic while time
     void calibrate(int time);
     //load the practice of id
-    void SetPractice(int id);
+    void setPractice(int id);
     //
     void metronome();
     //On pulse detected

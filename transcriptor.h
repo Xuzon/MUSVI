@@ -18,6 +18,7 @@ class Musvi_Logic;
 class Transcriptor : public QObject{
     Q_OBJECT
     bool recording;
+    bool calibrating;
     float fs;
     int subdivisions;
     int bpm;

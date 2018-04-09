@@ -72,4 +72,8 @@ Item{
         Logic.deleteScore(id)
     }
 
+    function setPractice(id){
+        Logic.setPractice(id);
+    }
+
 }

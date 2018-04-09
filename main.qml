@@ -138,6 +138,7 @@ Item {
             onSetPractice: {
                 //Llamar a la funcion de controller que llame a setPractice(id) de la logica
                 console.log("OnSetPractice")
+                controller.setPractice(id)
             }
             onSendInformationToPopup: {
                 popUp.scoreData = scoreData

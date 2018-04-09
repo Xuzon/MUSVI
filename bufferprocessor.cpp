@@ -24,6 +24,7 @@ BufferProcessor::~BufferProcessor(){
 
 ///Get the data from the microphpne
 qint64 BufferProcessor::writeData(const char *data, qint64 maxSize){
+    //qDebug() << "Writing data";
     switch(this->bytesPerFrame){
         case 1:
             processBuffer8(data,maxSize);
@@ -95,8 +96,6 @@ void BufferProcessor::processBuffer16(const char *data, qint64 size){
             }else{
                 lowFreqImpulses.append(imp);
             }
-            //bool highCandidate = abs(highFilteredData) > 900;
-            //bool lowCandidate = abs(lowFilteredData) > 150;
             break;
         }
     }

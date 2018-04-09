@@ -18,9 +18,9 @@ void Transcriptor::startRecording(){
     inputFormat.setCodec("audio/pcm");
     inputFormat.setByteOrder(QAudioFormat::LittleEndian);
     inputFormat.setSampleType(QAudioFormat::SignedInt);
-    for(auto rate : info.supportedSampleRates()){
-        qDebug() << rate;
-    }
+    //for(auto rate : info.supportedSampleRates()){
+    //    qDebug() << rate;
+    //}
     //check format
     if (!info.isFormatSupported(inputFormat)) {
         inputFormat = info.nearestFormat(inputFormat);
@@ -41,6 +41,7 @@ void Transcriptor::startRecording(){
     this->processor->SetInput(this->input,this->metronomeThread->BeatAddress());
     //start recording audio
     this->input->start(this->processor);
+    qDebug() << "record error" << this->input->error() << " state::" << this->input->state();
 }
 
 ///stop recording
@@ -69,16 +70,20 @@ const QStringList Transcriptor::comboList(){
 void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     this->bpm = bpm;
     this->subdivisions = subdivisions;
+    int threshold = this->calibrator != nullptr ? this->calibrator->threshold : 4000;
     if(this->processor != nullptr){
         delete this->processor;
     }
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold);
 }
 
 void Transcriptor::Calibrate(int time){
-    //TODO what the hell this causes an exception
+    if(calibrating){
+        return;
+    }
+    calibrating = true;
     if(this->calibrator != nullptr){
-        //delete this->calibrator;
+        delete this->calibrator;
     }
     this->calibrator = new Calibrator(this->input);
     this->calibrator->open(QIODevice::ReadWrite);
@@ -138,9 +143,13 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     this->subdivisions = 4;
     this->window = 100;
     this->recording = false;
+    this->calibrating = false;
     this->beatFileName = ":/sounds/beat.aiff";
     this->beatFile.setFileName(beatFileName);
     //qDebug() << "beat file exists: " << this->beatFile.exists();
+    this->processor = nullptr;
+    this->calibrator = nullptr;
+    this->metronomeThread = nullptr;
 
 
     //Output
@@ -162,7 +171,6 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
         outputFormat = output.nearestFormat(outputFormat);
     }
     speakers = new QAudioOutput(output,outputFormat);
-    this->Calibrate(1);
 }
 
 ///Destructor
@@ -183,7 +191,7 @@ bool Transcriptor::IsRecording(){
 
 void Transcriptor::StopCalibration(){
     this->calibrator->close();
-
+    this->calibrating = false;
     //only for the presentation
     this->calibrator->threshold=4000; //DELETE this line later
 
