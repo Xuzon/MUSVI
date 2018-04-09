@@ -922,10 +922,10 @@ Item {
             }else{
                 pulseCountArriba++;
             }
-            if (m>dataToShow.length){
-                menu.playState = "start"
-                stopRecording()
-            }
+            //if (m>dataToShow.length){
+            //    menu.playState = "start"
+            //    stopRecording()
+            //}
         }
         if(pulseCount === pulsesNumber){
             pulseCount = 1;
