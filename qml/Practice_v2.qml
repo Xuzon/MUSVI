@@ -26,8 +26,8 @@ Item {
     property int nuevoCont: 0
     property int existeError: 0
 
-    property variant scoreList : [
-        {
+    property variant scoreList : []
+      /*  {
             "id" : 0,
             "name" : "Ejemplo 1",
             "BPM" : "60",
@@ -127,7 +127,7 @@ Item {
             "folder" : "creations",
             "data" : ["0000", "0011" , "1111", "1011"]
         }
-    ]
+    ]*/
     property var examples
     property variant exercises : []
     property variant creations : []
@@ -159,7 +159,7 @@ Item {
 
         onScoreList: {
             console.log("onScoreList")
-            //scoreList = list
+            scoreList = list
             var listExamples = new Array (0)
             var listExercises = new Array (0)
             var listCreations = new Array (0)
@@ -174,6 +174,7 @@ Item {
                         listExamples.push(item)
                         break
                     case "creations":
+                        console.log("creations")
                         listCreations.push(item)
                         creationsModel.append({
                            "id" : item.id,
@@ -186,6 +187,7 @@ Item {
                         })
                         break
                     case "exercises":
+                        console.log("exercises")
                         listExercises.push(item)
                         exercisesModel.append({
                            "id" : item.id,
@@ -777,6 +779,7 @@ Item {
             id: figuresModelUp
         }
 
+
         //Este es el formato que va a tener cada uno de los elementos que se van a mostrar en la lista, en este caso imagenes
         Component {
             id: figuresDelegateDown
@@ -836,69 +839,85 @@ Item {
             y: 230
         }
 
-        //Lista de arriba
-        ListView{
-            id: listUp
-           // width: 800
-            width: 750
-            height: 50
-            x: 150
-            y: 260
-            //            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
-            // onContentWidthChanged: console.log("width changed: " + contentWidth)
+        Item{
+            id: partituraUp
+            Rectangle{
+                width: 950
+                height: 200
+                x: 70
+                y: 260
+                color: "transparent"
+                border.color: "red"
+                //Lista de arriba
+                ListView{
+                    id: listUp
+                    clip: true
+                    anchors.fill: parent
+                    anchors.verticalCenter: parent.verticalCenter
+
+                   // width: 80
+                    //            onCacheBufferChanged: console.log("cache buffer changed : " + cacheBuffer)
+                    // onContentWidthChanged: console.log("width changed: " + contentWidth)
 
 
 
-            onContentWidthChanged: {
-                //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
-                if(contentWidth>800){
-                    //Advertimos de que ya tenemos ambas partituras
-                    // bothPartitures = true
-                    //A la lista de arriba le añadimos el ultimo elemento de la de abajo
-                    //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
-                    //   figuresModelUp.insert(0,figuresModelDown.get(1))
-                    //A la lista de abajo se le quita ese ultimo elemento
-                   //figuresModelDown.remove(listDown.count - 1)
+                    onContentWidthChanged: {
+                        //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
+                        if(contentWidth>800){
+                        }
+                    }
+
+
+                    //En el modelo añadimos el listado de las figuras que se van a mostrar
+                    // model: figuresModelUp
+                    model: figuresModelUp
+                    //El delegate lleva el formato arriba descrito
+                    delegate: figuresDelegate
+                    //Especificamos que la lista es horizontal
+                    orientation: ListView.Horizontal
+                    interactive: false
+                    //Especificamos que la lista va de derecha a izquierda
+                    //layoutDirection: Qt.LeftToRight
                 }
             }
 
-
-            //En el modelo añadimos el listado de las figuras que se van a mostrar
-            // model: figuresModelUp
-            model: figuresModelUp
-            //El delegate lleva el formato arriba descrito
-            delegate: figuresDelegate
-            //Especificamos que la lista es horizontal
-            orientation: ListView.Horizontal
-            interactive: false
-            //Especificamos que la lista va de derecha a izquierda
-            layoutDirection: Qt.RightToLeft
         }
 
-        ListView{
-            id: listDown
-            width: 800
-            height: 50
-            x: 150
-            y: 426
-            onContentWidthChanged: {
-                //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
-                if(contentWidth>800){
-                    //Advertimos de que ya tenemos ambas partituras
-                    // bothPartitures = true
-                    //A la lista de arriba le añadimos el ultimo elemento de la de abajo
-                    //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
-                   // figuresModelUp.insert(0,figuresModelDown.get(1))
-                    //A la lista de abajo se le quita ese ultimo elemento
-                    figuresModelDown.remove(listDown.count - 1)
+        Item{
+            id: partituraDown
+            Rectangle{
+                width: 950
+                height: 200
+                x: 70
+                y: 480
+                color: "transparent"
+                border.color : "red"
+                ListView{
+                    id: listDown
+                    anchors.fill: parent
+                    anchors.verticalCenter: parent.verticalCenter
+                    onContentWidthChanged: {
+                        //En el caso de la lista de abajo, si resulta que aun no se ha llenado la linea de arriba y que se ha llegado al máximo de espacio en la partitura:
+                        if(contentWidth>800){
+                            //Advertimos de que ya tenemos ambas partituras
+                            // bothPartitures = true
+                            //A la lista de arriba le añadimos el ultimo elemento de la de abajo
+                            //Se hace con insert así todo lo nuevo se va añadiendo al inicio de la lista, si se quisiera añadir al final de la lista -> usar lista.append(elemento)
+                           // figuresModelUp.insert(0,figuresModelDown.get(1))
+                            //A la lista de abajo se le quita ese ultimo elemento
+                            figuresModelDown.remove(listDown.count - 1)
+                        }
+                    }
+                    model: figuresModelDown
+                    delegate: figuresDelegateDown
+                    orientation: ListView.Horizontal
+                    interactive: false
+                    clip: true
+                    layoutDirection: Qt.RightToLeft
                 }
             }
-            model: figuresModelDown
-            delegate: figuresDelegateDown
-            orientation: ListView.Horizontal
-            interactive: false
-            layoutDirection: Qt.RightToLeft
         }
+
     }
 
 
@@ -908,25 +927,6 @@ Item {
         figuresModelDown.insert(0, {
            "path" : "qrc:/images/figures/" + figure + ".png"
         })
-        nuevoCont++
-        if (nuevoCont > 4){
-            figuresModelUp.insert(0, {
-               "path" : "qrc:/images/figures/" + dataToShow[m] + ".png"
-            })
-            m = m+1
-            if(pulseCountArriba === pulsesNumber){
-                pulseCountArriba = 1;
-                figuresModelUp.insert(0, {
-                  "path" : "qrc:/images/figures/bar.png"
-                })
-            }else{
-                pulseCountArriba++;
-            }
-            //if (m>dataToShow.length){
-            //    menu.playState = "start"
-            //    stopRecording()
-            //}
-        }
         if(pulseCount === pulsesNumber){
             pulseCount = 1;
             figuresModelDown.insert(0, {
@@ -935,26 +935,39 @@ Item {
         }else{
             pulseCount++;
         }
+        nuevoCont++
+        if (nuevoCont > 1){
+            figuresModelUp.remove(0);
+            if(pulseCount === pulsesNumber){
+                figuresModelUp.remove(0)
+            }
+
+//            if (m>dataToShow.length){
+//                menu.playState = "start"
+//                stopRecording()
+//            }
+        }
+
     }
 
 
     function printFigureArriba(dataEntero){
+        figuresModelUp.clear()
+        figuresModelDown.clear()
         longitud = dataEntero.length -1
-       // for (m = 0 ; m < dataEntero.length ; m++){
-        for (m = 0 ; m < 5 ; m++){
-            posicionActual = longitud - m
+        for (m = 0; m < longitud; m++){
             figuraActual = dataEntero[m]
-        figuresModelUp.insert(0, {
-           "path" : "qrc:/images/figures/" + figuraActual + ".png"
-        })
-        if(pulseCountArriba === pulsesNumber){
-            pulseCountArriba = 1;
-            figuresModelUp.insert(0, {
-              "path" : "qrc:/images/figures/bar.png"
+            figuresModelUp.append({
+               "path" : "qrc:/images/figures/" + figuraActual + ".png"
             })
-        }else{
-            pulseCountArriba++;
-        }
+            if(pulseCountArriba === pulsesNumber){
+                pulseCountArriba = 1;
+                figuresModelUp.append({
+                  "path" : "qrc:/images/figures/bar.png"
+                })
+            }else{
+                pulseCountArriba++;
+            }
         }
     }
 

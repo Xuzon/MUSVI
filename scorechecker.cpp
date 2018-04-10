@@ -14,20 +14,19 @@ int ScoreChecker::LoadPractice(int id, int* sub){
         return 0;
     }
     QJsonObject json = ScoreSaver::LoadScore(id);
-    QString jsonData = json["data"].toString();
-    if(jsonData.isEmpty()){
+    QJsonArray jsonData = json["data"].toArray();
+    if(jsonData.count() == 0){
         return -1;
     }
-    int subdivisions = json["subdivisions"].toInt();
-    int pulses = jsonData.length() / subdivisions;
-    for(int i = 0; i < pulses; i++){
-        QString subString = jsonData.mid(i * subdivisions,subdivisions);
-        this->data.append(subString);
+    for(int i = 0; i < jsonData.count(); i++){
+        this->data.append(jsonData.at(i).toString());
     }
+
+    int subdivisions = json["subdivisions"].toInt();
     if(sub != nullptr){
         *sub = subdivisions;
     }
-    return json["speed"].toInt();
+    return json["BPM"].toInt();
 }
 
 ///Check if there is an error in the score

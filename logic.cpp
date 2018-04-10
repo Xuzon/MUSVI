@@ -51,7 +51,7 @@ void Musvi_Logic::config(int speed, QString compas){
 }
 
 void Musvi_Logic::mode(QString type){
-    qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
+    //qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
     //SI ES PRACTICE HAY QUE ENVIAR LA SEÑAL CON LA LISTA DE PARTITURAS
     if(type == "practice"){
         emit getScoreList(ScoreSaver::GetScores());

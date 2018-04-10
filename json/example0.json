@@ -1,1 +1,1 @@
-{"comments":"This is a comment","data":"10101010101110111110111011111111111011101011101110101000","folder":"examples","id":0,"lastErrors":0,"speed":60,"subdivisions":4, "compas":"2/4"}
+{"comments":"This is a comment","data" : ["1010","1010","1011","1011","1110","1110","1111","1111","1110","1110","1011","1011","1010","1000"],"folder":"examples","id":0,"errors":0,"name":"HOLA SOY UN NOMBRE", "BPM":60,"subdivisions":4, "compas":"2/4"}

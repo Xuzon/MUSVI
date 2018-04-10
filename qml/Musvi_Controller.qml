@@ -16,15 +16,18 @@ Item{
     signal info(var data)
     signal detectPulse(var figure)
     signal scoreList(var list)
+    signal errores(var hasError)
 
     Connections{
         target: Logic
         onSendPulse:{
             detectPulse(pulse)
+            errores(hasError)
         }
         onGetScoreList: {
+            console.log("KJSfljakjfhkjadhfkjadHLFHKDHFDKJGfkldgsjlfgdsjgfdsjgfjldsl");
             console.log("Logic - getScoreList")
-            scoreList(jsons)
+            scoreList(list)
         }
     }
 

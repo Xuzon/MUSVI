@@ -1,1 +1,1 @@
-{"comments":"This is a comment","data":"0000000000000000000000000000000000000000011000000000010111000000","folder":"examples","id":3,"lastErrors":0,"speed":120,"subdivisions":4,  "compas":"2/4"}
+{"comments":"This is a comment","data":["101010","000000","000000","000000","000000","000000","111100","100000","101010","101110","000000"],"folder":"examples","id":3,"errors":0,"BPM":120,"subdivisions":6,  "compas":"3/8", "name":"Ejempo ternarios"}

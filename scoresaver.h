@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QVector>
 #include <QVariantList>
 

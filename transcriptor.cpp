@@ -113,6 +113,10 @@ void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QStri
     ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,compas,errors,this->bpm,this->subdivisions);
 }
 
+void Transcriptor::StartMetronome(){
+    //TODO
+}
+
 
 
 ///Interface to start and stop recording from qml

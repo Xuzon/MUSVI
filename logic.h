@@ -42,8 +42,8 @@ public:
 signals:
 
     /* Signal a QML del buffer */
-    void sendPulse(QString pulse,int error);
-    void getScoreList(QVariantList jsons);
+    void sendPulse(QString pulse,int hasError);
+    void getScoreList(QVariantList list);
 
 public slots:
     /* Slot para recoger datos del QML */

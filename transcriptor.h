@@ -42,6 +42,7 @@ public:
     void ChangeTempoCompas(int bpm, int subdivisions);
     void Calibrate(int time);
     void SaveScore(QString fileName,int errors,QString folder,QString comments, QString compas);
+    void StartMetronome();
 
     explicit Transcriptor(Musvi_Logic* logic);
     explicit Transcriptor();
