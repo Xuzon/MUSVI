@@ -26,13 +26,7 @@ void Transcriptor::startRecording(){
         inputFormat = info.nearestFormat(inputFormat);
         qWarning() << "RECORDER::: Default format not supported, trying to use the nearest:: " + inputFormat.sampleRate();
     }
-
-    //speakers = new QAudioOutput();
-    if(this->metronomeThread != nullptr){
-        //delete this->metronomeThread;
-    }
-    this->metronomeThread = new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers);
-    this->metronomeThread->start();
+    this->metronomeThread->processBeat = true;
     //open buffer
     this->processor->open(QIODevice::ReadWrite);
     //create audio input
@@ -41,7 +35,7 @@ void Transcriptor::startRecording(){
     this->processor->SetInput(this->input,this->metronomeThread->BeatAddress());
     //start recording audio
     this->input->start(this->processor);
-    qDebug() << "record error" << this->input->error() << " state::" << this->input->state();
+    //qDebug() << "record error" << this->input->error() << " state::" << this->input->state();
 }
 
 ///stop recording
@@ -114,7 +108,11 @@ void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QStri
 }
 
 void Transcriptor::StartMetronome(){
-    //TODO
+    if(this->metronomeThread != nullptr){
+        //delete this->metronomeThread;
+    }
+    this->metronomeThread = new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers);
+    this->metronomeThread->start();
 }
 
 

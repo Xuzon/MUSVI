@@ -72,7 +72,7 @@ void Musvi_Logic::calibrate(int time){
 
 void Musvi_Logic::metronome(){
     qDebug() << "QML->LOGIC :: METRONOME";
-
+    this->transcriptor->StartMetronome();
 }
 
 ///Load the practice into the checker

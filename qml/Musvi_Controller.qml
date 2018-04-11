@@ -25,8 +25,6 @@ Item{
             errores(hasError)
         }
         onGetScoreList: {
-            console.log("KJSfljakjfhkjadhfkjadHLFHKDHFDKJGfkldgsjlfgdsjgfdsjgfjldsl");
-            console.log("Logic - getScoreList")
             scoreList(list)
         }
     }

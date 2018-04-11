@@ -27,6 +27,7 @@ public:
     MetronomeThread(float bpm, bool* recording, QFile* beat, QAudioOutput* speakers);
 
     bool* BeatAddress();
+    bool processBeat;
 };
 
 #endif // METRONOMETHREAD_H

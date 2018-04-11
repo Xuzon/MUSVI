@@ -5,18 +5,21 @@ MetronomeThread::MetronomeThread(float bpm, bool* recording, QFile* beat, QAudio
     this->recording = recording;
     this->beat = beat;
     this->speakers = speakers;
+    this->processBeat = false;
 }
 
 void MetronomeThread::Loop(){
     float timeBetweenBeats = 60.0f / this->bpm;
     timeBetweenBeats *= 1000;
-    while(*(this->recording)){
+    while(*(this->recording) || !processBeat){
         this->beat->close();
         this->beat->open(QIODevice::ReadOnly);
         this->speakers->stop();
         this->speakers->start(this->beat);
         this->msleep((int)timeBetweenBeats);
-        this->beatFlag = true;
+        if(processBeat){
+            this->beatFlag = true;
+        }
     }
 }
 
