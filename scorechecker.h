@@ -17,6 +17,7 @@ public:
     //returns speed
     int LoadPractice(int id, int* sub = nullptr);
     bool HasError(QString pulse, int nCompas);
+    bool IsArtist();
 };
 
 #endif // SCORECHECKER_H

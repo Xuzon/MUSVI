@@ -39,3 +39,7 @@ bool ScoreChecker::HasError(QString pulse, int nCompas){
     QString toCompare = nCompas < this->data.count() ? this->data[nCompas] : "-1";
     return pulse != toCompare;
 }
+
+bool ScoreChecker::IsArtist(){
+    return this->artistMode;
+}

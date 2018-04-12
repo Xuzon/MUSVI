@@ -94,7 +94,11 @@ void Musvi_Logic::detectPulse(QString pulse){
     int hasError = this->checker.HasError(pulse,currentCompas) ? 1 : 0;
     this->errors += hasError;
     currentCompas++;
-    emit sendPulse(pulse,hasError);
+    if(this->checker.IsArtist()){
+        emit sendPulseArtist(pulse);
+    }else{
+        emit sendPulsePractice(pulse,hasError);
+    }
 }
 
 void Musvi_Logic::savePDF(QString name){

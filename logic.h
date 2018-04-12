@@ -42,7 +42,8 @@ public:
 signals:
 
     /* Signal a QML del buffer */
-    void sendPulse(QString pulse,int hasError);
+    void sendPulseArtist(QString pulse);
+    void sendPulsePractice(QString pulse,int hasError);
     void getScoreList(QVariantList list);
 
 public slots:
