@@ -824,8 +824,6 @@ Item {
     }
 
 
-
-
     function printFigure(figure){
         figuresModelDown.insert(0, {
            "path" : "qrc:/images/figures/" + figure + ".png"

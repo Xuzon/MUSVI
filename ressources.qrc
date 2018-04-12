@@ -44,6 +44,7 @@
         <file>images/artist/count2.png</file>
         <file>images/artist/count3.png</file>
         <file>images/artist/score.png</file>
+        <file>images/artist/scorePractice.png</file>
         <file>images/artist/settings.png</file>
         <file>images/practice/creations/backMenu.png</file>
         <file>images/practice/creations/bgItem.png</file>
@@ -117,6 +118,6 @@
         <file>images/figures/111110.png</file>
         <file>images/figures/111111.png</file>
         <file>images/figures/001010.png</file>
-        <file>images/partitura-practice.png</file>
+        <file>../../Desktop/EXPORTACIONES/Pantalla Partitura Practicar/PartituraPracticar.png</file>
     </qresource>
 </RCC>
