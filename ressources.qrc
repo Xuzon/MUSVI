@@ -9,6 +9,10 @@
         <file>qml/Musvi_Controller.qml</file>
         <file>qml/Practice_v2.qml</file>
         <file>qml/Menu.qml</file>
+        <file>qml/ScreenExamples.qml</file>
+        <file>qml/ScreenList.qml</file>
+        <file>qml/ScreenSelection.qml</file>
+        <file>qml/ScreenScorePractice.qml</file>
         <file>sounds/beat.wav</file>
         <file>sounds/beat.aiff</file>
         <file>sounds/beat.ogg</file>
@@ -118,5 +122,6 @@
         <file>images/figures/111111.png</file>
         <file>images/figures/001010.png</file>
         <file>images/partitura-practice.png</file>
+
     </qresource>
 </RCC>
