@@ -638,10 +638,11 @@ Item{
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
-                    buttonBackSaveApp.scale = 1.1
+                    buttonSaveApp.scale = 1.1
                 }
                 onReleased: {
-                    buttonBackSaveApp.scale = 1
+
+                    buttonSaveApp.scale = 1
                     var name = nameText.text
                     var comments = commentsText.text
                     var folder = (folderSelector.currentText === "Ejercicios") ? "exercises" : "creations"

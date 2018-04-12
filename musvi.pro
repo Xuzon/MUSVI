@@ -51,6 +51,7 @@ DISTFILES +=\
         qml/Practice.qml \
         qml/PopUp.qml \
         main.qml \
-        qml/Practice_v2.qml
+        qml/Practice_v2.qml \
+    qml/ScreenSelection.qml
 
 INSTALLS += target
