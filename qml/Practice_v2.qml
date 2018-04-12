@@ -1,28 +1,16 @@
 import QtQuick 2.0
+import QtGraphicalEffects 1.0
 
 Item {
     id: practice
 
-    property int number : 3
-    property int pulsesNumber: 2
-    property int pulseCount: 1
-    property int pulseCountArriba: 1
-    property int speedValue: 120
-    property string compasValue: "2/4"
     property var json0 : {}
     property var json1 : {}
     property var json2 : {}
     property var json3 : {}
 
     property string typeScreen: ""
-
-    property variant dataToShow: []
-    property string figuraActual: ""
-    property int m: 0
-    property int longitud: 0
-    property int posicionActual: 0
-    property int nuevoCont: 0
-    property int existeError: 0
+    onTypeScreenChanged: console.log("ha cambiado screen a : " + typeScreen)
 
     property variant scoreList : []
     //property var examples
@@ -32,7 +20,7 @@ Item {
     signal startRecording()
     signal stopRecording()
     signal sendInformationToPopup(var scoreData)
-    signal showPopUp(var type)
+    signal showPopUp(var typePopup)
     signal metronome()
     signal setPractice(var id)
     signal deleteById(var id)
@@ -41,11 +29,8 @@ Item {
 
     Connections{
         target: controller
-        onSendPulsePractice:{
-            screenScore.printFigure(figure)
-        }
-        onErrores:{
-            screenScore.existeError = hasError
+        onDetectPulsePractice:{
+            screenScore.printFigure(figure, error)
         }
         onScoreList: {
             console.log("onScoreList")
@@ -129,10 +114,9 @@ Item {
                 typeScreen = "screenSelection"
                 break
             case "start":
-                circle.visible = true
+                screenScore.start321()
                 menu.playState = "stop"
                 metronome()
-                tempTimer.start()
                 break
             case "stop":
                 menu.playState = "start"
@@ -157,9 +141,14 @@ Item {
         id: screenExamples
         visible: typeScreen === "screenExamples"
         onChangeScreen: typeScreen = typeScreenSelected
-        onSetPracticeId: setPractice(id)
-        onSendInformationToPopup: sendInformationToPopup(json)
-        onShowPopup: showPopUp(typePopup)
+        onSetPracticeId: {
+            console.log("set practice " + id)
+            setPractice(id)
+        }
+        onPopupInfo: {
+            sendInformationToPopup(json)
+            showPopUp("info")
+        }
     }
 
     ScreenList{
@@ -173,8 +162,33 @@ Item {
     ScreenScorePractice{
         id: screenScore
         visible: typeScreen === "screenScore"
-        onChangeScreen: typeScreen = typeScreenSelected
+        onSignalStartRecording: startRecording()
+    }
 
+
+    function loadData(json){
+        screenScore.scoreData = json
+        screenScore.dataArray = json.data
+        screenScore.speedValue = json.BPM
+        screenScore.compasValue = json.compas
+        switch(json.compas){
+            case "3/8":
+                screenScore.pulsesNumber = 1
+                break
+            case "6/8":
+                screenScore.pulsesNumber = 2
+                break
+            case "9/8":
+                screenScore.pulsesNumber = 3
+                break
+            case "12/8":
+                screenScore.pulsesNumber = 4
+                break
+            default:
+                screenScore.pulsesNumber = json.compas.split("/")[0]
+                break
+        }
+        screenScore.loadData()
     }
 
 }

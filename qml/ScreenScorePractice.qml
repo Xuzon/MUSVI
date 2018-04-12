@@ -3,8 +3,19 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: screenScore
-    signal changeScreen(var typeScreenSelected)
+    width: 1024
+    height: 768
+    property var scoreData
+    property var dataArray
+    property int newCount: 0
+    property int pulseCountUp: 1
+    property int pulseCount: 1
+    property int number : 3
+    property int pulsesNumber
+    property int speedValue
+    property string compasValue
 
+    signal signalStartRecording()
 
     Image{
         id: circle
@@ -39,7 +50,7 @@ Item {
                 ColorOverlay {
                     anchors.fill: parent
                     source: parent
-                    color: existeError? "red" : "transparent"
+                    color: error? "red" : "transparent"
                 }
             }
 
@@ -67,28 +78,26 @@ Item {
                 circle.visible = false
                 //Cuando ya llega al 0 reinicia valores y envia señal de empezar a grabar
                 number = 3
-                startRecording()
+                signalStartRecording()
             }
         }
     }
 
-    Image{
-        id:partituraBg
-        source: "qrc:/images/partitura-practice.png"
-        smooth: true
-        x: 20
-        y: 230
-    }
-
     Item{
         id: partituraUp
+        Image{
+            id:partituraBgUp
+            source: "qrc:/images/artist/scorePractice.png"
+            smooth: true
+            x: 0
+            y: 167
+        }
         Rectangle{
             width: 950
             height: 200
             x: 70
-            y: 260
+            y: 187
             color: "transparent"
-            border.color: "red"
             ListView{
                 id: listUp
                 clip: true
@@ -105,13 +114,19 @@ Item {
 
     Item{
         id: partituraDown
+        Image{
+            id:partituraBgDown
+            source: "qrc:/images/artist/scorePractice.png"
+            smooth: true
+            x: 0
+            y: 429
+        }
         Rectangle{
             width: 950
             height: 200
             x: 70
-            y: 480
+            y: 469
             color: "transparent"
-            border.color : "red"
             ListView{
                 id: listDown
                 anchors.fill: parent
@@ -131,10 +146,43 @@ Item {
         }
     }
 
+    Item{
+        id: settings
+        Image{
+            id: settingsBg
+            source: "qrc:/images/artist/settings.png"
+            x: 43
+            y: 680
+        }
 
-    function printFigure(figure){
+        Text{
+            id: speed
+            text: speedValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 165
+            y: 720
+        }
+
+        Text{
+            id: compas
+            text: compasValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 295
+            y: 720
+        }
+    }
+
+
+    function printFigure(figure, hasError){
         figuresModelDown.insert(0, {
-          "path" : "qrc:/images/figures/" + figure + ".png"
+          "path" : "qrc:/images/figures/" + figure + ".png",
+          "error" : hasError
         })
         if(pulseCount === pulsesNumber){
             pulseCount = 1;
@@ -144,8 +192,8 @@ Item {
         }else{
             pulseCount++;
         }
-        nuevoCont++
-        if (nuevoCont > 1){
+        newCount++
+        if (newCount > 1){
             figuresModelUp.remove(0);
             if(pulseCount === pulsesNumber){
                 figuresModelUp.remove(0)
@@ -154,31 +202,36 @@ Item {
 
     }
 
-
-    function printFigureArriba(dataEntero){
+    function loadData(){
+        console.log("LOAD DATA")
         figuresModelUp.clear()
         figuresModelDown.clear()
-        longitud = dataEntero.length -1
-        for (m = 0; m < longitud; m++){
-            figuraActual = dataEntero[m]
+        var dataLength = dataArray.length -1
+        for (var m = 0; m < dataLength; m++){
             figuresModelUp.append({
-              "path" : "qrc:/images/figures/" + figuraActual + ".png"
+              "path" : "qrc:/images/figures/" + dataArray[m] + ".png"
             })
-            if(pulseCountArriba === pulsesNumber){
-                pulseCountArriba = 1;
+            if(pulseCountUp === pulsesNumber){
+                pulseCountUp = 1;
                 figuresModelUp.append({
                    "path" : "qrc:/images/figures/bar.png"
                 })
             }else{
-                pulseCountArriba++;
+                pulseCountUp++;
             }
         }
     }
 
-
-
     function clear(){
         figuresModelDown.clear()
+        figuresModelUp.clear()
+        newCount = 0
+        pulseCountUp = 1
         pulseCount = 1
+    }
+
+    function start321(){
+        circle.visible = true
+        tempTimer.start()
     }
 }

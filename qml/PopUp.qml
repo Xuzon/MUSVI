@@ -11,7 +11,7 @@ Item{
     property string typePopup //config, info, save, save_PDF, save_App, calibrate, deleteScore
     property string title
     //Para info y para deleteScore
-    property var scoreData : {}
+    property var scoreData
 
     signal closePopup()
     signal configChanged(var speed, var compas)
@@ -19,7 +19,7 @@ Item{
     signal saveExample(var name, var comments, var folder)
 
     signal deleteScoreSignal(var id)
-    signal changeScreenScore()
+    signal changeScreenScore(var json)
 
     /*************************/
     /* POPUP - CONFIGURACION */
@@ -146,6 +146,7 @@ Item{
                     changeConfig.scale = 1.1
                 }
                 onReleased: {
+                    console.log("config changed")
                     changeConfig.scale = 1
                     configChanged(slider.value, compasSelector.currentText)
                     closePopup()
@@ -300,27 +301,10 @@ Item{
                  }
                  onReleased: {
                      selectInfo.scale = 1
-                     changeScreenScore()
-
+                     changeScreenScore(scoreData)
                  }
              }
          }
-      /* Image{
-            id: closeInfo
-            source: "qrc:/images/popupInfo/closeButton.png"
-            x: 410
-            y: 644
-            MouseArea{
-                anchors.fill: parent
-                onPressed: {
-                    closeInfo.scale = 1.1
-                }
-                onReleased: {
-                    closeInfo.scale = 1
-                    closePopup()
-                }
-            }
-        }  */
     }
 
     /****************************/

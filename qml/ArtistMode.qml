@@ -133,34 +133,39 @@ Item {
     }
 
 
-    Image{
+    Item{
         id: settings
-        source: "qrc:/images/artist/settings.png"
-        x: 43
-        y: 615
+        Image{
+            id: settingsBg
+            source: "qrc:/images/artist/settings.png"
+            x: 43
+            y: 615
+        }
+
+        Text{
+            id: speed
+            text: speedValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 165
+            y: 660
+        }
+
+        Text{
+            id: compas
+            text: compasValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 295
+            y: 660
+        }
     }
 
-    Text{
-        id: speed
-        text: speedValue
-        font.family: gothamBook.name
-        font.pixelSize: 22
-        color: "#666666"
-        //font.bold: true
-        x: 165
-        y: 660
-    }
 
-    Text{
-        id: compas
-        text: compasValue
-        font.family: gothamBook.name
-        font.pixelSize: 22
-        color: "#666666"
-        //font.bold: true
-        x: 295
-        y: 660
-    }
 
     function printFigure(figure){
         figuresModel.insert(0, {

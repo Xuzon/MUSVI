@@ -97,7 +97,6 @@ QJsonObject ScoreSaver::LoadScore(int id){
     QJsonObject toRet;
     for(QJsonObject json : scores){
         int jsonId = json["id"].toInt();
-
         if(jsonId == id){
             qDebug() << "Returning json of id:: " << json["id"];
             toRet = json;

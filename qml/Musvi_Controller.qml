@@ -14,15 +14,18 @@ Item{
 
     signal emitAllQmlFiles(var data)
     signal info(var data)
-    signal detectPulse(var figure)
+    signal detectPulseArtist(var figure)
+    signal detectPulsePractice(var figure, var error)
     signal scoreList(var list)
     signal errores(var hasError)
 
     Connections{
         target: Logic
-        onSendPulse:{
-            detectPulse(pulse)
-            errores(hasError)
+        onSendPulseArtist:{
+            detectPulseArtist(pulse)
+        }
+        onSendPulsePractice:{
+            detectPulsePractice(pulse, hasError)
         }
         onGetScoreList: {
             scoreList(list)
@@ -50,6 +53,7 @@ Item{
     }
 
     function configChanged(speed, compas){
+        console.log("config chnged")
         Logic.config(speed, compas)
     }
 
@@ -74,6 +78,7 @@ Item{
     }
 
     function setPractice(id){
+        console.log("Logic setPractice " + id)
         Logic.setPractice(id);
     }
 

@@ -3,15 +3,14 @@ import QtQuick 2.0
 Item {
     id: screenExamples
 
-    var json0
-    var json1
-    var json2
-    var json3
+    property var json0
+    property var json1
+    property var json2
+    property var json3
 
     signal changeScreen(var typeScreenSelected)
     signal setPracticeId(var id)
-    signal sendInformationToPopup(var json)
-    signal showPopup(var typePopup)
+    signal popupInfo(var json)
 
     Item{
         id: lvl0
@@ -56,8 +55,7 @@ Item {
                 onReleased: {
                     select0.scale = 1
                     setPracticeId(0)
-                    sendInformationToPopup(json0)
-                    showPopup("info")
+                    popupInfo(json0)
                 }
             }
             transitions: Transition {
@@ -111,8 +109,8 @@ Item {
                 onReleased: {
                     select1.scale = 1
                     setPracticeId(1)
-                    sendInformationToPopup(json1)
-                    showPopup("info")
+                    popupInfo(json1)
+
                 }
             }
             transitions: Transition {
@@ -167,8 +165,7 @@ Item {
                 onReleased: {
                     select2.scale = 1
                     setPracticeId(2)
-                    sendInformationToPopup(json2)
-                    showPopup("info")
+                    popupInfo(json2)
                 }
             }
             transitions: Transition {
@@ -220,8 +217,7 @@ Item {
                 onReleased: {
                     select3.scale = 1
                     setPracticeId(3)
-                    sendInformationToPopup(json3)
-                    showPopup("info")
+                    popupInfo(json3)
                 }
             }
             transitions: Transition {

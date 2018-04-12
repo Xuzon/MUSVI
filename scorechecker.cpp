@@ -16,6 +16,7 @@ int ScoreChecker::LoadPractice(int id, int* sub){
     QJsonObject json = ScoreSaver::LoadScore(id);
     QJsonArray jsonData = json["data"].toArray();
     if(jsonData.count() == 0){
+        qDebug() << "Count data is 0" << jsonData.empty();
         return -1;
     }
     for(int i = 0; i < jsonData.count(); i++){

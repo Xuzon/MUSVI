@@ -54,6 +54,7 @@ Item {
             }
             onClosePopup: popUp.visible = false
             onChangeScreenScore: {
+                practice.loadData(json)
                 practice.typeScreen = "screenScore"
                 popUp.typePopup = "calibrate"
                 popUp.visible = true
@@ -98,7 +99,7 @@ Item {
             }
             Connections{
                 target: controller
-                onDetectPulse:{
+                onDetectPulseArtist:{
                     artistMode.printFigure(figure)
                 }
             }
@@ -110,7 +111,7 @@ Item {
             id: practice
             visible: false
             onShowPopUp: {
-                popUp.typePopup = type
+                popUp.typePopup = typePopup
                 popUp.visible = true
             }
             onGoInit: {
@@ -137,7 +138,7 @@ Item {
             }
             onSetPractice: {
                 //Llamar a la funcion de controller que llame a setPractice(id) de la logica
-                console.log("OnSetPractice")
+                console.log("OnSetPractice " + id)
                 controller.setPractice(id)
             }
             onSendInformationToPopup: {
@@ -170,7 +171,6 @@ Item {
                         //beat.play()
                         info.visible = false
                         init.visible = false
-                        practice.clear()
                         artistMode.visible = false
                         controller.mode("practice")
                         practice.typeScreen = "screenSelection"

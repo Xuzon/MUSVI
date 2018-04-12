@@ -81,6 +81,7 @@ void Musvi_Logic::setPractice(int id){
     qDebug() << "setting practice::" << id;
     int sub;
     int speed = this->checker.LoadPractice(id,&sub);
+    qDebug() << "speed " << speed;
     this->config(speed,sub == 4 ? "2/4" : "3/6");
 }
 
