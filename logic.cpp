@@ -6,12 +6,11 @@
 Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
-    this->transcriptor = new Transcriptor(this);
+    this->transcriptor = std::unique_ptr<Transcriptor>(new Transcriptor(std::shared_ptr<Musvi_Logic>(this)));
     //this->checker.LoadPractice(1);
 }
 
 Musvi_Logic::~Musvi_Logic(){
-    delete this->transcriptor;
 }
 
 //#############################################################

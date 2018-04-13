@@ -30,11 +30,11 @@ void Transcriptor::startRecording(){
     //open buffer
     this->processor->open(QIODevice::ReadWrite);
     //create audio input
-    this->input = new QAudioInput(info,inputFormat);
+    this->input = std::shared_ptr<QAudioInput>(new QAudioInput(info,inputFormat));
     //set current input and beat address
     this->processor->SetInput(this->input,this->metronomeThread->BeatAddress());
     //start recording audio
-    this->input->start(this->processor);
+    this->input->start(this->processor.get());
     //qDebug() << "record error" << this->input->error() << " state::" << this->input->state();
 }
 
@@ -42,10 +42,8 @@ void Transcriptor::startRecording(){
 void Transcriptor::stopRecording(){
     if(input != nullptr){
         input->stop();
-        delete input;
-        if(this->metronomeThread != nullptr){
+        if(this->metronomeThread){
             this->metronomeThread->wait();
-            delete this->metronomeThread;
         }
     }
 }
@@ -65,10 +63,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     this->bpm = bpm;
     this->subdivisions = subdivisions;
     int threshold = this->calibrator != nullptr ? this->calibrator->threshold : 4000;
-    if(this->processor != nullptr){
-        delete this->processor;
-    }
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold);
+    this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold));
 }
 
 void Transcriptor::Calibrate(int time){
@@ -76,10 +71,7 @@ void Transcriptor::Calibrate(int time){
         return;
     }
     calibrating = true;
-    if(this->calibrator != nullptr){
-        delete this->calibrator;
-    }
-    this->calibrator = new Calibrator(this->input);
+    this->calibrator = std::unique_ptr<Calibrator>(new Calibrator());
     this->calibrator->open(QIODevice::ReadWrite);
     QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
 
@@ -97,9 +89,9 @@ void Transcriptor::Calibrate(int time){
         qWarning() << "RECORDER::: Default format not supported, trying to use the nearest:: " + inputFormat.sampleRate();
     }
     //create audio input
-    this->input = new QAudioInput(info,inputFormat);
+    this->input = std::shared_ptr<QAudioInput>(new QAudioInput(info,inputFormat));
     //start recording audio
-    this->input->start(this->calibrator);
+    this->input->start(this->calibrator.get());
     QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
 }
 
@@ -111,7 +103,7 @@ void Transcriptor::StartMetronome(){
     if(this->metronomeThread != nullptr){
         //delete this->metronomeThread;
     }
-    this->metronomeThread = new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers);
+    this->metronomeThread = std::unique_ptr<MetronomeThread>(new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers));
     this->metronomeThread->start();
 }
 
@@ -132,7 +124,7 @@ Transcriptor::Transcriptor(){
     qDebug() << "This should never be called";
 }
 
-Transcriptor::Transcriptor(Musvi_Logic* logic){
+Transcriptor::Transcriptor(std::shared_ptr<Musvi_Logic> logic){
     //HACK for testing
     ScoreSaver::LoadScores();
     //ScoreSaver::LoadScore(1);
@@ -149,9 +141,6 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
     this->beatFileName = ":/sounds/beat.aiff";
     this->beatFile.setFileName(beatFileName);
     //qDebug() << "beat file exists: " << this->beatFile.exists();
-    this->processor = nullptr;
-    this->calibrator = nullptr;
-    this->metronomeThread = nullptr;
 
 
     //Output
@@ -172,19 +161,12 @@ Transcriptor::Transcriptor(Musvi_Logic* logic){
         qWarning() << "Default format not supported, trying to use the nearest.";
         outputFormat = output.nearestFormat(outputFormat);
     }
-    speakers = new QAudioOutput(output,outputFormat);
+    speakers = std::shared_ptr<QAudioOutput>(new QAudioOutput(output,outputFormat));
 }
 
 ///Destructor
 Transcriptor::~Transcriptor(){
     qDebug() << "Deleting transcriptor";
-    delete this->processor;
-    delete this->input;
-    delete this->metronomeThread;
-    delete this->speakers;
-    if(this->calibrator != nullptr){
-        delete this->calibrator;
-    }
 }
 
 bool Transcriptor::IsRecording(){
@@ -199,5 +181,5 @@ void Transcriptor::StopCalibration(){
 
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
+    this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold));
 }
