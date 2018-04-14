@@ -30,7 +30,7 @@ class Transcriptor : public QObject{
 
     std::unique_ptr<MetronomeThread> metronomeThread;
     std::shared_ptr<Musvi_Logic> logic;
-    std::unique_ptr<BufferProcessor> processor;
+    BufferProcessor *processor;
     std::unique_ptr<Calibrator> calibrator;
     std::shared_ptr<QAudioInput> input;
     std::shared_ptr<QAudioOutput> speakers;

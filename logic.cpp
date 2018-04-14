@@ -46,6 +46,7 @@ void Musvi_Logic::config(int speed, QString compas){
     }
     //if subdivided by 4 is binary, if by 8 is ternary
     int subdivisions = compas.at(2) == "8" ? 6 : 4;
+
     this->transcriptor->ChangeTempoCompas(speed,subdivisions);
 }
 

@@ -34,7 +34,7 @@ void Transcriptor::startRecording(){
     //set current input and beat address
     this->processor->SetInput(this->input,this->metronomeThread->BeatAddress());
     //start recording audio
-    this->input->start(this->processor.get());
+    this->input->start(this->processor);
     //qDebug() << "record error" << this->input->error() << " state::" << this->input->state();
 }
 
@@ -63,7 +63,9 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     this->bpm = bpm;
     this->subdivisions = subdivisions;
     int threshold = this->calibrator != nullptr ? this->calibrator->threshold : 4000;
-    this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold));
+    //this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold));
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold);
+
 }
 
 void Transcriptor::Calibrate(int time){
@@ -181,5 +183,6 @@ void Transcriptor::StopCalibration(){
 
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
-    this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold));
+    //this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold));
+    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,this->calibrator->threshold);
 }
