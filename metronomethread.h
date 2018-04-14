@@ -6,13 +6,13 @@
 #include <QThread>
 #include <QFile>
 #include <QtMultimedia/QAudioOutput>
-
+#include <memory>
 
 class MetronomeThread : public QThread{
 
 protected:
     QFile* beat;
-    QAudioOutput* speakers;
+    std::shared_ptr<QAudioOutput> speakers;
     bool* recording;
     float bpm;
     bool beatFlag;
@@ -24,7 +24,7 @@ public slots:
     void process();
 
 public:
-    MetronomeThread(float bpm, bool* recording, QFile* beat, QAudioOutput* speakers);
+    MetronomeThread(float bpm, bool* recording, QFile* beat, std::shared_ptr<QAudioOutput> speakers);
 
     bool* BeatAddress();
     bool processBeat;

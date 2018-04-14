@@ -6,7 +6,7 @@
 class Calibrator: public QIODevice{
 
 public:
-    Calibrator(QAudioInput* input);
+    Calibrator();
     ~Calibrator();
 
     bool open(OpenMode mode);
@@ -14,9 +14,6 @@ public:
     qint64 readData ( char * data, qint64 maxSize );
     int threshold;
     int counter;
-
-protected:
-    QAudioInput* input;
 };
 
 

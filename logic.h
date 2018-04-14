@@ -36,7 +36,7 @@ public:
 
     /* Objects */
     QTimer *timer;
-    Transcriptor* transcriptor;
+    std::unique_ptr<Transcriptor> transcriptor;
     ScoreChecker checker;
 
 signals:

@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QFile>
+#include <memory>
 #include "metronomethread.h"
 #include <QtMultimedia/QAudioInput>
 #include <QtMultimedia/QAudioOutput>
@@ -23,15 +24,17 @@ class Transcriptor : public QObject{
     int subdivisions;
     int bpm;
     float window;
-    QString beatFileName;
-    MetronomeThread* metronomeThread;
 
-    Musvi_Logic* logic;
-    BufferProcessor* processor;
-    Calibrator* calibrator;
-    QAudioInput* input;
-    QAudioOutput* speakers;
+    QString beatFileName;
     QFile beatFile;
+
+    std::unique_ptr<MetronomeThread> metronomeThread;
+    std::shared_ptr<Musvi_Logic> logic;
+    std::unique_ptr<BufferProcessor> processor;
+    std::unique_ptr<Calibrator> calibrator;
+    std::shared_ptr<QAudioInput> input;
+    std::shared_ptr<QAudioOutput> speakers;
+
 
     void startRecording();
     void stopRecording();
@@ -44,7 +47,7 @@ public:
     void SaveScore(QString fileName,int errors,QString folder,QString comments, QString compas);
     void StartMetronome();
 
-    explicit Transcriptor(Musvi_Logic* logic);
+    explicit Transcriptor(std::shared_ptr<Musvi_Logic> logic);
     explicit Transcriptor();
     ~Transcriptor();
     bool IsRecording();
