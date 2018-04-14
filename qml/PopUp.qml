@@ -11,7 +11,8 @@ Item{
     property string typePopup //config, info, save, save_PDF, save_App, calibrate, deleteScore
     property string title
     //Para info y para deleteScore
-    property var scoreData
+    property var scoreData: {}
+    property int deleteId
 
     signal closePopup()
     signal configChanged(var speed, var compas)
@@ -146,7 +147,6 @@ Item{
                     changeConfig.scale = 1.1
                 }
                 onReleased: {
-                    console.log("config changed")
                     changeConfig.scale = 1
                     configChanged(slider.value, compasSelector.currentText)
                     closePopup()
@@ -184,7 +184,6 @@ Item{
             id: timerCalibrate
             interval: 5000
             onTriggered: {
-                console.log("finish calibrate")
                 closePopup()
             }
         }
@@ -201,8 +200,6 @@ Item{
     /* POPUP - INFORMACIÓN */
     /***********************/
     Item{
-        //Popup de información
-        //  Ver como poder generar un cuadro de texto 'html por ejemplo', que tenga la propiedad de deslizar hacia abajo
         id: info
         visible: typePopup === "info"
         Image{
@@ -300,6 +297,7 @@ Item{
                      selectInfo.scale = 1.1
                  }
                  onReleased: {
+                     console.log("ENVIAMOS DATOS DE LA PARTITURA")
                      selectInfo.scale = 1
                      changeScreenScore(scoreData)
                  }
@@ -692,7 +690,7 @@ Item{
         Image{
             id: deleteButton
             source: "qrc:/images/popupDelete/deleteButton.png"
-            x: 238
+            x: 573
             y: 278
             MouseArea{
                 anchors.fill: parent
@@ -701,7 +699,7 @@ Item{
                 }
                 onReleased: {
                     deleteButton.scale = 1
-                    deleteScoreSignal(scoreData.id)
+                    deleteScoreSignal(deleteId)
                     closePopup()
                 }
             }

@@ -30,7 +30,7 @@ void Transcriptor::startRecording(){
     //open buffer
     this->processor->open(QIODevice::ReadWrite);
     //create audio input
-    this->input = std::shared_ptr<QAudioInput>(new QAudioInput(info,inputFormat));
+    this->input = new QAudioInput(info,inputFormat);
     //set current input and beat address
     this->processor->SetInput(this->input,this->metronomeThread->BeatAddress());
     //start recording audio
@@ -73,7 +73,7 @@ void Transcriptor::Calibrate(int time){
         return;
     }
     calibrating = true;
-    this->calibrator = std::unique_ptr<Calibrator>(new Calibrator());
+    this->calibrator = new Calibrator();
     this->calibrator->open(QIODevice::ReadWrite);
     QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
 
@@ -91,9 +91,9 @@ void Transcriptor::Calibrate(int time){
         qWarning() << "RECORDER::: Default format not supported, trying to use the nearest:: " + inputFormat.sampleRate();
     }
     //create audio input
-    this->input = std::shared_ptr<QAudioInput>(new QAudioInput(info,inputFormat));
+    this->input = new QAudioInput(info,inputFormat);
     //start recording audio
-    this->input->start(this->calibrator.get());
+    this->input->start(this->calibrator);
     QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
 }
 
@@ -102,11 +102,13 @@ void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QStri
 }
 
 void Transcriptor::StartMetronome(){
+    qDebug() << "START METRONOME";
     if(this->metronomeThread != nullptr){
         //delete this->metronomeThread;
     }
-    this->metronomeThread = std::unique_ptr<MetronomeThread>(new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers));
+    this->metronomeThread = new MetronomeThread(this->bpm,&this->recording,&this->beatFile,this->speakers);
     this->metronomeThread->start();
+
 }
 
 
@@ -126,7 +128,7 @@ Transcriptor::Transcriptor(){
     qDebug() << "This should never be called";
 }
 
-Transcriptor::Transcriptor(std::shared_ptr<Musvi_Logic> logic){
+Transcriptor::Transcriptor(Musvi_Logic *logic){
     //HACK for testing
     ScoreSaver::LoadScores();
     //ScoreSaver::LoadScore(1);
@@ -140,7 +142,7 @@ Transcriptor::Transcriptor(std::shared_ptr<Musvi_Logic> logic){
     this->window = 100;
     this->recording = false;
     this->calibrating = false;
-    this->beatFileName = ":/sounds/beat.aiff";
+    this->beatFileName = ":/sounds/beat.wav";
     this->beatFile.setFileName(beatFileName);
     //qDebug() << "beat file exists: " << this->beatFile.exists();
 
@@ -163,7 +165,8 @@ Transcriptor::Transcriptor(std::shared_ptr<Musvi_Logic> logic){
         qWarning() << "Default format not supported, trying to use the nearest.";
         outputFormat = output.nearestFormat(outputFormat);
     }
-    speakers = std::shared_ptr<QAudioOutput>(new QAudioOutput(output,outputFormat));
+    //speakers = new QAudioOutput(output,outputFormat);
+    speakers = new QAudioOutput(outputFormat, this);
 }
 
 ///Destructor

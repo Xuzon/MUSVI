@@ -36,8 +36,9 @@ public:
 
     /* Objects */
     QTimer *timer;
-    std::unique_ptr<Transcriptor> transcriptor;
+    Transcriptor *transcriptor;
     ScoreChecker checker;
+    void changeConfig(int speed, QString compas);
 
 signals:
 
@@ -66,7 +67,6 @@ public slots:
     void saveExample(QString name, QString comments, QString folder);//folder será 'exercises' o 'creations'
     //delete a score with the given id from file system and current heap
     void deleteScore(int id);
-
  
 };
 

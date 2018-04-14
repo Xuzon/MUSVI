@@ -1,4 +1,6 @@
 import QtQuick 2.0
+import QtMultimedia 5.8
+
 Item {
     id: artistMode
 
@@ -7,6 +9,12 @@ Item {
     property int pulseCount: 1
     property int speedValue: 60
     property string compasValue: "4/4"
+    property bool finishScorePrint : false
+
+    onCompasValueChanged: clear()
+    onSpeedValueChanged: clear()
+
+
 
     signal goInit()
     signal startRecording()
@@ -14,7 +22,12 @@ Item {
     signal showPopUp(var type)
     signal metronome()
 
-    onPulsesNumberChanged: console.log("ha cambiado el pulso: " + pulsesNumber)
+
+    SoundEffect{
+        id: beat
+        volume: 1
+        source: "qrc:/sounds/beat.wav"
+    }
 
     Menu{
         id: menu
@@ -37,6 +50,7 @@ Item {
                     break
                 case "stop":
                     menu.playState = "start"
+                    finishScorePrint = true
                     stopRecording()
                     break
                 case "infoMusvi":
@@ -61,7 +75,6 @@ Item {
     Timer{
         id: tempTimer
         interval: (60/speedValue)*1000
-        onIntervalChanged: console.log(interval)
         onTriggered: {
             if(number>1){
                 number--;
@@ -115,7 +128,7 @@ Item {
                 model: figuresModel
                 delegate: figuresDelegate
                 orientation: ListView.Horizontal
-                interactive: false
+                interactive: true
                 layoutDirection: Qt.RightToLeft
                 clip: true
                 add: Transition {
@@ -168,6 +181,8 @@ Item {
 
 
     function printFigure(figure){
+        beat.stop()
+        beat.play()
         figuresModel.insert(0, {
            "path" : "qrc:/images/figures/" + figure + ".png"
         })

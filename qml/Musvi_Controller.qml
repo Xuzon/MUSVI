@@ -53,7 +53,7 @@ Item{
     }
 
     function configChanged(speed, compas){
-        console.log("config chnged")
+        console.log(" ------------------------- CONFIGURACION CAMBIADA -----------------------")
         Logic.config(speed, compas)
     }
 
@@ -74,6 +74,7 @@ Item{
     }
     
     function deleteScore(id){
+        console.log("Qml:: deleteScore " + id)
         Logic.deleteScore(id)
     }
 

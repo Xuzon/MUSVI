@@ -6,7 +6,7 @@
 Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
     timer = new QTimer(this);
-    this->transcriptor = std::unique_ptr<Transcriptor>(new Transcriptor(std::shared_ptr<Musvi_Logic>(this)));
+    this->transcriptor = new Transcriptor(this);
     //this->checker.LoadPractice(1);
 }
 
@@ -40,14 +40,7 @@ void Musvi_Logic::stopRecording(){
 ///Change the tempo and compas
 void Musvi_Logic::config(int speed, QString compas){
     qDebug() << "QML->LOGIC :: CHANGE CONFIG:: " << speed << " " << compas;
-    this->sCurrentCompas = compas;
-    if(this->transcriptor == nullptr){
-        return;
-    }
-    //if subdivided by 4 is binary, if by 8 is ternary
-    int subdivisions = compas.at(2) == "8" ? 6 : 4;
-
-    this->transcriptor->ChangeTempoCompas(speed,subdivisions);
+    this->changeConfig(speed, compas);
 }
 
 void Musvi_Logic::mode(QString type){
@@ -82,7 +75,7 @@ void Musvi_Logic::setPractice(int id){
     int sub;
     int speed = this->checker.LoadPractice(id,&sub);
     qDebug() << "speed " << speed;
-    this->config(speed,sub == 4 ? "2/4" : "3/6");
+    this->changeConfig(speed, sub == 4 ? "2/4" : "3/6");
 }
 
 /* SEÑALES PARA EL QML */
@@ -114,4 +107,14 @@ void Musvi_Logic::saveExample(QString name, QString comments, QString folder){
 }
 void Musvi_Logic::deleteScore(int id){
     qDebug() << "LOGIC->QML :: DELETE SCORE:: " << id;
+}
+
+void Musvi_Logic::changeConfig(int speed, QString compas){
+    this->sCurrentCompas = compas;
+    if(this->transcriptor == nullptr){
+        return;
+    }
+    //if subdivided by 4 is binary, if by 8 is ternary
+    int subdivisions = compas.at(2) == "8" ? 6 : 4;
+    this->transcriptor->ChangeTempoCompas(speed,subdivisions);
 }

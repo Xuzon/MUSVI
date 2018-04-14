@@ -269,7 +269,6 @@ Item {
     Timer{
         id: tempTimer
         interval: (60/speedValue)*1000
-        onIntervalChanged: console.log(interval)
         onTriggered: {
             if(number>1){
                 number--;

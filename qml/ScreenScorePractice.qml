@@ -69,7 +69,6 @@ Item {
     Timer{
         id: tempTimer
         interval: (60/speedValue)*1000
-        onIntervalChanged: console.log(interval)
         onTriggered: {
             if(number>1){
                 number--;
@@ -204,10 +203,14 @@ Item {
 
     function loadData(){
         console.log("LOAD DATA")
+        console.log("name: " + scoreData.name)
+        dataArray = scoreData.data
         figuresModelUp.clear()
         figuresModelDown.clear()
         var dataLength = dataArray.length -1
+        console.log("data "+dataLength)
         for (var m = 0; m < dataLength; m++){
+            console.log("M")
             figuresModelUp.append({
               "path" : "qrc:/images/figures/" + dataArray[m] + ".png"
             })

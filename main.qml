@@ -28,10 +28,6 @@ Item {
         Screens.Musvi_Controller{
             id:controller
         }
-        Audio{
-            id: beat
-            source: "qrc:/sounds/beat.aiff"
-        }
 
         Screens.PopUp{
             id: popUp
@@ -48,9 +44,9 @@ Item {
             onSaveExample: {
                 controller.saveExample(name, comments, folder)
             }
-
             onDeleteScoreSignal: {
                 controller.deleteScore(id)
+                practice.deleteScoreFromList(id)
             }
             onClosePopup: popUp.visible = false
             onChangeScreenScore: {
@@ -59,7 +55,6 @@ Item {
                 popUp.typePopup = "calibrate"
                 popUp.visible = true
                 controller.calibrate(5)
-                beat.play()
             }
 
         }
@@ -115,14 +110,12 @@ Item {
                 popUp.visible = true
             }
             onGoInit: {
-                //Llamar a la función que reinicie todo
                 practice.visible = false
                 info.visible = false
                 artistMode.visible = false
                 init.visible = true
             }
             onStartRecording: {
-                //Enviar la señal al controlador
                 controller.sendStartRecording()
             }
             onStopRecording: {
@@ -137,9 +130,13 @@ Item {
                 controller.metronome()
             }
             onSetPractice: {
-                //Llamar a la funcion de controller que llame a setPractice(id) de la logica
-                console.log("OnSetPractice " + id)
                 controller.setPractice(id)
+            }
+            onDeleteById: {
+                console.log("MAIN LIST deletebyid: " + id)
+                popUp.deleteId = id
+                popUp.typePopup = "deleteScore"
+                popUp.visible = true
             }
             onSendInformationToPopup: {
                 popUp.scoreData = scoreData
@@ -158,17 +155,15 @@ Item {
             onSelectMode: {
                 switch(type){
                     case "artist":
-                        beat.play()
                         practice.visible = false
                         info.visible = false
                         init.visible = false
                         artistMode.clear()
                         controller.mode("artist")
-                        controller.configChanged(artistMode.speedValue, artistMode.compasValue)
+                        controller.configChanged(60, "4/4")
                         artistMode.visible = true
                         break
                     case "practice":
-                        //beat.play()
                         info.visible = false
                         init.visible = false
                         artistMode.visible = false

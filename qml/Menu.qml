@@ -4,7 +4,6 @@ Item {
     property string type: "init"
     property string screenPractice: "screenSelection"
     property string playState: "start"
-    onScreenPracticeChanged: console.log("ha cambiado screen a : " + screenPractice)
     signal pressButton(var type)
 
     Image{

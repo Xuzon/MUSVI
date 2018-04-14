@@ -28,12 +28,12 @@ class Transcriptor : public QObject{
     QString beatFileName;
     QFile beatFile;
 
-    std::unique_ptr<MetronomeThread> metronomeThread;
-    std::shared_ptr<Musvi_Logic> logic;
+    MetronomeThread *metronomeThread;
+    Musvi_Logic *logic;
     BufferProcessor *processor;
-    std::unique_ptr<Calibrator> calibrator;
-    std::shared_ptr<QAudioInput> input;
-    std::shared_ptr<QAudioOutput> speakers;
+    Calibrator *calibrator;
+    QAudioInput *input;
+    QAudioOutput *speakers;
 
 
     void startRecording();
@@ -47,13 +47,14 @@ public:
     void SaveScore(QString fileName,int errors,QString folder,QString comments, QString compas);
     void StartMetronome();
 
-    explicit Transcriptor(std::shared_ptr<Musvi_Logic> logic);
+    explicit Transcriptor(Musvi_Logic *logic);
     explicit Transcriptor();
     ~Transcriptor();
     bool IsRecording();
 
 
 signals:
+    void launchBeep();
 
 public slots:
     void StopCalibration();

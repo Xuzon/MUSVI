@@ -20,13 +20,13 @@ class Musvi_Logic;
 class BufferProcessor : public QIODevice{
 
 public:
-    BufferProcessor(std::shared_ptr<Musvi_Logic> logic,int bytesPerFrame,float fs,float window,int subdivisions,float length,int threshold);
+    BufferProcessor(Musvi_Logic *logic,int bytesPerFrame,float fs,float window,int subdivisions,float length,int threshold);
     ~BufferProcessor();
 
     QVector<QString> currentScore;
 
     bool open(OpenMode mode);
-    void SetInput(std::shared_ptr<QAudioInput> input,bool* beatFlag);
+    void SetInput(QAudioInput *input,bool* beatFlag);
     qint64 writeData(const char *data, qint64 maxSize);
     qint64 readData ( char * data, qint64 maxSize );
 
@@ -35,11 +35,11 @@ protected:
     QVector<Impulse> lowFreqImpulses;
     QVector<Impulse> highFreqImpulses;
 
-    std::shared_ptr<QAudioInput> input;
-    std::unique_ptr<Classifier> classifier;
-    std::shared_ptr<Musvi_Logic> logic;
-    std::unique_ptr<LowPassFilter> lowPassFilter;
-    std::unique_ptr<HighPassFilter> highPassFilter;
+    QAudioInput *input;
+    Classifier *classifier;
+    Musvi_Logic *logic;
+    LowPassFilter *lowPassFilter;
+    HighPassFilter *highPassFilter;
 
     int bytesPerFrame;
     int counter;

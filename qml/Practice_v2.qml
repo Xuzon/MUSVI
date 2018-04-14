@@ -10,7 +10,6 @@ Item {
     property var json3 : {}
 
     property string typeScreen: ""
-    onTypeScreenChanged: console.log("ha cambiado screen a : " + typeScreen)
 
     property variant scoreList : []
     //property var examples
@@ -25,7 +24,12 @@ Item {
     signal setPractice(var id)
     signal deleteById(var id)
 
-
+    ListModel {
+        id: creationsModel
+    }
+    ListModel {
+        id: exercisesModel
+    }
 
     Connections{
         target: controller
@@ -33,55 +37,30 @@ Item {
             screenScore.printFigure(figure, error)
         }
         onScoreList: {
-            console.log("onScoreList")
             scoreList = list
-            //var listExamples = new Array (0)
             var listExercises = new Array (0)
             var listCreations = new Array (0)
             scoreList.forEach(function(item){
                 switch(item.folder){
                     case "examples":
-                        console.log("examples")
                         if(item.id === 0) screenExamples.json0 = item
                         if(item.id === 1) screenExamples.json1 = item
                         if(item.id === 2) screenExamples.json2 = item
                         if(item.id === 3) screenExamples.json3 = item
-                        //listExamples.push(item)
                         break
                     case "creations":
-                        console.log("creations")
                         listCreations.push(item)
-                        screenList.creationsModel.append({
-                           "id" : item.id,
-                           "name" : item.name,
-                           "BPM" : item.BPM,
-                           "errors" : item.errors,
-                           "comments" : item.comments,
-                           "compas" : item.compas,
-                           "data" : item.data
-                        })
                         break
                     case "exercises":
-                        console.log("exercises")
                         listExercises.push(item)
-                        screenList.exercisesModel.append({
-                           "id" : item.id,
-                           "name" : item.name,
-                           "BPM" : item.BPM,
-                           "errors" : item.errors,
-                           "comments" : item.comments,
-                           "compas" : item.compas,
-                           "data" : item.data
-                        })
                         break
                     default:
                         break
                 }
             });
-            //examples = listExamples
             screenList.exercises = listExercises
             screenList.creations = listCreations
-
+            screenList.loadData()
         }
     }
 
@@ -142,12 +121,10 @@ Item {
         visible: typeScreen === "screenExamples"
         onChangeScreen: typeScreen = typeScreenSelected
         onSetPracticeId: {
-            console.log("set practice " + id)
             setPractice(id)
         }
         onPopupInfo: {
             sendInformationToPopup(json)
-            showPopUp("info")
         }
     }
 
@@ -155,8 +132,17 @@ Item {
         id: screenList
         visible: typeScreen === "screenList"
         onChangeScreen: typeScreen = typeScreenSelected
-        onShowPopup: showPopUp(typePopup)
-        onDeleteById: deleteById(id)
+        //onShowPopup: showPopUp(typePopup)
+        onSignalDeleteById: {
+            deleteById(id)
+        }
+        onSetPracticeId: {
+            setPractice(id)
+        }
+        onPopupInfo: {
+            console.log("PRACTICE - SEND TO MAIN INFOPOPUP: " + json.name)
+            sendInformationToPopup(json)
+        }
     }
 
     ScreenScorePractice{
@@ -189,6 +175,9 @@ Item {
                 break
         }
         screenScore.loadData()
+    }
+    function deleteScoreFromList(id){
+        screenList.deleteItemList(id);
     }
 
 }
