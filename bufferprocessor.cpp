@@ -1,8 +1,7 @@
 #include "bufferprocessor.h"
 #include "logic.h"
 
-BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,float window,int subdivisions,float length, int threshold){
-    this->logic = logic;
+BufferProcessor::BufferProcessor(std::shared_ptr<Musvi_Logic> logic, int bytesPerFrame,float fs,float window,int subdivisions,float length, int threshold){
     this->bytesPerFrame = bytesPerFrame;
     this->fs = fs;
     this->window = window;
@@ -11,15 +10,14 @@ BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,
     this->waveThreshold = threshold + threshold * 30 / 100;
     this->lowFreq = 1000;
     this->highFreq = 5000;
-    this->classifier = new Classifier(subdivisions,length);
-    this->lowPassFilter = new LowPassFilter(filterOrder,lowFreq,fs);
-    this->highPassFilter = new HighPassFilter(filterOrder,highFreq,fs);
+    //pointers
+    this->logic = logic;
+    this->classifier = std::unique_ptr<Classifier>(new Classifier(subdivisions,length));
+    this->lowPassFilter = std::unique_ptr<LowPassFilter>(new LowPassFilter(filterOrder,lowFreq,fs));
+    this->highPassFilter = std::unique_ptr<HighPassFilter>(new HighPassFilter(filterOrder,highFreq,fs));
 }
 
 BufferProcessor::~BufferProcessor(){
-    delete this->classifier;
-    delete this->lowPassFilter;
-    delete this->highPassFilter;
 }
 
 ///Get the data from the microphpne
@@ -45,7 +43,7 @@ qint64 BufferProcessor::readData(char *data, qint64 maxSize){
 }
 
 ///Set the input and the beatflag
-void BufferProcessor::SetInput(QAudioInput *input, bool *beatFlag){
+void BufferProcessor::SetInput(std::shared_ptr<QAudioInput> input, bool *beatFlag){
     this->input = input;
     this->beatFlag = beatFlag;
     this->counter = 0;

@@ -1,7 +1,6 @@
 #include "calibrator.h"
 
-Calibrator::Calibrator(QAudioInput *input){
-    this->input = input;
+Calibrator::Calibrator(){
     this->threshold = 0;
 }
 

@@ -1,6 +1,6 @@
 #include "metronomethread.h"
 
-MetronomeThread::MetronomeThread(float bpm, bool* recording, QFile* beat, QAudioOutput* speakers){
+MetronomeThread::MetronomeThread(float bpm, bool* recording, QFile* beat, std::shared_ptr<QAudioOutput> speakers){
     this->bpm = bpm;
     this->recording = recording;
     this->beat = beat;
