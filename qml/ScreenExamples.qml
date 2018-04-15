@@ -21,25 +21,7 @@ Item {
             x: 75
             y: 147
         }
-        Text{
-            id: title0
-            text: "NIVEL 0"
-            font.family: gothamBook.name
-            font.pixelSize: 28
-            y: 187
-            x: 307
-            color: "#0a465b"
-        }
-        Text{
-            id: text0
-            text: "Breve info sobre\nel nivel 0"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            y: 256
-            x: 307
 
-        }
         Image{
 
             id: select0
@@ -73,28 +55,7 @@ Item {
             x: 535
             y: 147
         }
-        Text{
-            id: title1
-            text: "NIVEL 1"
-            font.family: gothamBook.name
-            font.pixelSize:28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 187
-            x: 772
-            color: "#0a465b"
-        }
-        Text{
-            id: text1
-            text: "Breve info sobre\nel nivel 1"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            //font.bold: true
-            //  anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 256
-            x: 738
 
-        }
         Image{
             id: select1
             source: "qrc:/images/practice/examples/SelectLvl.png"
@@ -129,28 +90,7 @@ Item {
             x: 75
             y:442
         }
-        Text{
-            id: title2
-            text: "NIVEL 2"
-            font.family: gothamBook.name
-            font.pixelSize: 28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 488
-            x: 307
-            color: "#0a465b"
-        }
-        Text{
-            id: text2
-            text: "Breve info sobre\nel nivel 2"
-            font.family: gothamLight.name
-            font.pixelSize:22
-            color: "#666666"
-            //font.bold: true
-            //  anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 557
-            x: 277
 
-        }
         Image{
             id: select2
             source: "qrc:/images/practice/examples/SelectLvl.png"
@@ -184,26 +124,7 @@ Item {
             x: 535
             y: 442
         }
-        Text{
-            id: title3
-            text: "NIVEL 3"
-            font.family: gothamBook.name
-            font.pixelSize: 28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 485
-            x: 772
-            color: "#0a465b"
-        }
-        Text{
-            id: text3
-            text: "Breve info sobre\nel nivel 3"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            y: 557
-            x: 738
 
-        }
         Image{
             id: select3
             source: "qrc:/images/practice/examples/SelectLvl.png"

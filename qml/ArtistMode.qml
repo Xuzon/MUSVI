@@ -14,8 +14,6 @@ Item {
     onCompasValueChanged: clear()
     onSpeedValueChanged: clear()
 
-
-
     signal goInit()
     signal startRecording()
     signal stopRecording()
@@ -51,6 +49,7 @@ Item {
                 case "stop":
                     menu.playState = "start"
                     finishScorePrint = true
+                    parent.enabled = false
                     stopRecording()
                     break
                 case "infoMusvi":
@@ -111,10 +110,15 @@ Item {
         Image{
             id:partituraBg
             source: "qrc:/images/artist/score.png"
-            x: 0
+            x: -10
             y: 185
         }
-
+        Image{
+            id:compasImage
+            source: "qrc:/images/compas/" + compasValue.split("/").join("-") + ".png"
+            x: 29
+            anchors.verticalCenter: partituraBg.verticalCenter
+        }
         Rectangle{
             width: 950
             height: 200
@@ -199,6 +203,29 @@ Item {
     function clear(){
         figuresModel.clear()
         pulseCount = 1
+    }
+
+    function changeConfig(speedV, compasV){
+        speedValue = speedV
+        compasValue = compasV
+        switch(compasValue){
+            case "3/8":
+                pulsesNumber = 1
+                break
+            case "6/8":
+                pulsesNumber = 2
+                break
+            case "9/8":
+                pulsesNumber = 3
+                break
+            case "12/8":
+                pulsesNumber = 4
+                break
+            default:
+                pulsesNumber = compasValue.split("/")[0]
+                break
+        }
+        console.log("PULSES NUMBER: " + pulsesNumber)
     }
 
 }

@@ -64,7 +64,7 @@ void Transcriptor::ChangeTempoCompas(int bpm, int subdivisions){
     this->subdivisions = subdivisions;
     int threshold = this->calibrator != nullptr ? this->calibrator->threshold : 4000;
     //this->processor = std::unique_ptr<BufferProcessor>(new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold));
-    this->processor = new BufferProcessor(logic,2,this->fs,this->window,subdivisions,60.0f / bpm,threshold);
+    this->processor = new BufferProcessor(logic, 2, this->fs, this->window, subdivisions, 60.0f / bpm, threshold);
 
 }
 

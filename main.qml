@@ -14,8 +14,7 @@ Item {
 
     FontLoader {id: gothamBook; source: "qrc:/fonts/gotham/GothamBook.ttf"}
     FontLoader {id: gothamLight; source: "qrc:/fonts/gotham/GothamLight.ttf"}
-
-
+    FontLoader {id: gothamThin; source: "qrc:/fonts/gotham/GothamLight.otf"}
 
 
     //VENTANA PRINCIPAL - INICIO
@@ -33,10 +32,8 @@ Item {
             id: popUp
             visible: false
             onConfigChanged: {
-                artistMode.speedValue = speed
-                artistMode.compasValue = compas
+                artistMode.changeConfig(speed, compas)
                 controller.configChanged(speed, compas)
-                artistMode.pulsesNumber = compas.split("/")[0]
             }
             onSavePDFSignal: {
                 controller.savePDF(name)
@@ -48,7 +45,11 @@ Item {
                 controller.deleteScore(id)
                 practice.deleteScoreFromList(id)
             }
-            onClosePopup: popUp.visible = false
+            onClosePopup: {
+                artistMode.enabled = true
+                practice.enabled = true
+                popUp.visible = false
+            }
             onChangeScreenScore: {
                 practice.loadData(json)
                 practice.typeScreen = "screenScore"
@@ -66,6 +67,7 @@ Item {
                 if(visible){
                     popUp.typePopup = "calibrate"
                     popUp.visible = true
+                    artistMode.enabled = false
                     controller.calibrate(5)
                 }
             }
@@ -102,7 +104,7 @@ Item {
         }
 
 
-        Screens.Practice_v2{
+        Screens.Practice{
             id: practice
             visible: false
             onShowPopUp: {

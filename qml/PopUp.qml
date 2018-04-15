@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.7
 import Qt.labs.platform 1.0
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
@@ -222,87 +222,74 @@ Item{
                 }
             }
         }
-        Image {
-            id: nameInfo
-            source: "qrc:/images/popupInfo/name.png"
-            x: 300
-            y: 196
-        }
         Text{
             id: textNameInfo
             text: scoreData.name
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
+            font.family: gothamThin.name
+            font.pixelSize: 18
+            color: "#808080"
             //font.bold: true
             x: 344
-            y: 233
-        }
-        Image{
-            id: speedInfo
-            source: "qrc:/images/popupInfo/speed.png"
-            x: 300
-            y: 273
+            y: 239
         }
         Text{
             id: textSpeedInfo
             text: scoreData.BPM
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
+            font.family: gothamThin.name
+            font.pixelSize: 18
+            color: "#808080"
             //font.bold: true
             x: 344
-            y: 309
-        }
-        Image{
-            id: compasInfo
-            source: "qrc:/images/popupInfo/compas.png"
-            x: 300
-            y: 346
+            y: 314
         }
         Text{
             id: textCompasInfo
             text: scoreData.compas
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            //font.bold: true
+            font.family: gothamThin.name
+            font.pixelSize: 18
+            color: "#808080"
             x: 344
-            y: 382
+            y: 386
         }
-        Image{
-            id: commentsInfo
-            source: "qrc:/images/popupInfo/comments.png"
-            x: 300
-            y: 424
+        Rectangle{
+            id: spaceComments
+            color: "transparent"
+            x: 344
+            y: 471
+            width: 385
+            height: 161
         }
+
         Text{
             id: textComentsInfo
             text: scoreData.comments
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
+            font.family: gothamThin.name
+            font.pixelSize: 18
+            color: "#808080"
+            horizontalAlignment: Text.AlignJustify
+            anchors.fill: spaceComments
+            wrapMode: Text.WordWrap
             //font.bold: true
             x: 344
             y: 471
         }
         Image{
-             id: selectInfo
-             source: "qrc:/images/practice/ejer_vs_ejem/Select.png"
-             x: 400
-             y: 644
-             MouseArea{
-                 anchors.fill: parent
-                 onPressed: {
-                     selectInfo.scale = 1.1
-                 }
-                 onReleased: {
-                     console.log("ENVIAMOS DATOS DE LA PARTITURA")
-                     selectInfo.scale = 1
-                     changeScreenScore(scoreData)
-                 }
-             }
-         }
+            id: selectInfo
+            source: "qrc:/images/practice/ejer_vs_ejem/Select.png"
+            x: 400
+            y: 644
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    selectInfo.scale = 1.1
+                }
+                onReleased: {
+                    console.log("ENVIAMOS DATOS DE LA PARTITURA")
+                    selectInfo.scale = 1
+                    changeScreenScore(scoreData)
+                }
+            }
+        }
     }
 
     /****************************/
@@ -332,21 +319,12 @@ Item{
                 }
             }
         }
-        Text{
-            id: textSave
-            text: "¿Cómo quieres que se guarde? PDF o en la propia app"
-            font.family: gothamBook.name
-            font.pixelSize: 18
-            color: "#666666"
-            x: 283
-            y: 210
-        }
 
         Image{
             id: saveAPPButtonSave
             source: "qrc:/images/popupSave/save.png"
-            x: 400
-            y: 234
+            x: 552
+            y: 286
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
@@ -359,26 +337,10 @@ Item{
             }
         }
         Image{
-            id: exportPDFButtonSave
-            source: "qrc:/images/popupSave/export.png"
-            x: 400
-            y: 299
-            MouseArea{
-                anchors.fill: parent
-                onPressed: {
-                    exportPDFButtonSave.scale = 1.1
-                }
-                onReleased: {
-                    exportPDFButtonSave.scale = 1
-                    typePopup = "savePDF"
-                }
-            }
-        }
-        Image{
             id: cancelButtonSave
             source: "qrc:/images/popupSave/botonCancel.png"
-            x: 400
-            y: 365
+            x: 257
+            y: 286
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
@@ -393,95 +355,7 @@ Item{
 
     }
 
-    /**************************/
-    /* POPUP - GUARDAR EN PDF */
-    /**************************/
-    Item{
-        id: savePDF
-        visible: typePopup === "savePDF"
-        Image {
-            id: bgSavePDF
-            source: "qrc:/images/popupSavePDF/bgSavePDF.png"
-        }
-        Image{
-            id: closePopupSavePDF
-            source: "qrc:/images/popupSave/closePopup.png"
-            x: 780
-            y: 31
-            MouseArea{
-                anchors.fill: parent
-                onPressed: {
-                    closePopupSavePDF.scale = 1.1
-                }
-                onReleased: {
-                    closePopupSavePDF.scale = 1
-                    closePopup()
-                }
-            }
-        }
-        Text{
-            id: textSavePDF
-            text: "Elige un nombre para tu creación"
-            font.family: gothamBook.name
-            font.pixelSize: 18
-            color: "#666666"
-            x: 354
-            y: 210
-        }
-        Image{
-            id: namePDF
-            source: "qrc:/images/popupSavePDF/nameSpace.png"
-            x: 288
-            y: 269
-        }
 
-        TextArea {
-            id: fieldText
-            x: 390
-            y: 282
-            activeFocusOnPress: true
-            width: 308
-            height: 60
-            font.pixelSize: 18
-            font.family: gothamLight.name
-            color: "#666666"
-        }
-
-        Image {
-            id: buttonBackSavePDF
-            source: "qrc:/images/popupSavePDF/backButton.png"
-            x: 263
-            y: 396
-            MouseArea{
-                anchors.fill: parent
-                onPressed: {
-                    buttonBackSavePDF.scale = 1.1
-                }
-                onReleased: {
-                    buttonBackSavePDF.scale = 1
-                    typePopup = "save"
-                }
-            }
-        }
-
-        Image {
-            id: buttonSavePDF
-            source: "qrc:/images/popupSavePDF/saveButton.png"
-            x: 555
-            y: 396
-            MouseArea{
-                anchors.fill: parent
-                onPressed: {
-                    buttonSavePDF.scale = 1.1
-                }
-                onReleased: {
-                    buttonSavePDF.scale = 1
-                    savePDFSignal(fieldText.text)
-                    closePopup()
-                }
-            }
-        }
-    }
 
     /**************************/
     /* POPUP - GUARDAR EN APP */
@@ -511,21 +385,6 @@ Item{
                 }
             }
         }
-        Text{
-            id: textSaveApp
-            text: "Introduce todos los datos de tu creación"
-            font.family: gothamBook.name
-            font.pixelSize: 18
-            color: "#666666"
-            anchors.horizontalCenter: bgSaveAPP.horizontalCenter
-            y: 223
-        }
-        Image{
-            id: nameScoreApp
-            source: "qrc:/images/popupSaveApp/nameSpace.png"
-            x: 300
-            y: 261
-        }
         TextField {
             id: nameText
             x: 415
@@ -533,12 +392,11 @@ Item{
             width: 282
             height: 32
             font.pixelSize: 18
-            color: "#666666"
+            color: "#808080"
             background: Rectangle{
-                width: 282
-                height: 32
-                border.color: "transparent"
-                color: "transparent"
+                anchors.fill: parent
+                border.color: "#808080"
+                border.width: 1.2
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -548,25 +406,19 @@ Item{
             }
         }
 
-        Image{
-            id: commentsScoreApp
-            source: "qrc:/images/popupSaveApp/commentsSpace.png"
-            x: 258
-            y: 323
-        }
-        TextField {
+        TextArea {
             id: commentsText
             x: 415
             y: 336
             width: 282
-            height: 32
+            height: 141
             font.pixelSize: 18
-            color: "#666666"
+            color: "#808080"
+            wrapMode: TextArea.Wrap
             background: Rectangle{
-                width: 282
-                height: 131
-                border.color: "transparent"
-                color: "transparent"
+                anchors.fill: parent
+                border.color: "#808080"
+                border.width: 1.2
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
@@ -576,23 +428,19 @@ Item{
             }
         }
 
-        Image{
-            id: folderSelectorTitle
-            source: "qrc:/images/popupSaveApp/ubicationTitle.png"
-            x: 284
-            y: 505
-        }
+
         ComboBox {
             id: folderSelector
             model: [ "Ejercicios", "Tus creaciones"]
-            x: 399
-            y: 493
-            background: Rectangle {
-                implicitWidth: 308
-                implicitHeight: 40
-                border.color: "#0a465b"
-                border.width: 1
-                radius: 5
+            x: 415
+            y: 510
+            font.pixelSize: 18
+            height: 32
+            width: 282
+            background: Rectangle{
+                anchors.fill: parent
+                border.color: "#808080"
+                border.width: 1.2
             }
         }
 
@@ -600,7 +448,7 @@ Item{
             id: buttonBackSaveApp
             source: "qrc:/images/popupSaveApp/backButton.png"
             x: 239
-            y: 595
+            y: 650
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
@@ -616,7 +464,7 @@ Item{
             id: buttonSaveApp
             source: "qrc:/images/popupSaveApp/saveButton.png"
             x: 567
-            y: 595
+            y: 650
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
@@ -700,6 +548,97 @@ Item{
                 onReleased: {
                     deleteButton.scale = 1
                     deleteScoreSignal(deleteId)
+                    closePopup()
+                }
+            }
+        }
+    }
+
+
+    /**************************/
+    /******** DEPRECATED ******/
+    /**************************/
+    Item{
+        id: savePDF
+        visible: typePopup === "savePDF"
+        Image {
+            id: bgSavePDF
+            source: "qrc:/images/popupSavePDF/bgSavePDF.png"
+        }
+        Image{
+            id: closePopupSavePDF
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSavePDF.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Text{
+            id: textSavePDF
+            text: "Elige un nombre para tu creación"
+            font.family: gothamBook.name
+            font.pixelSize: 18
+            color: "#666666"
+            x: 354
+            y: 210
+        }
+        Image{
+            id: namePDF
+            source: "qrc:/images/popupSavePDF/nameSpace.png"
+            x: 288
+            y: 269
+        }
+
+        TextArea {
+            id: fieldText
+            x: 390
+            y: 282
+            activeFocusOnPress: true
+            width: 308
+            height: 60
+            font.pixelSize: 18
+            font.family: gothamLight.name
+            color: "#666666"
+        }
+
+        Image {
+            id: buttonBackSavePDF
+            source: "qrc:/images/popupSavePDF/backButton.png"
+            x: 263
+            y: 396
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonBackSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    buttonBackSavePDF.scale = 1
+                    typePopup = "save"
+                }
+            }
+        }
+
+        Image {
+            id: buttonSavePDF
+            source: "qrc:/images/popupSavePDF/saveButton.png"
+            x: 555
+            y: 396
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    buttonSavePDF.scale = 1.1
+                }
+                onReleased: {
+                    buttonSavePDF.scale = 1
+                    savePDFSignal(fieldText.text)
                     closePopup()
                 }
             }

@@ -2,12 +2,11 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>qml/ArtistMode.qml</file>
-        <file>qml/Practice.qml</file>
         <file>qml/PopUp.qml</file>
         <file>qml/Information.qml</file>
         <file>qml/Init.qml</file>
         <file>qml/Musvi_Controller.qml</file>
-        <file>qml/Practice_v2.qml</file>
+        <file>qml/Practice.qml</file>
         <file>qml/Menu.qml</file>
         <file>qml/ScreenExamples.qml</file>
         <file>qml/ScreenList.qml</file>
@@ -33,6 +32,25 @@
         <file>images/figures/1101.png</file>
         <file>images/figures/1110.png</file>
         <file>images/figures/1111.png</file>
+        <file>images/figures/000000.png</file>
+        <file>images/figures/100000.png</file>
+        <file>images/figures/100010.png</file>
+        <file>images/figures/101000.png</file>
+        <file>images/figures/101010.png</file>
+        <file>images/figures/101011.png</file>
+        <file>images/figures/101110.png</file>
+        <file>images/figures/101111.png</file>
+        <file>images/figures/111010.png</file>
+        <file>images/figures/111110.png</file>
+        <file>images/figures/111111.png</file>
+        <file>images/figures/001010.png</file>
+        <file>images/compas/2-4.png</file>
+        <file>images/compas/3-4.png</file>
+        <file>images/compas/3-8.png</file>
+        <file>images/compas/4-4.png</file>
+        <file>images/compas/6-8.png</file>
+        <file>images/compas/9-8.png</file>
+        <file>images/compas/12-8.png</file>
         <file>images/menu/info.png</file>
         <file>images/menu/init.png</file>
         <file>images/menu/backMenu.png</file>
@@ -63,6 +81,8 @@
         <file>images/practice/examples/BgLvl2.png</file>
         <file>images/practice/examples/BgLvl3.png</file>
         <file>images/practice/examples/SelectLvl.png</file>
+        <file>images/practice/barLeft.png</file>
+        <file>images/practice/barRight.png</file>
         <file>images/popupConfig/bgConfig.png</file>
         <file>images/popupConfig/botonCancel.png</file>
         <file>images/popupConfig/botonChange.png</file>
@@ -78,12 +98,7 @@
         <file>images/popupSave/save.png</file>
         <file>images/popupSaveApp/backButton.png</file>
         <file>images/popupSaveApp/bgSaveApp.png</file>
-        <file>images/popupSaveApp/commentsSpace.png</file>
-        <file>images/popupSaveApp/nameSpace.png</file>
         <file>images/popupSaveApp/saveButton.png</file>
-        <file>images/popupSaveApp/selectCreations.png</file>
-        <file>images/popupSaveApp/ubication.png</file>
-        <file>images/popupSaveApp/ubicationTitle.png</file>
         <file>images/popupSavePDF/backButton.png</file>
         <file>images/popupSavePDF/bgSavePDF.png</file>
         <file>images/popupSavePDF/nameSpace.png</file>
@@ -91,36 +106,23 @@
         <file>images/popupSavePDF/select.png</file>
         <file>images/popupSavePDF/ubicationPath.png</file>
         <file>images/popupDelete/bgPopupDelete.png</file>
+        <file>images/popupDelete/bgPopupDeleteError.png</file>
+        <file>images/popupDelete/bgPopupDeleteOk.png</file>
         <file>images/popupDelete/cancelButton.png</file>
         <file>images/popupDelete/closeButton.png</file>
         <file>images/popupDelete/deleteButton.png</file>
         <file>images/popupInfo/bgPopupInfo.png</file>
         <file>images/popupInfo/closeButton.png</file>
         <file>images/popupInfo/closePopup.png</file>
-        <file>images/popupInfo/comments.png</file>
-        <file>images/popupInfo/compas.png</file>
-        <file>images/popupInfo/name.png</file>
-        <file>images/popupInfo/speed.png</file>
         <file>images/calibrate/calibrate.gif</file>
         <file>images/calibrate/bgCalibrate.png</file>
         <file>images/calibrate/textCalibrate.png</file>
         <file>fonts/gotham/GothamBook.ttf</file>
         <file>fonts/gotham/GothamLight.ttf</file>
+        <file>fonts/gotham/Gotham-Light.otf</file>
         <file>json/example0.json</file>
         <file>json/example1.json</file>
         <file>json/example2.json</file>
         <file>json/example3.json</file>
-        <file>images/figures/000000.png</file>
-        <file>images/figures/100000.png</file>
-        <file>images/figures/100010.png</file>
-        <file>images/figures/101000.png</file>
-        <file>images/figures/101010.png</file>
-        <file>images/figures/101011.png</file>
-        <file>images/figures/101110.png</file>
-        <file>images/figures/101111.png</file>
-        <file>images/figures/111010.png</file>
-        <file>images/figures/111110.png</file>
-        <file>images/figures/111111.png</file>
-        <file>images/figures/001010.png</file>
     </qresource>
 </RCC>
