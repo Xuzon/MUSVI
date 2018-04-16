@@ -46,6 +46,8 @@ signals:
     void sendPulseArtist(QString pulse);
     void sendPulsePractice(QString pulse,int hasError);
     void getScoreList(QVariantList list);
+    void deleteResponse(bool error);
+    void saveResponse(bool error);
 
 public slots:
     /* Slot para recoger datos del QML */

@@ -4,7 +4,9 @@ QVector<QJsonObject> ScoreSaver::scores;
 
 
 ///Save a score
-void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder,QString compas, int lastErrors,int speed, int subdivisions){
+bool ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder,QString compas, int lastErrors,int speed, int subdivisions){
+
+    bool toRet = true;
     QJsonObject json;
 
     //*****SEARCH IN TO THE PATH SYSTEM*************
@@ -14,7 +16,7 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
     if (!QDir(dir).exists()) {
         if (!QDir().mkdir(dir)) {
             qDebug() << "Fatal error: Insufficient premissions to create directory -> " << dir;
-            return;
+            return true;
         }
     }
 
@@ -45,10 +47,12 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
         QString strJson(doc.toJson(QJsonDocument::Compact));
         file->write(strJson.toUtf8());
         file->close();
+        toRet = false;
     }else{
         qDebug() << "Error creating file:: " << filePath << "  error:: "<< file->errorString();
     }
     delete file;
+    return toRet;
 }
 
 
@@ -124,7 +128,8 @@ int ScoreSaver::GetNewId(){
 }
 
 ///Delete score with the given id
-void ScoreSaver::DeleteFromFileSystem(int id){
+bool ScoreSaver::DeleteFromFileSystem(int id){
+    bool toRet = true;
     QJsonObject json;
     QString fileName;
     //*****SEARCH IN TO THE PATH SYSTEM*************
@@ -148,14 +153,16 @@ void ScoreSaver::DeleteFromFileSystem(int id){
         int jsonId = json["id"].toInt();
         if(jsonId == id){
             file->remove();
+            toRet = false;
         }
         delete file;
     }
+    return toRet;
 }
 
-void ScoreSaver::DeleteScore(int id){
+bool ScoreSaver::DeleteScore(int id){
     DeleteFromCurrentScores(id);
-    DeleteFromFileSystem(id);
+    return DeleteFromFileSystem(id);
 }
 
 //QList<QJsonObject> ScoreSaver::GetScores(){

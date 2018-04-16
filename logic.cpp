@@ -104,11 +104,12 @@ void Musvi_Logic::savePDF(QString name){
 
 void Musvi_Logic::saveExample(QString name, QString comments, QString folder){
     qDebug() << "LOGIC->QML :: SAVE EXAMPLE:: " << name << "\n " << comments << "\n " << folder;
-    this->transcriptor->SaveScore(name,errors,folder,comments,sCurrentCompas);
+    emit saveResponse(this->transcriptor->SaveScore(name,errors,folder,comments,sCurrentCompas));
 
 }
 void Musvi_Logic::deleteScore(int id){
     qDebug() << "LOGIC->QML :: DELETE SCORE:: " << id;
+    emit deleteResponse(ScoreSaver::DeleteScore(id));
 }
 
 void Musvi_Logic::changeConfig(int speed, QString compas){
