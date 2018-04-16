@@ -20,6 +20,8 @@ void ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
 
     //****CREATE JSON OBJECT*****
     QJsonArray array;
+    QString initialZeroes = subdivisions == 4 ? "0000" : "000000";
+    array.append(initialZeroes);
     for(QString string : (*data)){
         array.append(string);
     }
@@ -114,7 +116,7 @@ int ScoreSaver::GetNewId(){
             continue;
         }
         int temp = score["id"].toInt();
-        if(temp > toRet){
+        if(temp >= toRet){
             toRet = temp + 1;
         }
     }
