@@ -179,9 +179,9 @@ Item {
                 model: figuresModelDown
                 delegate: figuresDelegateDown
                 orientation: ListView.Horizontal
-                interactive: false
+                interactive: true
                 clip: true
-                layoutDirection: Qt.RightToLeft
+                //layoutDirection: Qt.RightToLeft
                 add: Transition {
                     NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
                     NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 400 }

@@ -493,16 +493,6 @@ Item{
             id: bgDelete
             source: "qrc:/images/popupDelete/bgPopupDelete.png"
         }
-        Text{
-            id: textDelete
-            text: "¿Estás seguro de que quieres eliminar esta partitura?"
-            font.family: gothamBook.name
-            font.pixelSize: 18
-            color: "#666666"
-            //font.bold: true
-            anchors.horizontalCenter: bgDelete.horizontalCenter
-            y: 210
-        }
         Image{
             id: closePopupDelete
             source: "qrc:/images/popupDelete/closeButton.png"
