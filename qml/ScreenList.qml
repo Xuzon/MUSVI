@@ -25,11 +25,24 @@ Item {
         y: 120
     }
 
+
+
     Component {
         id: itemList
         Item {
             width: 1024
             height: 63
+            Timer{
+                id: simulatePress
+                interval: 150
+                onTriggered: {
+                    bgItem.scale = 1
+                    setPracticeId(id)
+                    console.log(folder)
+                    console.log(id)
+                    takeInfo(folder, id)
+                }
+            }
             Image{
                 id: bgItem
                 source: "qrc:/images/practice/creations/bgItem.png"
@@ -37,15 +50,9 @@ Item {
                 y: 0
                 MouseArea{
                     anchors.fill: bgItem
-                    onPressed: {
+                    onClicked: {
                         bgItem.scale = 1.1
-                    }
-                    onReleased: {
-                        bgItem.scale = 1
-                        setPracticeId(id)
-                        console.log(folder)
-                        console.log(id)
-                        takeInfo(folder, id)
+                        simulatePress.start()
                     }
                 }
                 transitions: Transition {

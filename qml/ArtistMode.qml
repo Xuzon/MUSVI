@@ -66,7 +66,7 @@ Item {
         visible: false
         source: "qrc:/images/artist/count" + number + ".png"
         x: 392
-        y: 271
+        y: 251
         z: 10
     }
 
@@ -120,9 +120,9 @@ Item {
             anchors.verticalCenter: partituraBg.verticalCenter
         }
         Rectangle{
-            width: 950
+            width: 935
             height: 200
-            x: 70
+            x: 80
             y: 285
             color: "transparent"
             ListView{

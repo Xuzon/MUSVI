@@ -19,6 +19,7 @@ Item {
 
 
     signal signalStartRecording()
+    signal signalStopRecording()
 
     SoundEffect{
         id: beat
@@ -31,7 +32,7 @@ Item {
         visible: false
         source: "qrc:/images/artist/count" + number + ".png"
         x: 392
-        y: 271
+        y: 251
         z: 10
     }
 
@@ -72,7 +73,7 @@ Item {
         Item{
             width: imageFigure.width + clausureL.width + clausureR.width
             height: imageFigure.height
-            y: 8
+            y: 18
             Image{
                 id: clausureL
                 source: "qrc:/images/practice/barLeft.png"
@@ -116,7 +117,7 @@ Item {
             source: "qrc:/images/artist/scorePractice.png"
             smooth: true
             x: -15
-            y: 167
+            y: 137
         }
         Image{
             id:compasImageUp
@@ -128,7 +129,7 @@ Item {
             width: 935
             height: 200
             x: 80
-            y: 187
+            y: 147
             color: "transparent"
             ListView{
                 id: listUp
@@ -158,7 +159,7 @@ Item {
             source: "qrc:/images/artist/scorePractice.png"
             smooth: true
             x: -15
-            y: 429
+            y: 389
         }
         Image{
             id:compasImageDown
@@ -170,7 +171,7 @@ Item {
             width: 935
             height: 200
             x: 80
-            y: 469
+            y: 419
             color: "transparent"
             ListView{
                 id: listDown
@@ -181,7 +182,7 @@ Item {
                 orientation: ListView.Horizontal
                 interactive: true
                 clip: true
-                //layoutDirection: Qt.RightToLeft
+                layoutDirection: Qt.RightToLeft
                 add: Transition {
                     NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
                     NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 400 }
@@ -200,7 +201,7 @@ Item {
             id: settingsBg
             source: "qrc:/images/artist/settings.png"
             x: 43
-            y: 680
+            y: 640
         }
 
         Text{
@@ -211,7 +212,7 @@ Item {
             color: "#666666"
             //font.bold: true
             x: 165
-            y: 723
+            y: 683
         }
 
         Text{
@@ -222,7 +223,7 @@ Item {
             color: "#666666"
             //font.bold: true
             x: 295
-            y: 723
+            y: 683
         }
     }
 
@@ -249,8 +250,15 @@ Item {
             if(figuresModelUp.get(0).bar){
                 figuresModelUp.remove(0);
             }
+            changeSelected()
+        }else{
+            if(figuresModelUp.count === 0){
+                console.log("figures 0")
+                signalStopRecording()
+            }else{
+                changeSelected()
+            }
         }
-        changeSelected()
     }
 
     function loadData(){

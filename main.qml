@@ -31,6 +31,16 @@ Item {
         Screens.PopUp{
             id: popUp
             visible: false
+            onVisibleChanged: {
+                if(visible){
+                    artistMode.enabled = false
+                    practice.enabled = false
+                }else{
+                    artistMode.enabled = true
+                    practice.enabled = true
+                }
+            }
+
             onConfigChanged: {
                 artistMode.changeConfig(speed, compas)
                 controller.configChanged(speed, compas)
@@ -46,8 +56,6 @@ Item {
                 practice.deleteScoreFromList(id)
             }
             onClosePopup: {
-                artistMode.enabled = true
-                practice.enabled = true
                 popUp.visible = false
             }
             onChangeScreenScore: {
@@ -55,6 +63,7 @@ Item {
                 practice.typeScreen = "screenScore"
                 popUp.typePopup = "calibrate"
                 popUp.visible = true
+                practice.enabled = false
                 controller.calibrate(5)
             }
 

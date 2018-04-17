@@ -99,6 +99,7 @@ Item {
                 metronome()
                 break
             case "stop":
+                console.log("menu stop")
                 menu.playState = "start"
                 stopRecording()
                 break
@@ -150,6 +151,11 @@ Item {
         id: screenScore
         visible: typeScreen === "screenScore"
         onSignalStartRecording: startRecording()
+        onSignalStopRecording: {
+            console.log("STOP!!!")
+            menu.playState = "start"
+            stopRecording()
+        }
     }
 
 
