@@ -47,6 +47,7 @@ void Musvi_Logic::mode(QString type){
     //qDebug() << "QML->LOGIC :: MODE TYPE:: " << type;
     //SI ES PRACTICE HAY QUE ENVIAR LA SEÑAL CON LA LISTA DE PARTITURAS
     if(type == "practice"){
+        ScoreSaver::LoadScores();
         emit getScoreList(ScoreSaver::GetScores());
     }
     if(type == "artist"){
@@ -74,8 +75,9 @@ void Musvi_Logic::setPractice(int id){
     qDebug() << "setting practice::" << id;
     int sub;
     int speed = this->checker.LoadPractice(id,&sub);
-    qDebug() << "speed " << speed;
-    this->changeConfig(speed, sub == 4 ? "2/4" : "3/6");
+    QString compas = sub == 4 ? "2/4" : "3/8";
+    qDebug() << "speed " << speed << " compas " << compas;
+    this->changeConfig(speed, compas);
 }
 
 /* SEÑALES PARA EL QML */
@@ -102,11 +104,12 @@ void Musvi_Logic::savePDF(QString name){
 
 void Musvi_Logic::saveExample(QString name, QString comments, QString folder){
     qDebug() << "LOGIC->QML :: SAVE EXAMPLE:: " << name << "\n " << comments << "\n " << folder;
-    this->transcriptor->SaveScore(name,errors,folder,comments,sCurrentCompas);
+    emit saveResponse(this->transcriptor->SaveScore(name,errors,folder,comments,sCurrentCompas));
 
 }
 void Musvi_Logic::deleteScore(int id){
     qDebug() << "LOGIC->QML :: DELETE SCORE:: " << id;
+    emit deleteResponse(ScoreSaver::DeleteScore(id));
 }
 
 void Musvi_Logic::changeConfig(int speed, QString compas){

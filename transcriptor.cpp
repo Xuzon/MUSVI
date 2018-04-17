@@ -97,8 +97,8 @@ void Transcriptor::Calibrate(int time){
     QTimer::singleShot(time *1000,this,SLOT(StopCalibration()));
 }
 
-void Transcriptor::SaveScore(QString fileName, int errors, QString folder, QString comments, QString compas){
-    ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,compas,errors,this->bpm,this->subdivisions);
+bool Transcriptor::SaveScore(QString fileName, int errors, QString folder, QString comments, QString compas){
+    return ScoreSaver::SaveScore(fileName,&this->processor->currentScore,comments,folder,compas,errors,this->bpm,this->subdivisions);
 }
 
 void Transcriptor::StartMetronome(){
@@ -129,10 +129,6 @@ Transcriptor::Transcriptor(){
 }
 
 Transcriptor::Transcriptor(Musvi_Logic *logic){
-    //HACK for testing
-    ScoreSaver::LoadScores();
-    //ScoreSaver::LoadScore(1);
-
     //set variables
     this->logic = logic;
     this->fs = 44100;
@@ -145,6 +141,10 @@ Transcriptor::Transcriptor(Musvi_Logic *logic){
     this->beatFileName = ":/sounds/beat.wav";
     this->beatFile.setFileName(beatFileName);
     //qDebug() << "beat file exists: " << this->beatFile.exists();
+    this->calibrator = nullptr;
+    this->processor = nullptr;
+    this->input = nullptr;
+    this->metronomeThread = nullptr;
 
 
     //Output
