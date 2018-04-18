@@ -96,6 +96,9 @@
         <file>images/popupSave/closePopup.png</file>
         <file>images/popupSave/export.png</file>
         <file>images/popupSave/save.png</file>
+        <file>images/popupSave/bgSaveOk.png</file>
+        <file>images/popupSave/bgSaveError.png</file>
+        <file>images/popupSave/cerrarButton.png</file>
         <file>images/popupSaveApp/backButton.png</file>
         <file>images/popupSaveApp/bgSaveApp.png</file>
         <file>images/popupSaveApp/saveButton.png</file>
@@ -111,6 +114,7 @@
         <file>images/popupDelete/cancelButton.png</file>
         <file>images/popupDelete/closeButton.png</file>
         <file>images/popupDelete/deleteButton.png</file>
+        <file>images/popupDelete/cerrarButton.png</file>
         <file>images/popupInfo/bgPopupInfo.png</file>
         <file>images/popupInfo/closeButton.png</file>
         <file>images/popupInfo/closePopup.png</file>

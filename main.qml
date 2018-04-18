@@ -26,6 +26,26 @@ Item {
 
         Screens.Musvi_Controller{
             id:controller
+            onDeleteResponseLogic: {
+                console.log("onDeleteResponseLogic")
+                if(error){
+                    popUp.typePopup = "deleteScoreError"
+                    popUp.visible = true
+                }else{
+                    popUp.typePopup = "deleteScoreOk"
+                    popUp.visible = true
+                }
+            }
+            onSaveResponseLogic: {
+                console.log("onSaveResponseLogic")
+                if(error){
+                    popUp.typePopup = "saveError"
+                    popUp.visible = true
+                }else{
+                    popUp.typePopup = "saveOk"
+                    popUp.visible = true
+                }
+            }
         }
 
         Screens.PopUp{
@@ -66,7 +86,6 @@ Item {
                 practice.enabled = false
                 controller.calibrate(5)
             }
-
         }
 
         Screens.ArtistMode{

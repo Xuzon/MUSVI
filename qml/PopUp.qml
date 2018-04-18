@@ -356,6 +356,101 @@ Item{
     }
 
 
+    /*****************************/
+    /* POPUP - GUARDAR EN APP OK */
+    /*****************************/
+    Item{
+        //Popup de guardar partitura
+        id: saveOk
+        visible: typePopup === "saveOk"
+        Image {
+            id: bgSaveOk
+            source: "qrc:/images/popupSave/bgSaveOk.png"
+        }
+        Image{
+            id: closePopupSaveOk
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSaveOk.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSaveOk.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
+        Image{
+            id: cerrarButton
+            source: "qrc:/images/popupSave/cerrarButton.png"
+            x: 417
+            y: 286
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cerrarButton.scale = 1.1
+                }
+                onReleased: {
+                    cerrarButton.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
+    }
+
+
+
+    /********************************/
+    /* POPUP - GUARDAR EN APP ERROR */
+    /********************************/
+    Item{
+        //Popup de guardar partitura
+        id: saveError
+        visible: typePopup === "saveError"
+        Image {
+            id: bgSaveError
+            source: "qrc:/images/popupSave/bgSaveOk.png"
+        }
+        Image{
+            id: closePopupSaveError
+            source: "qrc:/images/popupSave/closePopup.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupSaveError.scale = 1.1
+                }
+                onReleased: {
+                    closePopupSaveError.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
+        Image{
+            id: cerrarButtonError
+            source: "qrc:/images/popupSave/cerrarButton.png"
+            x: 417
+            y: 286
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cerrarButtonError.scale = 1.1
+                }
+                onReleased: {
+                    cerrarButtonError.scale = 1
+                    closePopup()
+                }
+            }
+        }
+
+    }
 
     /**************************/
     /* POPUP - GUARDAR EN APP */
@@ -483,6 +578,7 @@ Item{
         }
     }
 
+
     /********************/
     /* POPUP - ELIMINAR */
     /********************/
@@ -544,6 +640,95 @@ Item{
         }
     }
 
+
+    /***********************/
+    /* POPUP - ELIMINAR-OK */
+    /***********************/
+    Item{
+        id: deleteScoreOk
+        visible: typePopup === "deleteScoreOk"
+        Image{
+            id: bgDeleteOk
+            source: "qrc:/images/popupDelete/bgPopupDeleteOk.png"
+        }
+        Image{
+            id: closePopupDeleteOk
+            source: "qrc:/images/popupDelete/closeButton.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupDelete.scale = 1.1
+                }
+                onReleased: {
+                    closePopupDelete.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Image{
+            id: cancel253DeleteButtonOk
+            source: "qrc:/images/popupDelete/cerrarButton.png"
+            x: 409
+            y: 278
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cancelDeleteButtonOk.scale = 1.1
+                }
+                onReleased: {
+                    cancelDeleteButtonOk.scale = 1
+                    closePopup()
+                }
+            }
+        }
+    }
+
+
+    /**************************/
+    /* POPUP - ELIMINAR-ERROR */
+    /**************************/
+    Item{
+        id: deleteScoreError
+        visible: typePopup === "deleteScoreError"
+        Image{
+            id: bgDeleteError
+            source: "qrc:/images/popupDelete/bgPopupDeleteError.png"
+        }
+        Image{
+            id: closePopupDeleteError
+            source: "qrc:/images/popupDelete/closeButton.png"
+            x: 780
+            y: 31
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    closePopupDeleteError.scale = 1.1
+                }
+                onReleased: {
+                    closePopupDeleteError.scale = 1
+                    closePopup()
+                }
+            }
+        }
+        Image{
+            id: cancelDeleteButtonError
+            source: "qrc:/images/popupDelete/cerrarButton.png"
+            x: 409
+            y: 278
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    cancelDeleteButtonError.scale = 1.1
+                }
+                onReleased: {
+                    cancelDeleteButtonError.scale = 1
+                    closePopup()
+                }
+            }
+        }
+    }
 
     /**************************/
     /******** DEPRECATED ******/

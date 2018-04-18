@@ -789,10 +789,13 @@ qrc_ressources.cpp: ressources.qrc \
 		images/popupDelete/bgPopupDeleteError.png \
 		images/popupDelete/closeButton.png \
 		images/popupSave/save.png \
+		images/popupSave/cerrarButton.png \
 		images/popupSave/botonCancel.png \
 		images/popupSave/export.png \
 		images/popupSave/bgSave.png \
+		images/popupSave/bgSaveOk.png \
 		images/popupSave/closePopup.png \
+		images/popupSave/bgSaveError.png \
 		images/menu/stop.png \
 		images/menu/backMenu.png \
 		images/menu/botonInfo.png \

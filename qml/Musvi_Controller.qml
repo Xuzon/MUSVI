@@ -18,6 +18,8 @@ Item{
     signal detectPulsePractice(var figure, var error)
     signal scoreList(var list)
     signal errores(var hasError)
+    signal deleteResponseLogic(var error)
+    signal saveResponseLogic(var error)
 
     Connections{
         target: Logic
@@ -29,6 +31,12 @@ Item{
         }
         onGetScoreList: {
             scoreList(list)
+        }
+        onDeleteResponse: {
+            deleteResponseLogic(error)
+        }
+        onSaveResponse: {
+            saveResponseLogic(error)
         }
     }
 
