@@ -76,6 +76,7 @@ Item {
                 practice.deleteScoreFromList(id)
             }
             onClosePopup: {
+                console.log("close popup")
                 popUp.visible = false
             }
             onChangeScreenScore: {

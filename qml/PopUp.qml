@@ -9,9 +9,10 @@ Item{
     z: 10
 
     property string typePopup //config, info, save, save_PDF, save_App, calibrate, deleteScore
+    onTypePopupChanged: console.log("Ha cambiado typePopup: " + typePopup)
     property string title
     //Para info y para deleteScore
-    property var scoreData: {}
+    property var scoreData
     property int deleteId
 
     signal closePopup()
@@ -355,7 +356,6 @@ Item{
 
     }
 
-
     /*****************************/
     /* POPUP - GUARDAR EN APP OK */
     /*****************************/
@@ -363,6 +363,7 @@ Item{
         //Popup de guardar partitura
         id: saveOk
         visible: typePopup === "saveOk"
+        onVisibleChanged: console.log("saveOk visible: " + visible)
         Image {
             id: bgSaveOk
             source: "qrc:/images/popupSave/bgSaveOk.png"
@@ -387,7 +388,7 @@ Item{
         Image{
             id: cerrarButton
             source: "qrc:/images/popupSave/cerrarButton.png"
-            x: 417
+            anchors.horizontalCenter: bgSaveOk.horizontalCenter
             y: 286
             MouseArea{
                 anchors.fill: parent
@@ -402,8 +403,6 @@ Item{
         }
 
     }
-
-
 
     /********************************/
     /* POPUP - GUARDAR EN APP ERROR */
@@ -436,7 +435,7 @@ Item{
         Image{
             id: cerrarButtonError
             source: "qrc:/images/popupSave/cerrarButton.png"
-            x: 417
+            anchors.horizontalCenter: bgSaveError.horizontalCenter
             y: 286
             MouseArea{
                 anchors.fill: parent
@@ -572,12 +571,11 @@ Item{
                     var comments = commentsText.text
                     var folder = (folderSelector.currentText === "Ejercicios") ? "exercises" : "creations"
                     saveExample(name, comments, folder)
-                    closePopup()
+                    //closePopup()
                 }
             }
         }
     }
-
 
     /********************/
     /* POPUP - ELIMINAR */
@@ -634,12 +632,11 @@ Item{
                 onReleased: {
                     deleteButton.scale = 1
                     deleteScoreSignal(deleteId)
-                    closePopup()
+                    //closePopup()
                 }
             }
         }
     }
-
 
     /***********************/
     /* POPUP - ELIMINAR-OK */
@@ -668,9 +665,9 @@ Item{
             }
         }
         Image{
-            id: cancel253DeleteButtonOk
+            id: cancelDeleteButtonOk
             source: "qrc:/images/popupDelete/cerrarButton.png"
-            x: 409
+            anchors.horizontalCenter: bgDeleteOk.horizontalCenter
             y: 278
             MouseArea{
                 anchors.fill: parent
@@ -684,7 +681,6 @@ Item{
             }
         }
     }
-
 
     /**************************/
     /* POPUP - ELIMINAR-ERROR */
@@ -715,7 +711,7 @@ Item{
         Image{
             id: cancelDeleteButtonError
             source: "qrc:/images/popupDelete/cerrarButton.png"
-            x: 409
+            anchors.horizontalCenter: bgDeleteError.horizontalCenter
             y: 278
             MouseArea{
                 anchors.fill: parent

@@ -114,7 +114,7 @@ void Transcriptor::StartMetronome(){
 
 
 ///Interface to start and stop recording from qml
-void Transcriptor::record(){    
+void Transcriptor::record(){
     this->recording = !this->recording;
     if(!recording){
         this->stopRecording();
@@ -172,7 +172,6 @@ Transcriptor::Transcriptor(Musvi_Logic *logic){
 ///Destructor
 Transcriptor::~Transcriptor(){
     qDebug() << "Deleting transcriptor";
-<<<<<<< HEAD
     delete this->processor;
     delete this->input;
     delete this->metronomeThread;
@@ -180,9 +179,6 @@ Transcriptor::~Transcriptor(){
     if(this->calibrator != nullptr){
         delete this->calibrator;
     }
-    this
-=======
->>>>>>> 8a4380e7533797ec1cab9a3f3133a9e671132256
 }
 
 bool Transcriptor::IsRecording(){
