@@ -22,35 +22,15 @@ Item {
         Image{
             id: artistModeBg
             source: "qrc:/images/init/bgModeArtist.png"
-            x: 75
-            y: 200
+            x: 77
+            y: 175
         }
-        Text{
-            id: titleArtistMode
-            text: "MODO ARTISTA"
-            font.family: gothamBook.name
-            font.pixelSize: 28
-            //font.bold: true
-            anchors.horizontalCenter: artistModeBg.horizontalCenter
-            y: 428
-            color: "#0a465b"
-        }
-        Text{
-            id: textArtistMode
-            text: "Aqui se añadira todo el texto a mayores"
-            font.family: gothamLight.name
-            font.pixelSize: 18
-            color: "#666666"
-            //font.bold: true
-            anchors.horizontalCenter: artistModeBg.horizontalCenter
-            y: 484
 
-        }
         Image{
             id: selectArtistMode
             source: "qrc:/images/init/selectMode.png"
             anchors.horizontalCenter: artistModeBg.horizontalCenter
-            y: 549
+            y: 524
             MouseArea{
                 anchors.fill: selectArtistMode
                 onPressed: {
@@ -72,34 +52,15 @@ Item {
         Image{
             id: practiceModeBg
             source: "qrc:/images/init/bgModePractice.png"
-            x: 542
-            y: 200
+            x: 541
+            y: 175
         }
-        Text{
-            id: titlePracticeMode
-            text: "PRACTICAR"
-            font.family: gothamBook.name
-            font.pixelSize: 28
-            //font.bold: true
-            anchors.horizontalCenter: practiceModeBg.horizontalCenter
-            y: 428
-            color: "#0a465b"
-        }
-        Text{
-            id: textPracticeMode
-            text: "Aqui se añadira todo el texto a mayores"
-            font.family: gothamLight.name
-            font.pixelSize: 18
-            //font.bold: true
-            anchors.horizontalCenter: practiceModeBg.horizontalCenter
-            y: 484
-            color: "#666666"
-        }
+
         Image{
             id: selectPracticeMode
             source: "qrc:/images/init/selectMode.png"
             anchors.horizontalCenter: practiceModeBg.horizontalCenter
-            y: 549
+            y: 524
             MouseArea{
                 anchors.fill: selectPracticeMode
                 onPressed: {

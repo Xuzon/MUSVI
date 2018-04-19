@@ -1,4 +1,6 @@
 import QtQuick 2.0
+import QtMultimedia 5.8
+
 Item {
     id: artistMode
 
@@ -7,6 +9,10 @@ Item {
     property int pulseCount: 1
     property int speedValue: 60
     property string compasValue: "4/4"
+    property bool finishScorePrint : false
+
+    onCompasValueChanged: clear()
+    onSpeedValueChanged: clear()
 
     signal goInit()
     signal startRecording()
@@ -14,7 +20,12 @@ Item {
     signal showPopUp(var type)
     signal metronome()
 
-    onPulsesNumberChanged: console.log("ha cambiado el pulso: " + pulsesNumber)
+
+    SoundEffect{
+        id: beat
+        volume: 1
+        source: "qrc:/sounds/beat.wav"
+    }
 
     Menu{
         id: menu
@@ -37,6 +48,8 @@ Item {
                     break
                 case "stop":
                     menu.playState = "start"
+                    finishScorePrint = true
+                    parent.enabled = false
                     stopRecording()
                     break
                 case "infoMusvi":
@@ -53,7 +66,7 @@ Item {
         visible: false
         source: "qrc:/images/artist/count" + number + ".png"
         x: 392
-        y: 271
+        y: 251
         z: 10
     }
 
@@ -61,7 +74,6 @@ Item {
     Timer{
         id: tempTimer
         interval: (60/speedValue)*1000
-        onIntervalChanged: console.log(interval)
         onTriggered: {
             if(number>1){
                 number--;
@@ -98,14 +110,19 @@ Item {
         Image{
             id:partituraBg
             source: "qrc:/images/artist/score.png"
-            x: 0
+            x: -10
             y: 185
         }
-
+        Image{
+            id:compasImage
+            source: "qrc:/images/compas/" + compasValue.split("/").join("-") + ".png"
+            x: 29
+            anchors.verticalCenter: partituraBg.verticalCenter
+        }
         Rectangle{
-            width: 950
+            width: 935
             height: 200
-            x: 70
+            x: 80
             y: 285
             color: "transparent"
             ListView{
@@ -115,7 +132,7 @@ Item {
                 model: figuresModel
                 delegate: figuresDelegate
                 orientation: ListView.Horizontal
-                interactive: false
+                interactive: true
                 layoutDirection: Qt.RightToLeft
                 clip: true
                 add: Transition {
@@ -133,36 +150,43 @@ Item {
     }
 
 
-    Image{
+    Item{
         id: settings
-        source: "qrc:/images/artist/settings.png"
-        x: 43
-        y: 615
+        Image{
+            id: settingsBg
+            source: "qrc:/images/artist/settings.png"
+            x: 43
+            y: 615
+        }
+
+        Text{
+            id: speed
+            text: speedValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 165
+            y: 660
+        }
+
+        Text{
+            id: compas
+            text: compasValue
+            font.family: gothamBook.name
+            font.pixelSize: 22
+            color: "#666666"
+            //font.bold: true
+            x: 295
+            y: 660
+        }
     }
 
-    Text{
-        id: speed
-        text: speedValue
-        font.family: gothamBook.name
-        font.pixelSize: 22
-        color: "#666666"
-        //font.bold: true
-        x: 165
-        y: 660
-    }
 
-    Text{
-        id: compas
-        text: compasValue
-        font.family: gothamBook.name
-        font.pixelSize: 22
-        color: "#666666"
-        //font.bold: true
-        x: 295
-        y: 660
-    }
 
     function printFigure(figure){
+        beat.stop()
+        beat.play()
         figuresModel.insert(0, {
            "path" : "qrc:/images/figures/" + figure + ".png"
         })
@@ -179,6 +203,29 @@ Item {
     function clear(){
         figuresModel.clear()
         pulseCount = 1
+    }
+
+    function changeConfig(speedV, compasV){
+        speedValue = speedV
+        compasValue = compasV
+        switch(compasValue){
+            case "3/8":
+                pulsesNumber = 1
+                break
+            case "6/8":
+                pulsesNumber = 2
+                break
+            case "9/8":
+                pulsesNumber = 3
+                break
+            case "12/8":
+                pulsesNumber = 4
+                break
+            default:
+                pulsesNumber = compasValue.split("/")[0]
+                break
+        }
+        console.log("PULSES NUMBER: " + pulsesNumber)
     }
 
 }

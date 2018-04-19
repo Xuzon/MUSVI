@@ -1,8 +1,7 @@
 #include "bufferprocessor.h"
 #include "logic.h"
 
-BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,float window,int subdivisions,float length, int threshold){
-    this->logic = logic;
+BufferProcessor::BufferProcessor(Musvi_Logic *logic, int bytesPerFrame,float fs,float window,int subdivisions,float length, int threshold){
     this->bytesPerFrame = bytesPerFrame;
     this->fs = fs;
     this->window = window;
@@ -11,15 +10,14 @@ BufferProcessor::BufferProcessor(Musvi_Logic* logic, int bytesPerFrame,float fs,
     this->waveThreshold = threshold + threshold * 30 / 100;
     this->lowFreq = 1000;
     this->highFreq = 5000;
+    //pointers
+    this->logic = logic;
     this->classifier = new Classifier(subdivisions,length);
     this->lowPassFilter = new LowPassFilter(filterOrder,lowFreq,fs);
     this->highPassFilter = new HighPassFilter(filterOrder,highFreq,fs);
 }
 
 BufferProcessor::~BufferProcessor(){
-    delete this->classifier;
-    delete this->lowPassFilter;
-    delete this->highPassFilter;
 }
 
 ///Get the data from the microphpne

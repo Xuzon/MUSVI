@@ -36,8 +36,9 @@ public:
 
     /* Objects */
     QTimer *timer;
-    Transcriptor* transcriptor;
+    Transcriptor *transcriptor;
     ScoreChecker checker;
+    void changeConfig(int speed, QString compas);
 
 signals:
 
@@ -45,6 +46,8 @@ signals:
     void sendPulseArtist(QString pulse);
     void sendPulsePractice(QString pulse,int hasError);
     void getScoreList(QVariantList list);
+    void deleteResponse(bool error);
+    void saveResponse(bool error);
 
 public slots:
     /* Slot para recoger datos del QML */
@@ -66,7 +69,6 @@ public slots:
     void saveExample(QString name, QString comments, QString folder);//folder será 'exercises' o 'creations'
     //delete a score with the given id from file system and current heap
     void deleteScore(int id);
-
  
 };
 

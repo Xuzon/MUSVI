@@ -48,10 +48,13 @@ DISTFILES +=\
         qml/Information.qml \
         qml/Init.qml \
         qml/Musvi_Controller.qml \
-        qml/Practice.qml \
         qml/PopUp.qml \
         main.qml \
-        qml/Practice_v2.qml \
-    qml/ScreenSelection.qml
+        qml/ScreenSelection.qml \
+        qml/ScreenExamples.qml \
+        qml/ScreenList.qml \
+        qml/ScreenScorePractice.qml \
+    qml/Practice.qml
+
 
 INSTALLS += target

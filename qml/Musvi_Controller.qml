@@ -14,18 +14,29 @@ Item{
 
     signal emitAllQmlFiles(var data)
     signal info(var data)
-    signal detectPulse(var figure)
+    signal detectPulseArtist(var figure)
+    signal detectPulsePractice(var figure, var error)
     signal scoreList(var list)
     signal errores(var hasError)
+    signal deleteResponseLogic(var error)
+    signal saveResponseLogic(var error)
 
     Connections{
         target: Logic
-        onSendPulse:{
-            detectPulse(pulse)
-            errores(hasError)
+        onSendPulseArtist:{
+            detectPulseArtist(pulse)
+        }
+        onSendPulsePractice:{
+            detectPulsePractice(pulse, hasError)
         }
         onGetScoreList: {
             scoreList(list)
+        }
+        onDeleteResponse: {
+            deleteResponseLogic(error)
+        }
+        onSaveResponse: {
+            saveResponseLogic(error)
         }
     }
 
@@ -50,6 +61,7 @@ Item{
     }
 
     function configChanged(speed, compas){
+        console.log(" ------------------------- CONFIGURACION CAMBIADA -----------------------")
         Logic.config(speed, compas)
     }
 
@@ -70,10 +82,12 @@ Item{
     }
     
     function deleteScore(id){
+        console.log("Qml:: deleteScore " + id)
         Logic.deleteScore(id)
     }
 
     function setPractice(id){
+        console.log("Logic setPractice " + id)
         Logic.setPractice(id);
     }
 

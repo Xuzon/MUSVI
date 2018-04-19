@@ -14,8 +14,7 @@ Item {
 
     FontLoader {id: gothamBook; source: "qrc:/fonts/gotham/GothamBook.ttf"}
     FontLoader {id: gothamLight; source: "qrc:/fonts/gotham/GothamLight.ttf"}
-
-
+    FontLoader {id: gothamThin; source: "qrc:/fonts/gotham/GothamLight.otf"}
 
 
     //VENTANA PRINCIPAL - INICIO
@@ -27,20 +26,44 @@ Item {
 
         Screens.Musvi_Controller{
             id:controller
-        }
-        Audio{
-            id: beat
-            source: "qrc:/sounds/beat.aiff"
+            onDeleteResponseLogic: {
+                console.log("onDeleteResponseLogic")
+                if(error){
+                    popUp.typePopup = "deleteScoreError"
+                    popUp.visible = true
+                }else{
+                    popUp.typePopup = "deleteScoreOk"
+                    popUp.visible = true
+                }
+            }
+            onSaveResponseLogic: {
+                console.log("onSaveResponseLogic")
+                if(error){
+                    popUp.typePopup = "saveError"
+                    popUp.visible = true
+                }else{
+                    popUp.typePopup = "saveOk"
+                    popUp.visible = true
+                }
+            }
         }
 
         Screens.PopUp{
             id: popUp
             visible: false
+            onVisibleChanged: {
+                if(visible){
+                    artistMode.enabled = false
+                    practice.enabled = false
+                }else{
+                    artistMode.enabled = true
+                    practice.enabled = true
+                }
+            }
+
             onConfigChanged: {
-                artistMode.speedValue = speed
-                artistMode.compasValue = compas
+                artistMode.changeConfig(speed, compas)
                 controller.configChanged(speed, compas)
-                artistMode.pulsesNumber = compas.split("/")[0]
             }
             onSavePDFSignal: {
                 controller.savePDF(name)
@@ -48,19 +71,21 @@ Item {
             onSaveExample: {
                 controller.saveExample(name, comments, folder)
             }
-
             onDeleteScoreSignal: {
                 controller.deleteScore(id)
+                practice.deleteScoreFromList(id)
             }
-            onClosePopup: popUp.visible = false
+            onClosePopup: {
+                popUp.visible = false
+            }
             onChangeScreenScore: {
+                practice.loadData(json)
                 practice.typeScreen = "screenScore"
                 popUp.typePopup = "calibrate"
                 popUp.visible = true
+                practice.enabled = false
                 controller.calibrate(5)
-                beat.play()
             }
-
         }
 
         Screens.ArtistMode{
@@ -70,6 +95,7 @@ Item {
                 if(visible){
                     popUp.typePopup = "calibrate"
                     popUp.visible = true
+                    artistMode.enabled = false
                     controller.calibrate(5)
                 }
             }
@@ -98,7 +124,7 @@ Item {
             }
             Connections{
                 target: controller
-                onDetectPulse:{
+                onDetectPulseArtist:{
                     artistMode.printFigure(figure)
                 }
             }
@@ -106,22 +132,20 @@ Item {
         }
 
 
-        Screens.Practice_v2{
+        Screens.Practice{
             id: practice
             visible: false
             onShowPopUp: {
-                popUp.typePopup = type
+                popUp.typePopup = typePopup
                 popUp.visible = true
             }
             onGoInit: {
-                //Llamar a la función que reinicie todo
                 practice.visible = false
                 info.visible = false
                 artistMode.visible = false
                 init.visible = true
             }
             onStartRecording: {
-                //Enviar la señal al controlador
                 controller.sendStartRecording()
             }
             onStopRecording: {
@@ -136,9 +160,13 @@ Item {
                 controller.metronome()
             }
             onSetPractice: {
-                //Llamar a la funcion de controller que llame a setPractice(id) de la logica
-                console.log("OnSetPractice")
                 controller.setPractice(id)
+            }
+            onDeleteById: {
+                console.log("MAIN LIST deletebyid: " + id)
+                popUp.deleteId = id
+                popUp.typePopup = "deleteScore"
+                popUp.visible = true
             }
             onSendInformationToPopup: {
                 popUp.scoreData = scoreData
@@ -157,20 +185,17 @@ Item {
             onSelectMode: {
                 switch(type){
                     case "artist":
-                        beat.play()
                         practice.visible = false
                         info.visible = false
                         init.visible = false
                         artistMode.clear()
                         controller.mode("artist")
-                        controller.configChanged(artistMode.speedValue, artistMode.compasValue)
+                        controller.configChanged(60, "4/4")
                         artistMode.visible = true
                         break
                     case "practice":
-                        //beat.play()
                         info.visible = false
                         init.visible = false
-                        practice.clear()
                         artistMode.visible = false
                         controller.mode("practice")
                         practice.typeScreen = "screenSelection"

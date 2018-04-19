@@ -3,15 +3,14 @@ import QtQuick 2.0
 Item {
     id: screenExamples
 
-    var json0
-    var json1
-    var json2
-    var json3
+    property var json0
+    property var json1
+    property var json2
+    property var json3
 
     signal changeScreen(var typeScreenSelected)
     signal setPracticeId(var id)
-    signal sendInformationToPopup(var json)
-    signal showPopup(var typePopup)
+    signal popupInfo(var json)
 
     Item{
         id: lvl0
@@ -22,25 +21,7 @@ Item {
             x: 75
             y: 147
         }
-        Text{
-            id: title0
-            text: "NIVEL 0"
-            font.family: gothamBook.name
-            font.pixelSize: 28
-            y: 187
-            x: 307
-            color: "#0a465b"
-        }
-        Text{
-            id: text0
-            text: "Breve info sobre\nel nivel 0"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            y: 256
-            x: 307
 
-        }
         Image{
 
             id: select0
@@ -56,8 +37,7 @@ Item {
                 onReleased: {
                     select0.scale = 1
                     setPracticeId(0)
-                    sendInformationToPopup(json0)
-                    showPopup("info")
+                    popupInfo(json0)
                 }
             }
             transitions: Transition {
@@ -75,28 +55,7 @@ Item {
             x: 535
             y: 147
         }
-        Text{
-            id: title1
-            text: "NIVEL 1"
-            font.family: gothamBook.name
-            font.pixelSize:28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 187
-            x: 772
-            color: "#0a465b"
-        }
-        Text{
-            id: text1
-            text: "Breve info sobre\nel nivel 1"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            //font.bold: true
-            //  anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 256
-            x: 738
 
-        }
         Image{
             id: select1
             source: "qrc:/images/practice/examples/SelectLvl.png"
@@ -111,8 +70,8 @@ Item {
                 onReleased: {
                     select1.scale = 1
                     setPracticeId(1)
-                    sendInformationToPopup(json1)
-                    showPopup("info")
+                    popupInfo(json1)
+
                 }
             }
             transitions: Transition {
@@ -131,28 +90,7 @@ Item {
             x: 75
             y:442
         }
-        Text{
-            id: title2
-            text: "NIVEL 2"
-            font.family: gothamBook.name
-            font.pixelSize: 28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 488
-            x: 307
-            color: "#0a465b"
-        }
-        Text{
-            id: text2
-            text: "Breve info sobre\nel nivel 2"
-            font.family: gothamLight.name
-            font.pixelSize:22
-            color: "#666666"
-            //font.bold: true
-            //  anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 557
-            x: 277
 
-        }
         Image{
             id: select2
             source: "qrc:/images/practice/examples/SelectLvl.png"
@@ -167,8 +105,7 @@ Item {
                 onReleased: {
                     select2.scale = 1
                     setPracticeId(2)
-                    sendInformationToPopup(json2)
-                    showPopup("info")
+                    popupInfo(json2)
                 }
             }
             transitions: Transition {
@@ -187,26 +124,7 @@ Item {
             x: 535
             y: 442
         }
-        Text{
-            id: title3
-            text: "NIVEL 3"
-            font.family: gothamBook.name
-            font.pixelSize: 28                //font.bold: true
-            // anchors.horizontalCenter: previaExam.horizontalCenter
-            y: 485
-            x: 772
-            color: "#0a465b"
-        }
-        Text{
-            id: text3
-            text: "Breve info sobre\nel nivel 3"
-            font.family: gothamLight.name
-            font.pixelSize: 22
-            color: "#666666"
-            y: 557
-            x: 738
 
-        }
         Image{
             id: select3
             source: "qrc:/images/practice/examples/SelectLvl.png"
@@ -220,8 +138,7 @@ Item {
                 onReleased: {
                     select3.scale = 1
                     setPracticeId(3)
-                    sendInformationToPopup(json3)
-                    showPopup("info")
+                    popupInfo(json3)
                 }
             }
             transitions: Transition {

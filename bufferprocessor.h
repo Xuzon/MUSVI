@@ -7,6 +7,7 @@
 #include <QtMultimedia/QAudioFormat>
 #include <QtMultimedia/QAudioInput>
 #include <QVector>
+#include <memory>
 #include "impulse.h"
 #include "classifier.h"
 #include "lowpassfilter.h"
@@ -19,13 +20,13 @@ class Musvi_Logic;
 class BufferProcessor : public QIODevice{
 
 public:
-    BufferProcessor(Musvi_Logic* logic,int bytesPerFrame,float fs,float window,int subdivisions,float length,int threshold);
+    BufferProcessor(Musvi_Logic *logic,int bytesPerFrame,float fs,float window,int subdivisions,float length,int threshold);
     ~BufferProcessor();
 
     QVector<QString> currentScore;
 
     bool open(OpenMode mode);
-    void SetInput(QAudioInput* input,bool* beatFlag);
+    void SetInput(QAudioInput *input,bool* beatFlag);
     qint64 writeData(const char *data, qint64 maxSize);
     qint64 readData ( char * data, qint64 maxSize );
 
@@ -34,11 +35,11 @@ protected:
     QVector<Impulse> lowFreqImpulses;
     QVector<Impulse> highFreqImpulses;
 
-    QAudioInput* input;
-    Classifier* classifier;
-    Musvi_Logic* logic;
-    LowPassFilter* lowPassFilter;
-    HighPassFilter* highPassFilter;
+    QAudioInput *input;
+    Classifier *classifier;
+    Musvi_Logic *logic;
+    LowPassFilter *lowPassFilter;
+    HighPassFilter *highPassFilter;
 
     int bytesPerFrame;
     int counter;
