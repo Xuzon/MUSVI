@@ -185,6 +185,7 @@ Transcriptor::~Transcriptor(){
     if(this->calibrator != nullptr){
         delete this->calibrator;
     }
+    this
 }
 
 bool Transcriptor::IsRecording(){
