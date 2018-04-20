@@ -76,7 +76,7 @@ Item {
                 break
                 //Info score
             case "infoScore":
-                showPopUp("infoScore")
+                showPopUp("info")
                 break
             case "backScreen":
                 switch(typeScreen){
