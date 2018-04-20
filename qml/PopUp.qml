@@ -202,7 +202,7 @@ Item{
     /***********************/
     Item{
         id: info
-        visible: typePopup === "info"
+        visible: typePopup === "info" || typePopup === "infoScorePractice"
         Image{
             id: bgInfo
             source: "qrc:/images/popupInfo/bgPopupInfo.png"
@@ -279,15 +279,32 @@ Item{
             source: "qrc:/images/practice/ejer_vs_ejem/Select.png"
             x: 400
             y: 644
+            visible: typePopup === "info"
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
                     selectInfo.scale = 1.1
                 }
                 onReleased: {
-                    console.log("ENVIAMOS DATOS DE LA PARTITURA")
                     selectInfo.scale = 1
                     changeScreenScore(scoreData)
+                }
+            }
+        }
+        Image{
+            id: selectInfoScore
+            source: "qrc:/images/popupInfo/closeButton.png"
+            x: 400
+            y: 644
+            visible: typePopup === "infoScorePractice"
+            MouseArea{
+                anchors.fill: parent
+                onPressed: {
+                    selectInfo.scale = 1.1
+                }
+                onReleased: {
+                    selectInfo.scale = 1
+                    closePopup()
                 }
             }
         }
