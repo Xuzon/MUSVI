@@ -3,22 +3,49 @@
 QVector<QJsonObject> ScoreSaver::scores;
 
 
-///Save a score
-bool ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder,QString compas, int lastErrors,int speed, int subdivisions){
-
+///Write a json into the filesystem
+bool ScoreSaver::WriteJsonScore(QString filePath, QJsonObject json){
     bool toRet = true;
-    QJsonObject json;
+    QFile* file = new QFile(filePath);
+    if(file->open(QIODevice::WriteOnly)){
+        qDebug() << "Writing to json";
+        QJsonDocument doc(json);
+        QString strJson(doc.toJson(QJsonDocument::Compact));
+        file->write(strJson.toUtf8());
+        file->close();
+        toRet = false;
+    }else{
+        qDebug() << "Error creating file:: " << filePath << "  error:: "<< file->errorString();
+    }
+    delete file;
+    return toRet;
+}
 
-    //*****SEARCH IN TO THE PATH SYSTEM*************
+///Append the file name to the documents folder, if there is an error creating or accessing that
+/// directory returns ""
+QString ScoreSaver::FromFileNameToPath(QString fileName){
     QString id = "/MUSVI/";
     QString dir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)[0] + id;
     QString filePath = dir + fileName + ".json";
     if (!QDir(dir).exists()) {
         if (!QDir().mkdir(dir)) {
             qDebug() << "Fatal error: Insufficient premissions to create directory -> " << dir;
-            return true;
+            return "";
         }
     }
+    return filePath;
+}
+
+bool ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comments, QString folder,QString compas, int lastErrors,int speed, int subdivisions){
+
+    QJsonObject json;
+
+    //*****SEARCH IN TO THE PATH SYSTEM*************
+    QString filePath = ScoreSaver::FromFileNameToPath(fileName);
+    if(filePath == ""){
+        return true;
+    }
+
 
     //****CREATE JSON OBJECT*****
     QJsonArray array;
@@ -40,19 +67,7 @@ bool ScoreSaver::SaveScore(QString fileName, QVector<QString>* data,QString comm
 
 
     //****WRITE JSON OBJECT******
-    QFile* file = new QFile(filePath);
-    if(file->open(QIODevice::WriteOnly)){
-        qDebug() << "Writing to json";
-        QJsonDocument doc(json);
-        QString strJson(doc.toJson(QJsonDocument::Compact));
-        file->write(strJson.toUtf8());
-        file->close();
-        toRet = false;
-    }else{
-        qDebug() << "Error creating file:: " << filePath << "  error:: "<< file->errorString();
-    }
-    delete file;
-    return toRet;
+    return WriteJsonScore(filePath, json);;
 }
 
 
@@ -73,6 +88,21 @@ void ScoreSaver::LoadJsonFromFile(QString fileName){
     QJsonDocument doc = QJsonDocument::fromJson(fileVal.toUtf8());
     json = doc.object();
     scores.append(json);
+}
+
+///Delete from current score in the heap, refresh the file in file system
+void ScoreSaver::RefreshErrors(int id, int errors){
+    QJsonObject score = LoadScore(id);
+    ScoreSaver::DeleteFromCurrentScores(id);
+    score["errors"] = errors;
+    QString filePath = ScoreSaver::FromFileNameToPath(score["name"].toString());
+    if(filePath == ""){
+        qDebug() << "RefreshErrors:: There was an error getting the path";
+        return;
+    }
+    if(ScoreSaver::WriteJsonScore(filePath,score)){
+        qDebug() << "RefreshErrors:: There was an error writing the refreshed score";
+    }
 }
 
 ///Load all scores on the heap

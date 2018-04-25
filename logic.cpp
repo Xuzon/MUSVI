@@ -34,6 +34,9 @@ void Musvi_Logic::stopRecording(){
     qDebug() << "QML->LOGIC :: STOP RECORDING";
     if(this->transcriptor->IsRecording()){
         this->transcriptor->record();
+        if(!this->checker.IsArtist()){
+            ScoreSaver::RefreshErrors(this->checker.GetId(),errors);
+        }
     }
 }
 
