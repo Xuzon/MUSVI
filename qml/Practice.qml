@@ -11,6 +11,8 @@ Item {
 
     property string typeScreen: ""
 
+    property bool onInfo : false
+
     property variant scoreList : []
     //property var examples
 
@@ -23,6 +25,7 @@ Item {
     signal metronome()
     signal setPractice(var id)
     signal deleteById(var id)
+    signal showInfoMusvi(var infoShow)
 
     ListModel {
         id: creationsModel
@@ -106,7 +109,13 @@ Item {
                 //Info MusviApp
             case "infoMusvi":
                 stopRecording()
-                showPopUp("infoMusvi")
+                if(onInfo){
+                    onInfo = false
+                    showInfoMusvi(false)
+                }else{
+                    onInfo = true
+                    showInfoMusvi(true)
+                }
                 break
             }
         }

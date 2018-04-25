@@ -92,6 +92,9 @@ Item {
         Screens.ArtistMode{
             id: artistMode
             visible: false
+            onShowInfoMusvi: {
+                info.visible = infoShow
+            }
             onVisibleChanged: {
                 if(visible){
                     popUp.typePopup = "calibrate"
@@ -136,6 +139,9 @@ Item {
         Screens.Practice{
             id: practice
             visible: false
+            onShowInfoMusvi: {
+                info.visible = infoShow
+            }
             onShowPopUp: {
                 popUp.typePopup = typePopup
                 popUp.visible = true
@@ -179,10 +185,34 @@ Item {
         Screens.Information{
             id: info
             visible: false
+            z: 10
+            Rectangle {
+              id: containerInfo
+              x: 0
+              y: 100
+              width: 1025; height: 668;
+              Flickable {
+                id: flickable
+                anchors.fill: parent;
+                contentWidth: image.width;
+                contentHeight: image.height
+                clip: true
+                Image {
+                    id: image;
+                    mipmap : true
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                    source: "qrc:/images/info_musvi.png"
+                }
+              }
+            }
         }
 
         Screens.Init{
             id: init
+            onShowInfoMusvi: {
+                info.visible = infoShow
+            }
             onSelectMode: {
                 switch(type){
                     case "artist":
@@ -202,14 +232,10 @@ Item {
                         practice.typeScreen = "screenSelection"
                         practice.visible = true
                         break
-                    case "info":
-                        practice.visible = false
-                        init.visible = true
-                        artistMode.visible = false
-                        info.visible = true
-                        break
+
                 }
             }
+
         }
 
     }
