@@ -6,6 +6,7 @@ ScoreChecker::ScoreChecker(){
 
 ///Load a practice and returns its speed
 int ScoreChecker::LoadPractice(int id, int* sub){
+    this->id = id;
     this->data.clear();
     //check if artist mode
     this->artistMode = id == -1 ? true : false;
@@ -43,4 +44,8 @@ bool ScoreChecker::HasError(QString pulse, int nCompas){
 
 bool ScoreChecker::IsArtist(){
     return this->artistMode;
+}
+
+int ScoreChecker::GetId(){
+    return this->id;
 }

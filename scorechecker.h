@@ -9,6 +9,7 @@ class ScoreChecker{
 
     bool artistMode;
     QVector<QString> data;
+    int id;
 
 public:
     ScoreChecker();
@@ -18,6 +19,7 @@ public:
     int LoadPractice(int id, int* sub = nullptr);
     bool HasError(QString pulse, int nCompas);
     bool IsArtist();
+    int GetId();
 };
 
 #endif // SCORECHECKER_H
