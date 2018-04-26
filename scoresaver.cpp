@@ -18,6 +18,7 @@ bool ScoreSaver::WriteJsonScore(QString filePath, QJsonObject json){
         qDebug() << "Error creating file:: " << filePath << "  error:: "<< file->errorString();
     }
     delete file;
+    ScoreSaver::scores.append(json);
     return toRet;
 }
 

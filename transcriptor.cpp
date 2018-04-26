@@ -167,6 +167,8 @@ Transcriptor::Transcriptor(Musvi_Logic *logic){
     }
     //speakers = new QAudioOutput(output,outputFormat);
     speakers = new QAudioOutput(outputFormat, this);
+
+    ScoreSaver::LoadScores();
 }
 
 ///Destructor
