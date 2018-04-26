@@ -2,16 +2,24 @@ import QtQuick 2.0
 
 Item {
     id: init
+    property bool onInfo : false
 
     signal selectMode(var type)
     signal showInfoPopup()
+    signal showInfoMusvi(var infoShow)
 
     Menu{
         id: menu
         type: "init"
         onPressButton: {
             if(type === "infoMusvi"){
-                showInfoPopup()
+                if(onInfo){
+                    onInfo = false
+                    showInfoMusvi(false)
+                }else{
+                    onInfo = true
+                    showInfoMusvi(true)
+                }
             }
         }
     }

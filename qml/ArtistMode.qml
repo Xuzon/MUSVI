@@ -11,6 +11,8 @@ Item {
     property string compasValue: "4/4"
     property bool finishScorePrint : false
 
+    property bool onInfo : false
+
     onCompasValueChanged: clear()
     onSpeedValueChanged: clear()
 
@@ -19,6 +21,7 @@ Item {
     signal stopRecording()
     signal showPopUp(var type)
     signal metronome()
+    signal showInfoMusvi(var infoShow)
 
 
     SoundEffect{
@@ -54,7 +57,13 @@ Item {
                     break
                 case "infoMusvi":
                     stopRecording()
-                    showPopUp("info")
+                    if(onInfo){
+                        onInfo = false
+                        showInfoMusvi(false)
+                    }else{
+                        onInfo = true
+                        showInfoMusvi(true)
+                    }
                     break
             }
         }
