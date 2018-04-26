@@ -48,21 +48,26 @@ Item {
                     menu.playState = "stop"
                     metronome()
                     tempTimer.start()
+                    parent.enabled = false
                     break
                 case "stop":
                     menu.playState = "start"
                     finishScorePrint = true
+                    enableButtons()
                     parent.enabled = false
                     stopRecording()
                     break
                 case "infoMusvi":
-                    stopRecording()
+                    //stopRecording()
+
                     if(onInfo){
                         onInfo = false
                         showInfoMusvi(false)
+                        enableButtons()
                     }else{
                         onInfo = true
                         showInfoMusvi(true)
+                        disableButtons("infoMusvi")
                     }
                     break
             }
@@ -92,6 +97,7 @@ Item {
                 //Cuando ya llega al 0 reinicia valores y envia señal de empezar a grabar
                 number = 3
                 startRecording()
+                menu.disableButtons("start")
             }
         }
     }

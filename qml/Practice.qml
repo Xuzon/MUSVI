@@ -100,21 +100,26 @@ Item {
                 screenScore.start321()
                 menu.playState = "stop"
                 metronome()
+                parent.enabled = false
                 break
             case "stop":
                 console.log("menu stop")
                 menu.playState = "start"
+                enableButtons()
+                //parent.enabled = false
                 stopRecording()
                 break
                 //Info MusviApp
             case "infoMusvi":
-                stopRecording()
+                //stopRecording()
                 if(onInfo){
                     onInfo = false
                     showInfoMusvi(false)
+                    enableButtons()
                 }else{
                     onInfo = true
                     showInfoMusvi(true)
+                    disableButtons("infoMusvi")
                 }
                 break
             }
@@ -164,6 +169,9 @@ Item {
             console.log("STOP!!!")
             menu.playState = "start"
             stopRecording()
+        }
+        onDisableButtons: {
+            menu.disableButtons(cause)
         }
     }
 

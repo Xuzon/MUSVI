@@ -20,6 +20,7 @@ Item {
 
     signal signalStartRecording()
     signal signalStopRecording()
+    signal disableButtons(var cause)
 
     SoundEffect{
         id: beat
@@ -106,6 +107,7 @@ Item {
                 //Cuando ya llega al 0 reinicia valores y envia señal de empezar a grabar
                 number = 3
                 signalStartRecording()
+                disableButtons("start")
             }
         }
     }
@@ -139,7 +141,7 @@ Item {
                 model: figuresModelUp
                 delegate: figuresDelegate
                 orientation: ListView.Horizontal
-                interactive: true
+                interactive: false
 //                remove: Transition {
 //                    NumberAnimation { property: "opacity"; from: 0; to: 1.0; duration: 400 }
 //                    NumberAnimation { property: "scale"; from: 0; to: 1.0; duration: 400 }

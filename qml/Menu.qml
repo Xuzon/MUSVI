@@ -166,4 +166,36 @@ Item {
         }
     }
 
+
+    function disableButtons(cause){
+        parent.enabled = true
+        if(cause === "start"){
+            init.enabled = false
+            config.enabled = false
+            infoScore.enabled = false
+            backScreen.enabled = false
+            start.enabled = false
+            stop.enabled = true
+            info.enabled = false
+        }else if(cause === "infoMusvi"){
+            init.enabled = false
+            config.enabled = false
+            infoScore.enabled = false
+            backScreen.enabled = false
+            start.enabled = false
+            stop.enabled = false
+            info.enabled = true
+        }
+    }
+
+    function enableButtons(){
+        parent.enabled = true
+        init.enabled = true
+        config.enabled = true
+        infoScore.enabled = true
+        backScreen.enabled = true
+        start.enabled = true
+        stop.enabled = true
+        info.enabled = true
+    }
 }

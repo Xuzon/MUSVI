@@ -38,8 +38,6 @@ Item {
                 onTriggered: {
                     bgItem.scale = 1
                     setPracticeId(id)
-                    console.log(folder)
-                    console.log(id)
                     takeInfo(folder, id)
                 }
             }

@@ -685,7 +685,7 @@ Item{
             id: cancelDeleteButtonOk
             source: "qrc:/images/popupDelete/cerrarButton.png"
             anchors.horizontalCenter: bgDeleteOk.horizontalCenter
-            y: 278
+            y: 263
             MouseArea{
                 anchors.fill: parent
                 onPressed: {
