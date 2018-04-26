@@ -194,9 +194,11 @@ Item {
               Flickable {
                 id: flickable
                 anchors.fill: parent;
+                flickableDirection: Flickable.VerticalFlick
                 contentWidth: image.width;
                 contentHeight: image.height
                 clip: true
+                ScrollBar.vertical: ScrollBar { id: vbar; active: true }
                 Image {
                     id: image;
                     mipmap : true
@@ -205,6 +207,7 @@ Item {
                     source: "qrc:/images/info_musvi.png"
                 }
               }
+
             }
         }
 
