@@ -24,7 +24,7 @@ Musvi_Logic::~Musvi_Logic(){
 void Musvi_Logic::startRecording(){
     qDebug() << "QML->LOGIC :: START RECORDING";
     errors = 0;
-    currentCompas = 0;
+    currentCompas = -1;
     if(!this->transcriptor->IsRecording()){
         this->transcriptor->record();
     }
