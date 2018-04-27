@@ -38,6 +38,10 @@ bool ScoreChecker::HasError(QString pulse, int nCompas){
         return false;
     }
 
+    if(nCompas < 0 ){
+        return false;
+    }
+
     QString toCompare = nCompas < this->data.count() ? this->data[nCompas] : "-1";
     return pulse != toCompare;
 }
