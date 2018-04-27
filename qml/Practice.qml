@@ -168,6 +168,7 @@ Item {
         onSignalStopRecording: {
             console.log("STOP!!!")
             menu.playState = "start"
+            menu.enableButtons()
             stopRecording()
         }
         onDisableButtons: {

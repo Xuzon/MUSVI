@@ -247,14 +247,17 @@ Item {
         }else{
             pulseCount++;
         }
-        if (newCount > 1 && figuresModelUp.count>0){
+        //if (newCount > 1 && figuresModelUp.count>pulsesNumber){
+        if (figuresModelUp.count>pulsesNumber){
+            console.log(figuresModelUp.count)
             figuresModelUp.remove(0);
             if(figuresModelUp.get(0).bar){
                 figuresModelUp.remove(0);
             }
             changeSelected()
         }else{
-            if(figuresModelUp.count === 0){
+            console.log(figuresModelUp.count)
+            if(figuresModelUp.count === pulsesNumber){
                 console.log("figures 0")
                 signalStopRecording()
             }else{

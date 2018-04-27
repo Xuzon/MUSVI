@@ -89,10 +89,13 @@ void Musvi_Logic::setPractice(int id){
  * Cada vez que se recibe un pulso, se envía la señal al QML
  */
 void Musvi_Logic::detectPulse(QString pulse){
-    qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
     int hasError = this->checker.HasError(pulse,currentCompas) ? 1 : 0;
     this->errors += hasError;
     currentCompas++;
+    if(currentCompas == 0 || !this->transcriptor->IsRecording()){
+        return;
+    }
+    qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;
     if(this->checker.IsArtist()){
         emit sendPulseArtist(pulse);
     }else{
