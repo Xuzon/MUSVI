@@ -222,3 +222,48 @@ void ScoreSaver::DeleteFromCurrentScores(int id){
     }
 }
 
+
+
+/********************************************
+ * @origin scoresaver.cpp
+ * @brief Function to save the score at MusicXML format
+ * @param f_fileName String with the name of the final file
+ * @param f_json Json with the data of the score
+ * @author Ismael Orge
+ * @return void
+ ***********************************************/
+void ScoreSaver::SaveXML(QString f_fileName, QJsonObject f_json)
+{
+    //Create the file where write
+    QFile l_fileMxml(f_fileName);
+    if(!l_fileMxml(QFile::WriteOnly | QFile::Text ))
+    {
+        qDebug()<<"Error saving the XML file.";
+        l_fileMxml.close();
+        return;
+    }
+
+    //QDomDocument is the element where we go to write the data of the XML
+    QDomDocument l_mXml("Score");
+
+    //Do the XML
+    QDomElement l_root=l_mXml.createElement("score-partwise");
+    l_root.setAttribute("Version", "3.1");
+        QDomElement l_partList=l_mXml.createElement("part-list");
+        l_root.appendChild(l_partList);
+            QDomElement l_scorePart=l_mXml.createElement("score-part");
+            l_scorePart.setAttribute("id","P1");
+            l_partList.appendChild(l_scorePart);
+                QDomElement l_partName=l_mXml.createElement("part-name");
+                QDomText l_textName=l_mXml.createTextNode(f_fileName);
+                l_partName.appendChild(l_textName);
+                l_scorePart.appendChild(l_partName);
+        QDomElement l_part=l_mXml.createElement("part");
+
+    //Saving the XML
+    QTextStream l_output(&l_fileMxml);
+    l_output<<l_mXml.toString();
+    l_fileMxml.close();
+
+
+}

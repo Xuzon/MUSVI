@@ -13,6 +13,13 @@
 #include <QVector>
 #include <QVariantList>
 
+#include <QXmlStream.h>
+#include <QtXml/qxml.h>
+#include <QtXml/Qdom.h>
+#include <qglobal.h>
+
+
+
 
 class ScoreSaver{
 
@@ -30,6 +37,7 @@ public:
     static void LoadScores();
     static void LoadJsonFromFile(QString fileName);
     static void RefreshErrors(int id, int errors);
+    static void SaveXML(QString fileName, QJsonObject json);
     static QJsonObject LoadScore(int id);
     static int GetNewId();
     static bool DeleteScore(int id);
