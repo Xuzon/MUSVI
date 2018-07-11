@@ -234,6 +234,8 @@ void ScoreSaver::DeleteFromCurrentScores(int id){
  ***********************************************/
 void ScoreSaver::SaveXML(QString f_fileName, QJsonObject f_json)
 {
+     QJsonArray l_dataMeasure=f_json["data"].toArray();
+     QString l_compas=f_json["compas"].toString();
     //Create the file where write
     QFile l_fileMxml(f_fileName);
     if(!l_fileMxml.open(QFile::WriteOnly | QFile::Text ))
@@ -250,6 +252,12 @@ void ScoreSaver::SaveXML(QString f_fileName, QJsonObject f_json)
     QDomElement l_root=l_mXml.createElement("score-partwise");
     l_root.setAttribute("Version", "3.1");
         //General data of the score
+        QDomElement l_work=l_mXml.createElement("work");
+        l_root.appendChild(l_work);
+            QDomElement l_workTitle=l_mXml.createElement("work-title");
+            QDomText l_textWorkTitle=l_mXml.createTextNode(f_json["name"].toString());
+            l_root.appendChild(l_workTitle);
+            l_workTitle.appendChild(l_textWorkTitle);
         QDomElement l_partList=l_mXml.createElement("part-list");
         l_root.appendChild(l_partList);
             //General data of the part
@@ -290,11 +298,12 @@ void ScoreSaver::SaveXML(QString f_fileName, QJsonObject f_json)
                             QDomElement l_line=l_mXml.createElement("line");
                             QDomText l_numberLine=l_mXml.createTextNode(QString::number(2));
                             l_line.appendChild(l_numberLine);
-                            l_clef.appendChild("l_line");
+                            l_clef.appendChild(l_line);
 
                 //At this part, need to access the data of the json
                 QDomElement l_note=l_mXml.createElement("note");
                 //Access to the json
+
 
 
     //Saving the XML
