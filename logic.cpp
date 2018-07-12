@@ -5,6 +5,7 @@
 //##########################################################################################
 Musvi_Logic::Musvi_Logic(QObject *parent) : QObject(parent)
 {
+
     timer = new QTimer(this);
     this->transcriptor = new Transcriptor(this);
     //this->checker.LoadPractice(1);

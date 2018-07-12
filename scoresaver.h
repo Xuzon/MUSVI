@@ -19,17 +19,27 @@
 #include <qglobal.h>
 
 
+typedef struct XMLNote{
+    QString m_Note;
+    bool m_Dot;
+    bool m_Rest;
 
+    explicit XMLNote(){ m_Dot = false; m_Rest = false;}
+}XMLNote;
 
 class ScoreSaver{
 
 private:
-
     static QVector<QJsonObject> scores;
     static void DeleteFromCurrentScores(int id);
     static bool DeleteFromFileSystem(int id);
     static bool WriteJsonScore(QString filePath, QJsonObject json);
     static QString FromFileNameToPath(QString fileName);
+    static int CountNote(QString pulse,int* index);
+
+
+
+    static XMLNote IntToXMLNote(int value);
 
 public:
 
@@ -42,6 +52,8 @@ public:
     static int GetNewId();
     static bool DeleteScore(int id);
     static QVariantList GetScores();
+    static QVector<XMLNote> PulseToXMLNotes(QString pulse);
+
 
 
 };

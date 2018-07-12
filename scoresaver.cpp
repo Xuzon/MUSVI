@@ -208,6 +208,7 @@ QVariantList ScoreSaver::GetScores(){
 
 }
 
+
 ///Delete the score with the given id on the loaded scores
 void ScoreSaver::DeleteFromCurrentScores(int id){
     for(int i = 0; i < ScoreSaver::scores.count(); i++){
@@ -243,63 +244,120 @@ void ScoreSaver::SaveXML(QString f_fileName, QJsonObject f_json)
         return;
     }
 
-    //QDomDocument is the element where we go to write the data of the XML
-    QDomDocument l_mXml("Score");
+//    //QDomDocument is the element where we go to write the data of the XML
+//    QDomDocument l_mXml("Score");
 
-    //Do the XML
-    QDomElement l_root=l_mXml.createElement("score-partwise");
-    l_root.setAttribute("Version", "3.1");
-        //General data of the score
-        QDomElement l_partList=l_mXml.createElement("part-list");
-        l_root.appendChild(l_partList);
-            //General data of the part
-            QDomElement l_scorePart=l_mXml.createElement("score-part");
-            l_scorePart.setAttribute("id","P1");
-            l_partList.appendChild(l_scorePart);
-                QDomElement l_partName=l_mXml.createElement("part-name");
-                QDomText l_textName=l_mXml.createTextNode(f_fileName);
-                l_partName.appendChild(l_textName);
-                l_scorePart.appendChild(l_partName);
-        //Data of the score (notes, clef...)
-        QDomElement l_part=l_mXml.createElement("part");
-        l_part.setAttribute("id","P1");
-        l_root.appendChild(l_part);
-            QDomElement l_measure1=l_mXml.createElement("measure");
-            l_measure1.setAttribute("number", 1);
-            l_part.appendChild(l_measure1);
-                QDomElement l_attributes=l_mXml.createElement("attributes");
-                l_measure1.appendChild(l_attributes);
-                    QDomElement l_divisions=l_mXml.createElement("divisions");
-                    QDomText l_numberDivisions=l_mXml.createTextNode(QString::number(1));
-                    l_divisions.appendChild(l_numberDivisions);
-                    l_attributes.appendChild(l_divisions);
-                    QDomElement l_key=l_mXml.createElement("key");
-                    l_attributes.appendChild(l_key);
-                        QDomElement l_fifths=l_mXml.createElement("fifths");
-                        QDomText l_numberFifths=l_mXml.createTextNode(QString::number(0));
-                        l_fifths.appendChild(l_numberFifths);
-                        l_key.appendChild(l_fifths);
-                    QDomElement l_time=l_mXml.createElement("time");
-                    l_attributes.appendChild(l_time);
-                        QDomElement l_clef=l_mXml.createElement("clef");
-                        l_time.appendChild(l_clef);
-                            QDomElement l_sign=l_mXml.createElement("sign");
-                            QDomText l_typeClef=l_mXml.createTextNode("G");
-                            l_sign.appendChild(l_typeClef);
-                            l_clef.appendChild(l_sign);
-                            QDomElement l_line=l_mXml.createElement("line");
-                            QDomText l_numberLine=l_mXml.createTextNode(QString::number(2));
-                            l_line.appendChild(l_numberLine);
-                            l_clef.appendChild("l_line");
+//    //Do the XML
+//    QDomElement l_root=l_mXml.createElement("score-partwise");
+//    l_root.setAttribute("Version", "3.1");
+//        //General data of the score
+//        QDomElement l_partList=l_mXml.createElement("part-list");
+//        l_root.appendChild(l_partList);
+//            //General data of the part
+//            QDomElement l_scorePart=l_mXml.createElement("score-part");
+//            l_scorePart.setAttribute("id","P1");
+//            l_partList.appendChild(l_scorePart);
+//                QDomElement l_partName=l_mXml.createElement("part-name");
+//                QDomText l_textName=l_mXml.createTextNode(f_fileName);
+//                l_partName.appendChild(l_textName);
+//                l_scorePart.appendChild(l_partName);
+//        //Data of the score (notes, clef...)
+//        QDomElement l_part=l_mXml.createElement("part");
+//        l_part.setAttribute("id","P1");
+//        l_root.appendChild(l_part);
+//            QDomElement l_measure1=l_mXml.createElement("measure");
+//            l_measure1.setAttribute("number", 1);
+//            l_part.appendChild(l_measure1);
+//                QDomElement l_attributes=l_mXml.createElement("attributes");
+//                l_measure1.appendChild(l_attributes);
+//                    QDomElement l_divisions=l_mXml.createElement("divisions");
+//                    QDomText l_numberDivisions=l_mXml.createTextNode(QString::number(1));
+//                    l_divisions.appendChild(l_numberDivisions);
+//                    l_attributes.appendChild(l_divisions);
+//                    QDomElement l_key=l_mXml.createElement("key");
+//                    l_attributes.appendChild(l_key);
+//                        QDomElement l_fifths=l_mXml.createElement("fifths");
+//                        QDomText l_numberFifths=l_mXml.createTextNode(QString::number(0));
+//                        l_fifths.appendChild(l_numberFifths);
+//                        l_key.appendChild(l_fifths);
+//                    QDomElement l_time=l_mXml.createElement("time");
+//                    l_attributes.appendChild(l_time);
+//                        QDomElement l_clef=l_mXml.createElement("clef");
+//                        l_time.appendChild(l_clef);
+//                            QDomElement l_sign=l_mXml.createElement("sign");
+//                            QDomText l_typeClef=l_mXml.createTextNode("G");
+//                            l_sign.appendChild(l_typeClef);
+//                            l_clef.appendChild(l_sign);
+//                            QDomElement l_line=l_mXml.createElement("line");
+//                            QDomText l_numberLine=l_mXml.createTextNode(QString::number(2));
+//                            l_line.appendChild(l_numberLine);
+//                            l_clef.appendChild(l_line);
 
-                //At this part, need to access the data of the json
-                QDomElement l_note=l_mXml.createElement("note");
-                //Access to the json
+//                //At this part, need to access the data of the json
+//                QDomElement l_note=l_mXml.createElement("note");
+//                //Access to the json
 
 
-    //Saving the XML
-    QTextStream l_output(&l_fileMxml);
-    l_output<<l_mXml.toString();
-    l_fileMxml.close();
+//    //Saving the XML
+//    QTextStream l_output(&l_fileMxml);
+//    l_output<<l_mXml.toString();
+//    l_fileMxml.close();
 
+}
+
+
+
+
+QVector<XMLNote> ScoreSaver::PulseToXMLNotes(QString pulse)
+{
+    QVector<XMLNote> toRet;
+    int index = 0;
+    bool isRest = pulse[0] == '0';
+    while(index < pulse.size()){
+        XMLNote note = IntToXMLNote(CountNote(pulse,&index));
+        note.m_Rest = isRest;
+        isRest = false;
+        toRet.append(note);
+    }
+    return toRet;
+}
+
+int ScoreSaver::CountNote(QString pulse, int* index)
+{
+    int counter = 0;
+    for(int i = (*index) + 1; i < pulse.size(); i++, counter++){
+        if(pulse[i] == '1'){
+            (*index) = i;
+            return counter;
+        }
+    }
+    (*index) = pulse.size() + 1;
+    return counter;
+}
+
+XMLNote ScoreSaver::IntToXMLNote(int value){
+    XMLNote toRet;
+    switch (value) {
+    case 0:
+        toRet.m_Note = "sixteenth";
+        break;
+    case 1:
+        toRet.m_Note = "eighth";
+        break;
+    case 2:
+        toRet.m_Note = "eighth";
+        toRet.m_Dot = true;
+        break;
+    case 3:
+        toRet.m_Note = "half";
+        break;
+    case 4:
+        toRet.m_Note = "NO DEBERIA PASAR";
+        break;
+    case 5:
+        toRet.m_Note = "half";
+        toRet.m_Dot = true;
+        break;
+    }
+    return toRet;
 }
