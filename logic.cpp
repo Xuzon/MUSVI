@@ -25,7 +25,7 @@ Musvi_Logic::~Musvi_Logic(){
 void Musvi_Logic::startRecording(){
     qDebug() << "QML->LOGIC :: START RECORDING";
     errors = 0;
-    currentCompas = -1;
+    currentCompas = 0;
     if(!this->transcriptor->IsRecording()){
         this->transcriptor->record();
     }
@@ -93,7 +93,7 @@ void Musvi_Logic::detectPulse(QString pulse){
     int hasError = this->checker.HasError(pulse,currentCompas) ? 1 : 0;
     this->errors += hasError;
     currentCompas++;
-    if(currentCompas == 0 || !this->transcriptor->IsRecording()){
+    if(currentCompas < 0 || !this->transcriptor->IsRecording()){
         return;
     }
     qDebug() << "LOGIC->QML :: SEND PULSE:: " << pulse;

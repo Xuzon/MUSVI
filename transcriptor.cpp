@@ -42,6 +42,7 @@ void Transcriptor::startRecording(){
 void Transcriptor::stopRecording(){
     if(input != nullptr){
         input->stop();
+        qDebug() << "Stopping input";
         if(this->metronomeThread){
             this->metronomeThread->wait();
         }
@@ -191,7 +192,7 @@ void Transcriptor::StopCalibration(){
     this->calibrator->close();
     this->calibrating = false;
     //only for the presentation
-    this->calibrator->threshold=4000; //DELETE this line later
+    this->calibrator->threshold=4000; //TODO DELETE this line later
 
     this->input->stop();
     qDebug() << "THRESHOLD:: " << this->calibrator->threshold;
