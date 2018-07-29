@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += core gui quick qml multimedia widgets
+QT += core gui quick qml multimedia widgets xml
 
 target.path = $$PWD
 
